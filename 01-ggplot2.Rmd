@@ -1,4 +1,4 @@
-# Setup
+# ggplot2
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.width = 8, fig.height = 4, warning = FALSE, message = FALSE)
@@ -9,20 +9,20 @@ knitr::opts_chunk$set(fig.width = 8, fig.height = 4, warning = FALSE, message = 
 library(tidyverse)
 ```
 
-```{r}
+```{r paged.print=TRUE}
 theme_set(theme_bw())                      # Standard Thema (Hintergrund, etc.) für die Grafiken 
 df <- read_csv("data/gebrauchtwagen.csv")  # Daten einlesen
 sample <- df %>% slice(1:500)              # Kleiner Datensatz, der die ersten 500 Zeilen umfasst
+head(sample)
 ```
 
-# Visualisierung 
 ## Grundlagen
 
 Minimale Angaben zur Erstellung einer Grafik:
 
 - **Datensatz** (data)
-- **Ästhetik-Zuordnung** (aesthetic mapping): Welche Variable wird durch welche Ästhetik (x-Achse, y-Achse, Farbe, Größe, Form, ...) repräsentiert?
-- **Objekttyp** (geometric object): z.B. Punkte, Linien, Balken, etc.
+- **Ästhetik-Zuordnung** (aesthetic mapping): Welche Variable des Datensatzes wird durch welche Ästhetik (x-Achse, y-Achse, Farbe, Größe, Form, ...) repräsentiert?
+- **Geometrisches Objekt** (geometric object): z.B. Punkte, Linien, Balken, etc.
 
 
 ```{r}
@@ -89,12 +89,11 @@ sample %>%
 ```
  
 
-## Objekttyp (geometric object)
+## Geometrisches Objekt
 
+Grundsätzlich stehen Ihnen eine große Auswahl an Objekttypen zur Verfügung. Aber: Für eine gegebene Fragestellung kommen idR nur wenige davon konkret in Frage.
 
-Grundsätzlich stehen Ihnen unterschiedliche Objekttypen zur Verfügung. Aber: Für eine gegebene Fragestellung kommen idR nur wenige davon konkret in Frage.
-
-Welche Objekttypen sind für die folgende Fragestellung sinnvoll: *Wie stehen Fahrzeugalter und Preis miteinander in Beziehung?*
+Betrachten wir, welche Objekttypen für die folgende Fragestellung sinnvoll sein könnten: *Wie stehen Fahrzeugalter und Preis miteinander in Beziehung?*
 
 ```{r}
 p <- sample %>% ggplot(aes(x = alter, y = preis))

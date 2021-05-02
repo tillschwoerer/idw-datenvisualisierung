@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 ggplot2 | Einführung in die Datenvisualisierung mit R</title>
+  <meta name="description" content="2 ggplot2 | Einführung in die Datenvisualisierung mit R" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 ggplot2 | Einführung in die Datenvisualisierung mit R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="tillschwoerer/idw-datenvisualisierung" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 ggplot2 | Einführung in die Datenvisualisierung mit R" />
+  
+  
+  
+
+<meta name="author" content="Tillmann Schwörer" />
+
+
+<meta name="date" content="2021-05-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="geodaten.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einführung</a></li>
+<li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
+<li class="chapter" data-level="2.2" data-path="ggplot2.html"><a href="ggplot2.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ggplot2.html"><a href="ggplot2.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ggplot2.html"><a href="ggplot2.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ggplot2.html"><a href="ggplot2.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
+<li class="chapter" data-level="2.4" data-path="ggplot2.html"><a href="ggplot2.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="ggplot2.html"><a href="ggplot2.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ggplot2.html"><a href="ggplot2.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
+<li class="chapter" data-level="2.6" data-path="ggplot2.html"><a href="ggplot2.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ggplot2.html"><a href="ggplot2.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>3</b> Geodaten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>3.1</b> Simple Features</a></li>
+<li class="chapter" data-level="3.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>3.2</b> Ästhetiken</a></li>
+<li class="chapter" data-level="3.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>3.3</b> Schichten</a></li>
+<li class="chapter" data-level="3.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>3.4</b> Aggregation</a></li>
+<li class="chapter" data-level="3.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>3.5</b> Koordinatensystem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>4</b> Aggregierte Daten</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>4.1</b> Sortierung</a></li>
+<li class="chapter" data-level="4.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>4.2</b> Überlappungen</a></li>
+<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#kategorielle-variablen"><i class="fa fa-check"></i><b>4.3</b> 2 Kategorielle Variablen</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Einführung in die Datenvisualisierung mit R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> ggplot2</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ggplot2.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ggplot2.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())                      <span class="co"># Standard Thema (Hintergrund, etc.) für die Grafiken </span></span>
+<span id="cb2-2"><a href="ggplot2.html#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gebrauchtwagen.csv&quot;</span>)  <span class="co"># Daten einlesen</span></span>
+<span id="cb2-3"><a href="ggplot2.html#cb2-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>)              <span class="co"># Kleiner Datensatz, der die ersten 500 Zeilen umfasst</span></span>
+<span id="cb2-4"><a href="ggplot2.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sample)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 13
+##   name        preis alter kilometer hersteller modell fahrzeugtyp getriebe    ps
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;
+## 1 smart_forT~  5299     7     30000 smart      fortwo kleinwagen  automat~    71
+## 2 Renault_Cl~  1100    16    125000 renault    clio   kleinwagen  manuell     75
+## 3 Audi_A4_Av~  8199    14    150000 audi       a4     kombi       automat~   131
+## 4 Mercedes_B~  8999     8    150000 mercedes_~ c_kla~ limousine   automat~   136
+## 5 BMW_316_i_~  3600    13    150000 bmw        3er    limousine   manuell    116
+## 6 verk._eine~  2490    11    150000 peugeot    1_rei~ kleinwagen  manuell     68
+## # ... with 4 more variables: kraftstoff &lt;chr&gt;, schaden &lt;chr&gt;, plz &lt;dbl&gt;,
+## #   bundesland &lt;chr&gt;</code></pre>
+<div id="grundlagen" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Grundlagen</h2>
+<p>Minimale Angaben zur Erstellung einer Grafik:</p>
+<ul>
+<li><strong>Datensatz</strong> (data)</li>
+<li><strong>Ästhetik-Zuordnung</strong> (aesthetic mapping): Welche Variable des Datensatzes wird durch welche Ästhetik (x-Achse, y-Achse, Farbe, Größe, Form, …) repräsentiert?</li>
+<li><strong>Geometrisches Objekt</strong> (geometric object): z.B. Punkte, Linien, Balken, etc.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ggplot2.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sample, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<p>Wie ändert sich die Grafik, wenn wir den vollen Datensatz (df) verwenden?</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ggplot2.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
+<p>Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ggplot2.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sample, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> preis, <span class="at">y =</span> alter)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ggplot2.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sample, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> preis, <span class="at">y =</span> hersteller)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-5-2.png" width="768" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ggplot2.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sample, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> hersteller)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-5-3.png" width="768" /></p>
+<p>Wie ändert sich die Grafik, wenn wir einen anderen Objekttyp wählen?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ggplot2.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sample, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> hersteller)) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ggplot2.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_density2d_filled</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-6-2.png" width="768" /></p>
+</div>
+<div id="ästhetik-zuordnung" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Ästhetik-Zuordnung</h2>
+<p>Über weitere Ästhetik-Zuordnungen (Welche Variable wird durch welche Ästhetik repräsentiert?) können wir eine <em>mehrdimensionale</em> Visualisierung erstellen.</p>
+<p>Welche Ästhetiken für <code>geom_point</code> zur Verfügung stehen, kann man via <code>help(geom_point)</code> unter der Überschrift <em>Aesthetics</em> nachlesen.</p>
+<div id="kardinal-skalierte-variable" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Kardinal-skalierte Variable</h3>
+<p>Für kardinal-sklaierte Variablen ist bspw. die Form-Ästhetik (shape) ungeeignet</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ggplot2.html#cb11-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis, <span class="at">color =</span> ps)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ggplot2.html#cb12-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis, <span class="at">size =</span> ps)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-7-2.png" width="768" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ggplot2.html#cb13-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis, <span class="at">alpha =</span> ps)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-7-3.png" width="768" /></p>
+</div>
+<div id="nominal-skalierte-variable" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Nominal-skalierte Variable</h3>
+<p>Für nominal-skalierte Variablen sind Größe (size) und Transparenz (alpha) wenig geeignet</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ggplot2.html#cb14-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis, <span class="at">color =</span> fahrzeugtyp)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ggplot2.html#cb15-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis, <span class="at">shape =</span> fahrzeugtyp)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-8-2.png" width="768" /></p>
+</div>
+<div id="fixierte-ästhetik" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Fixierte Ästhetik</h3>
+<p>Beachten Sie den Unterschied zwischen (1) einer Zuordnung (aesthetic mapping) und (2) einer fest definierten Ästhetik!</p>
+<p>Im folgenden Beispiel werden die Ästhetiken Farbe (color), Transparenz (alpha), Größe (size) und Form (shape) auf konkrete Werte festgelegt. Das heißt für jeden dargestellten Datenpunkt wird dieselbe Farbe, Transparenz, etc. verwendet. Hingegen bekommen bei einer Ästhetik-Zuordnung die Datenpunkte unterschiedliche Farben, Transparenzen, etc. in Abhängigkeit vom Wert der jeweiligen Variable des Datensatzes.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggplot2.html#cb16-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="ggplot2.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis)) <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="ggplot2.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#54b856&quot;</span>, </span>
+<span id="cb16-4"><a href="ggplot2.html#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-5"><a href="ggplot2.html#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>, </span>
+<span id="cb16-6"><a href="ggplot2.html#cb16-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">18</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
+</div>
+</div>
+<div id="geometrisches-objekt" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Geometrisches Objekt</h2>
+<p>Grundsätzlich stehen Ihnen eine große Auswahl an Objekttypen zur Verfügung. Aber: Für eine gegebene Fragestellung kommen idR nur wenige davon konkret in Frage.</p>
+<p>Betrachten wir, welche Objekttypen für die folgende Fragestellung sinnvoll sein könnten: <em>Wie stehen Fahrzeugalter und Preis miteinander in Beziehung?</em></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggplot2.html#cb17-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis))</span>
+<span id="cb17-2"><a href="ggplot2.html#cb17-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="768" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggplot2.html#cb18-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_jitter</span>()       <span class="co"># zufälliges &quot;Zittern&quot; um Überlappungen zu reduzieren</span></span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-10-2.png" width="768" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ggplot2.html#cb19-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>()       <span class="co"># Geglättete Linie</span></span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-10-3.png" width="768" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ggplot2.html#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density_2d</span>()   <span class="co"># Umrisse einer 2-dimensionalen Dichteschätzung</span></span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-10-4.png" width="768" /></p>
+<p>Beachten Sie, dass die <code>geom_[typ]</code> Funktionen teilweise implizite Veränderungen an den Daten vornehmen: bspw. statistische Berechnungen (<code>geom_smooth</code>, <code>geom_density_2d</code>) oder Positionsanpassungen (<code>geom_jitter</code>). Diese standardmäßig verwendeten Verändungen können Sie aber auch manuell verhindern bzw. anpassen, bspw:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ggplot2.html#cb21-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)    <span class="co"># Lineare Regressionsgerade</span></span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="768" /></p>
+<p>Sie können mithilfe der <code>geom</code> Funktionen auch mehrere <strong>Datenschichten</strong> übereinander legen. Dabei definiert jeder Objekttyp genau eine Schicht. Je Schicht können auch eigene Daten oder eine eigene Ästhetik-Zuordnung verwendet werden.</p>
+<p><strong>Beispiel 1: Streudiagramm mit Smooth Line</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ggplot2.html#cb22-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
+<p><strong>Beipsiel 2: Hervorhebung einer Teilmenge der Daten</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ggplot2.html#cb23-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> sample <span class="sc">%&gt;%</span> <span class="fu">filter</span>(hersteller <span class="sc">==</span> <span class="st">&quot;opel&quot;</span>)</span>
+<span id="cb23-2"><a href="ggplot2.html#cb23-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="ggplot2.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="ggplot2.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> subset, <span class="fu">aes</span>(<span class="at">color =</span> hersteller))</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="768" /></p>
+<p><strong>Beispiel 3: Labels für interessante Datenpunkte</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> sample <span class="sc">%&gt;%</span> <span class="fu">filter</span>(preis<span class="sc">==</span><span class="fu">max</span>(preis) <span class="sc">|</span> alter<span class="sc">==</span><span class="fu">max</span>(alter))</span>
+<span id="cb24-2"><a href="ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> </span>
+<span id="cb24-4"><a href="ggplot2.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-5"><a href="ggplot2.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_label_repel</span>(<span class="at">data =</span> subset, </span>
+<span id="cb24-6"><a href="ggplot2.html#cb24-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> name), </span>
+<span id="cb24-7"><a href="ggplot2.html#cb24-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">min.segment.length =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="768" /></p>
+<p><strong>Beispiel 4: Streudiagramm mit mehreren Smooth Lines</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alter, <span class="at">y =</span> preis, <span class="at">color =</span> fahrzeugtyp)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="ggplot2.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="ggplot2.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="768" /></p>
+</div>
+<div id="skalierung" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Skalierung</h2>
+<p>Jede Ästhetik hat zunächst eine Standard-Skalierung. Diese können Sie jedoch manuell anpassen</p>
+<div id="axen-skalierung" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Axen-Skalierung:</h3>
+<p>Wenn Datenpunkte sehr stark in einem kleinen Bereich der Grafik konzentriert sind, kann eine <strong>logarithmische Skalierung</strong> dabei helfen, diese Datenpunkte visuell zu entzerren.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ggplot2.html#cb26-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="ggplot2.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="ggplot2.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="ggplot2.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="768" /></p>
+</div>
+<div id="farb-skalierung" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Farb-Skalierung</h3>
+<p>Je nach Variablentyp eignen sich unterschiedliche Farbskalierungen:</p>
+<p><strong>Nominal-skalierte Variable</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="ggplot2.html#cb27-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="ggplot2.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(alter, preis, <span class="at">color =</span> fahrzeugtyp)) <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="ggplot2.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-4"><a href="ggplot2.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="768" /></p>
+<p><strong>Ordinal-skalierte Variable</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ggplot2.html#cb28-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="ggplot2.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(alter, preis, <span class="at">color =</span> <span class="fu">cut_interval</span>(ps, <span class="at">n =</span> <span class="dv">3</span>))) <span class="sc">+</span> </span>
+<span id="cb28-3"><a href="ggplot2.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-4"><a href="ggplot2.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;seq&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Reds&quot;</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="768" /></p>
+<p><strong>Kardinal-skalierte Variable</strong></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ggplot2.html#cb29-1" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="ggplot2.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(alter, preis, <span class="at">color =</span> ps)) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="ggplot2.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="ggplot2.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="768" /></p>
+<p>Es gibt diverse vordefinierte Farbpaletten, siehe z.B.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ggplot2.html#cb30-1" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="768" /></p>
+<p>… alternativ können Farbskalierungen auch selbst definiert werden</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a>meine_palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#4ecf71&quot;</span>, <span class="st">&quot;#4e5dcf&quot;</span>, <span class="st">&quot;#cf4ecf&quot;</span>, <span class="st">&quot;#cf4e4e&quot;</span>, <span class="st">&quot;#cfa44e&quot;</span>)</span>
+<span id="cb31-2"><a href="ggplot2.html#cb31-2" aria-hidden="true" tabindex="-1"></a>sample <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="ggplot2.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(alter, preis, <span class="at">color =</span> fahrzeugtyp)) <span class="sc">+</span> </span>
+<span id="cb31-4"><a href="ggplot2.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-5"><a href="ggplot2.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> meine_palette)  </span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="768" /></p>
+</div>
+</div>
+<div id="facetten" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Facetten</h2>
+<p>“Mehrdimensionale” Plots sind oft überladen und schwer interpretierbar. <strong>Facettenplots</strong> sind dann eine hilfreiche Alternative.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ggplot2.html#cb32-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> sample <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(alter, preis)) <span class="sc">+</span> <span class="fu">geom_point</span>() </span>
+<span id="cb32-2"><a href="ggplot2.html#cb32-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>fahrzeugtyp)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="768" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ggplot2.html#cb33-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> ps<span class="sc">&gt;</span><span class="dv">150</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-22-2.png" width="768" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(fahrzeugtyp <span class="sc">~</span> ps<span class="sc">&gt;</span><span class="dv">100</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-22-3.png" width="768" /></p>
+<p>Hier können sie auch festlegen, dass jede Facette eine eigene Axenskalierung erhält</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="ggplot2.html#cb35-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>fahrzeugtyp, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="768" /></p>
+</div>
+<div id="thema-und-labels" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Thema und Labels</h2>
+<div id="labels" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Labels</h3>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ggplot2.html#cb36-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Alter in Jahren&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Preis in €&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Gebrauchtwagen&quot;</span>)</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="768" /></p>
+</div>
+<div id="thema" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Thema</h3>
+<p>Sie können eines der unzähligen vordefinierten Themen verwenden</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="ggplot2.html#cb37-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="768" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ggplot2.html#cb38-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> ggthemes<span class="sc">::</span><span class="fu">theme_economist</span>()</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-25-2.png" width="768" /></p>
+<p>… oder im Detail ihr eigenes Thema gestalten.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="ggplot2.html#cb39-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>),</span>
+<span id="cb39-2"><a href="ggplot2.html#cb39-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;darkgrey&quot;</span>),</span>
+<span id="cb39-3"><a href="ggplot2.html#cb39-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">size =</span> <span class="dv">2</span>),</span>
+<span id="cb39-4"><a href="ggplot2.html#cb39-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="dv">2</span>),</span>
+<span id="cb39-5"><a href="ggplot2.html#cb39-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p><img src="01-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="768" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geodaten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"df_print": "paged"
+});
+});
+</script>
+
+</body>
+
+</html>

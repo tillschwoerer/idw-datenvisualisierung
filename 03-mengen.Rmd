@@ -1,0 +1,87 @@
+# Aggregierte Daten
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message = FALSE, fig.width = 8, fig.height = 4)
+```
+
+```{r}
+library(tidyverse)      
+theme_set(theme_bw())   
+df <- read_csv("data/gebrauchtwagen.csv")
+head(df)
+```
+
+Bis hierhin haben wir hauptsächlich Rohdaten visualisiert. Nun wollen wir hingegen die Rohdaten auf eine höhere Ebene aggregieren und diese Ergebnisse visualisieren, z.B:
+
+- Anzahl Autos je Fahrzeugtyp (SUV, Cabrio, Kleinwagen, etc)
+- Durchschnittlicher Preis je Hersteller
+
+```{r}
+data <- df %>%
+  group_by(fahrzeugtyp) %>%
+  summarise(n = n(), preis = mean(preis))
+
+data
+```
+
+Der wichtigste Grafiktyp für diese Art von Daten ist das Balkendiagramm (Bar chart), welches wir über das geometrische Object `geom_col` erezugen können.
+
+```{r}
+data %>% ggplot(aes(x = fahrzeugtyp, y = n)) + geom_col()
+```
+
+Eine praktische Alternative zu `geom_col` ist `geom_bar`, jedoch noch für den Fall, dass die Anzahl der Beobachtungen dargestellt werden soll. Die Funktion `geom_bar` kann direkt auf die Rohdaten angewendet werden. Hierbei wird das Zählen der Fälle implizit durch die Funktion ausgeführt und muss nicht explizit per Code berechnet werden. 
+
+```{r}
+df %>% ggplot(aes(x = fahrzeugtyp)) + geom_bar()
+```
+
+## Sortierung
+Ein typisches Problem ist, dass eine Text-Variable (*character*) wie `fahrzeugtyp` zunächst einmal nur alfabetisch sortiert werden kann. Für eine bessere Interpretierbarkeit ist es jedoch meistens sinnvoll, die Balken sortiert nach ihrer Höhe anzuordnen. Dafür müssen wie die Text-Variable in eine sogenannte Faktor-Variable (*factor*) umwandenln. Faktoren lassen sich nach unterschiedlichsten Kriterien sortieren, bspw. über die Funktion `fct_reorder`. 
+
+```{r}
+data %>% ggplot(aes(x = fct_reorder(fahrzeugtyp, -preis), y = preis)) + geom_col()
+```
+
+## Überlappungen
+Eine weitere typische Schwierigkeit besteht in sich überlappenden Labels. Dieses Problem tritt insbesondere auf der x-Achse auf. Deshalb lohnt es sich, die Achsenzuordnung zu ändern und so ein horizontales Balkendiagramm zu erzeugen.
+
+```{r fig.height=5}
+# Map to y axis
+data <- df %>% 
+  group_by(bundesland) %>%
+  summarise(n = n(),
+            preis = mean(preis))
+
+data %>% ggplot(aes(x = bundesland, y = preis)) + geom_col()
+data %>% ggplot(aes(y = bundesland, x = preis)) + geom_col()
+```
+
+Eine weitere Möglichkeit besteht darin, mehrere kleinere Balken zu einem großen Balken für "Sonstige" zusammenzufassen. 
+```{r}
+df %>% ggplot(aes(y = fct_lump(bundesland, n= 5))) + geom_bar()
+```
+
+## 2 Kategorielle Variablen
+
+Wenn wir die aggregierten Statistiken nicht für eine sondern zwei kategorielle Variablen berechnen (bspw. für `bundesland` und `fahrzeugtyp`), gibt es mehrere denkbare Darstellungsformen. 
+
+Eine Heatmap via `geom_tile` eignet sich insbesondere, wenn die kategoriellen Variablen viele Ausprägungen haben. 
+
+```{r}
+df %>% count(bundesland, fahrzeugtyp) %>% ggplot() + 
+  geom_tile(aes(x = fahrzeugtyp, y = bundesland, fill = n), color = "white") +
+  geom_text(aes(x = fahrzeugtyp, y = bundesland, label = n), size = 3) +
+  scale_fill_binned(low = "white", high = "red")
+```
+
+Facetten-Plots können grundsätzlich auch für solche Fälle helfen. Im hier vorliegenden Fall, mit vielen Ausprägungen wird ein Facettenplot aber schnell unübersichtlich.
+
+```{r}
+df %>% 
+  count(bundesland, fahrzeugtyp) %>% 
+  ggplot() + 
+  geom_col(aes(y = fahrzeugtyp, x = n)) +
+  facet_wrap(~bundesland, scales = "free")
+```
+
