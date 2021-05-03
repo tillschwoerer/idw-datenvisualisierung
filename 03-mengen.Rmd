@@ -1,5 +1,7 @@
 # Aggregierte Daten
 
+Das Thema Visualisierung von **aggregierten Daten** erschließen wir uns erneut anhand von Daten zu Gebrauchtwagenangeboten über Ebay Kleinanzeigen. 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning=FALSE, message = FALSE, fig.width = 8, fig.height = 4)
 ```
@@ -8,7 +10,7 @@ knitr::opts_chunk$set(warning=FALSE, message = FALSE, fig.width = 8, fig.height 
 library(tidyverse)      
 theme_set(theme_bw())   
 df <- read_csv("data/gebrauchtwagen.csv")
-head(df)
+glimpse(df)
 ```
 
 Bis hierhin haben wir hauptsächlich Rohdaten visualisiert. Nun wollen wir hingegen die Rohdaten auf eine höhere Ebene aggregieren und diese Ergebnisse visualisieren, z.B:

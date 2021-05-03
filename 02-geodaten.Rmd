@@ -1,6 +1,6 @@
 # Geodaten
 
-Visualisierung von Geodaten
+Das Thema Visualisierung von **Geodaten** erschließen wir uns anhand von Daten der Weltbank aus der Reihe der **World Development Indicators**. Enthalten sind in den Daten alle Länder der Erde und ausgewählte Indikatoren seit 1990. Da die Zeitkomponente für das Verständnis nicht relevant ist, beschränken wir uns in der Folge auf das Jahr 2018 (für 2019 und 2020 fehlen noch viele Werte, daher wurden diese nicht berücksichtigt.)
 
 ```{r, setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE,  message = FALSE)
@@ -20,9 +20,14 @@ theme_set(
 ## Simple Features
 
 ```{r paged.print = TRUE}
-df <- read_rds("data/wdi.rds")        # Einlesen der Daten
-df <- df %>% filter(jahr==2018)       # Einschränkung auf das aktuellste Jahr im Datensatz
-head(df)
+wdi <- read_csv("data/wdi.csv")        # Einlesen der World Development Indicators
+wdi <- wdi %>% filter(jahr==2018)      # Einschränkung auf das aktuellste Jahr im 
+geo <- read_rds("data/geo_wdi.rds")    # Einlesen der Geodaten
+
+# Geodaten werden per Join zum Datensatz hinzugefügt
+df <- wdi %>% left_join(geo, by = "iso2c") %>% st_as_sf()
+
+glimpse(df)
 ```
 
 Es handelt sich nicht um einen gewöhnlichen R Datensatz (data frame), sondern um einen sogenannten **Simple Feature** Datensatz. Das besondere daran ist die Variable `geometry`, welche die Koordinaten (Längengrad und Breitengrad) der Ländergrenzen enthält.

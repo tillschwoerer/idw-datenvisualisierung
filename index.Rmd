@@ -14,4 +14,84 @@ github-repo: tillschwoerer/idw-datenvisualisierung
 ---
 
 
-# Einführung
+# R und RStudio
+
+An dieser Stelle stichpunktartig ein paar zentrale Informationen zum Arbeiten mit R und RStudio.
+
+##
+
+- **R** ist eine Software für statistische Berechnungen und Grafiken. 
+- **RStudio** ist eine integrierte Entwicklungsumgebung (IDE) für R. Wir werden in diesem Kurs ausschließlich über RStudio mit R arbeiten (wobei dies bspw. auch über die Kommandozeile, Jupyter Notebooks, oder andere IDEs möglich ist)
+- Die Funktionalität der Basisinstallation lässt sich über R Pakete in jede denkbare Richtung erweitern (Datenaufbereitung, Visualisierung, Maschinelles Lernen, ...). Pakete können von jedermann geschrieben werden und über Plattformen wie [CRAN](https://cran.r-project.org/web/views/) oder Github der Allgemeinheit zur Verfügung gestellt werden.
+- Pakete müssen grundsätzlich nur 1 mal installiert werden, wobei ein gelegentliches Update Sinn macht. Jedes Mal, wenn die Funktionalität des Paketes in ein R Skript einebunden werden soll, muss das Paket über den `library` Befehl geladen werden.
+- Dieser Kurs nutzt insbesondere das R Paket **tidyverse**. Genauer gesagt handelt es sich dabei um eine Sammlung mehrerer Pakete. Enthalten ist darin insbesondere das Paket **ggplot2**, welches wir für die Visualisierungen verwendet werden. An dieser Stelle auch der Hinweis, dass sich die Syntax des tidyverse teilweise deutlich von base R Syntax unterscheidet.
+- Programmcode kann einerseits in **R Skripten** (Dateiendung: .R) und **R Markdown** Dateien (.Rmd) geschrieben werden. Erstere eignen sich insbesondere, wenn der Programmcode im Vordergrund steht. Letztere eignen sich insbesondere, wenn auch Erläuterungen und die Präsentation von Ergebnissen wichtig sind. 
+
+## Datenmanipulation
+Die wichtigsten Operationen zur Datenmanipulation werden nun ganz kurz angerissen:
+
+Zu Beginn der R Dateien sind die benötigten Pakete einzubinden. 
+
+```{r}
+library(tidyverse)
+```
+
+Die Funktion `read_rds` ist teil des Paketes **tidyverse**. Das heißt, sie können die Funktion nur verwenden, wenn sie vorher das Paket geladen haben. In den meisten Fällen werden wir Daten von Komma-separierte Datein (.csv) einlesen. Gelegentich werden wir auch Dateien mit dem R spezifischen Typ .rds einlesen.Der Pfeil Operator `<-` verwenden wir, um ein bestimmtes Object (hier: ein Datensatz) einem Namen (hier: df) zuzordnen. Nun taucht der Datensatz unter diesem Namen im **Environment** Tab von RStudio auf.
+
+```{r}
+df <- read_csv("data/wdi.csv")
+```
+
+Einen schnellen Überblick über einen Datensatz können wir uns mithilfe der folgenden Funktionen verschaffen:
+
+```{r}
+head(df)     # Erste 6 Zeilen
+glimpse(df)  # Kurzvorschau jeder Variable mit einigen Metadaten
+```
+
+Wenn wir genauere Information zu einer R Funktion oder einem Paket benötigen können wir die Hilfe verwenden, z.B. `help(head)`.
+
+Wir verwenden die `filter` Funktion, um eine Teilmenge der Zeilen zu selektieren. Hier wählen wir alle Zeilen, für die Variable `jahr` den Wert 2018 annimmt und die Variale `bevölkerung` größer als 200 Millionen ist.
+
+```{r}
+filter(df, jahr==2018 & bevölkerung>200000000)
+```
+
+Alternativ können wir dies unter Verwendung des sog. Pipe Operators (`%>%`) wie folgt schreiben. 
+
+```{r}
+df %>% filter(jahr==2018 & bevölkerung>200000000)
+```
+
+Der Vorteil davon ist hier noch nicht ersichtlich, sondern erst, wenn wir mehrere Verarbeiungsschritte miteinander verketten, bspw. durch Selektion einzelner Spalten (`select`) und Sortierung (`arrange`). Der Vorteil besteht darin, dass wir nicht nach jeder Operation ein Zwischenergebnis speichern müssen. 
+
+```{r}
+df %>% 
+  filter(jahr==2018 & bevölkerung>200000000) %>%   # Selektion einzelner Zeilen
+  select(land, kontinent, bevölkerung) %>%         # Selektion einzelner Spalten
+  arrange(-bevölkerung)                            # Sortieren anhand der Spalte Bevölkerung
+```
+
+Mithilfe der Funktion `mutate` können wir neue Variablen erstellen, oder alte überschreiben.
+
+```{r}
+df %>%
+  select(land, bevölkerung, bruttosozialprodukt) %>%
+  mutate(pro_kopf_einkommen = bruttosozialprodukt / bevölkerung) %>%
+  head(1)
+```
+Mithilfe der Funktion `summarise` können wir unterschiedliche aggregierte Statistiken berechnen. Unter `help(summarise)` können sie wichtige Funktionen sehen, die zur Verfügung stehen. Zu beachten ist die Behandlung von fehlenden Werten (`NA`, not available). Um trotz vorhandener fehlender Werte ein Ergebnis angezeigt zu bekommen, muss die Option `na.rm` (remove NAs) auf TRUE gesetzt werden.
+
+```{r}
+df %>% summarise(welt_gesamtbevölkerung = sum(bevölkerung, na.rm=TRUE),
+                 durchschnittliche_bevölkerung = mean(bevölkerung, na.rm=TRUE),
+                 max_bevölkerung = max(bevölkerung, na.rm=TRUE))
+```
+
+Häufig kombinieren wir `summarise` mit der Funktion `group_by`. Dann wird die Berechnung nicht für den gesamten Datensatz ausgeführt, sondern separat für jede durch `group_by` definierte Gruppe.
+
+```{r}
+df %>%
+  group_by(kontinent) %>%
+  summarise(sum(bevölkerung, na.rm=TRUE))
+```

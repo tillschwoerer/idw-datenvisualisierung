@@ -1,5 +1,7 @@
 # Aggregierte Daten
 
+Das Thema Visualisierung von **aggregierten Daten** erschließen wir uns erneut anhand von Daten zu Gebrauchtwagenangeboten über Ebay Kleinanzeigen. 
+
 
 
 
@@ -7,21 +9,25 @@
 library(tidyverse)      
 theme_set(theme_bw())   
 df <- read_csv("data/gebrauchtwagen.csv")
-head(df)
+glimpse(df)
 ```
 
 ```
-## # A tibble: 6 x 13
-##   name        preis alter kilometer hersteller modell fahrzeugtyp getriebe    ps
-##   <chr>       <dbl> <dbl>     <dbl> <chr>      <chr>  <chr>       <chr>    <dbl>
-## 1 smart_forT~  5299     7     30000 smart      fortwo kleinwagen  automat~    71
-## 2 Renault_Cl~  1100    16    125000 renault    clio   kleinwagen  manuell     75
-## 3 Audi_A4_Av~  8199    14    150000 audi       a4     kombi       automat~   131
-## 4 Mercedes_B~  8999     8    150000 mercedes_~ c_kla~ limousine   automat~   136
-## 5 BMW_316_i_~  3600    13    150000 bmw        3er    limousine   manuell    116
-## 6 verk._eine~  2490    11    150000 peugeot    1_rei~ kleinwagen  manuell     68
-## # ... with 4 more variables: kraftstoff <chr>, schaden <chr>, plz <dbl>,
-## #   bundesland <chr>
+## Rows: 20,000
+## Columns: 13
+## $ name        <chr> "smart_forTwo_Softtouch__passion_Inspektion_fuer_687_Euro_~
+## $ preis       <dbl> 5299, 1100, 8199, 8999, 3600, 2490, 15500, 2700, 6200, 279~
+## $ alter       <dbl> 7, 16, 14, 8, 13, 11, 7, 12, 8, 8, 22, 8, 9, 15, 16, 18, 1~
+## $ kilometer   <dbl> 30000, 125000, 150000, 150000, 150000, 150000, 150000, 900~
+## $ hersteller  <chr> "smart", "renault", "audi", "mercedes_benz", "bmw", "peuge~
+## $ modell      <chr> "fortwo", "clio", "a4", "c_klasse", "3er", "1_reihe", "5er~
+## $ fahrzeugtyp <chr> "kleinwagen", "kleinwagen", "kombi", "limousine", "limousi~
+## $ getriebe    <chr> "automatik", "manuell", "automatik", "automatik", "manuell~
+## $ ps          <dbl> 71, 75, 131, 136, 116, 68, 177, 69, 125, 67, 115, 121, 129~
+## $ kraftstoff  <chr> "benzin", "benzin", "benzin", "diesel", "benzin", "diesel"~
+## $ schaden     <chr> "nein", "nein", "nein", "nein", "nein", "nein", "nein", "j~
+## $ plz         <dbl> 35315, 36137, 85057, 10627, 65934, 14793, 28816, 30880, 71~
+## $ bundesland  <chr> "Hessen", "Hessen", "Bayern", "Berlin", "Hessen", "Branden~
 ```
 
 Bis hierhin haben wir hauptsächlich Rohdaten visualisiert. Nun wollen wir hingegen die Rohdaten auf eine höhere Ebene aggregieren und diese Ergebnisse visualisieren, z.B:

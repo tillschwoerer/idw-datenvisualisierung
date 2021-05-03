@@ -1,6 +1,6 @@
 # Geodaten
 
-Visualisierung von Geodaten
+Das Thema Visualisierung von **Geodaten** erschließen wir uns anhand von Daten der Weltbank aus der Reihe der **World Development Indicators**. Enthalten sind in den Daten alle Länder der Erde und ausgewählte Indikatoren seit 1990. Da die Zeitkomponente für das Verständnis nicht relevant ist, beschränken wir uns in der Folge auf das Jahr 2018 (für 2019 und 2020 fehlen noch viele Werte, daher wurden diese nicht berücksichtigt.)
 
 
 
@@ -20,33 +20,43 @@ theme_set(
 
 
 ```r
-df <- read_rds("data/wdi.rds")        # Einlesen der Daten
-df <- df %>% filter(jahr==2018)       # Einschränkung auf das aktuellste Jahr im Datensatz
-head(df)
+wdi <- read_csv("data/wdi.csv")        # Einlesen der World Development Indicators
+wdi <- wdi %>% filter(jahr==2018)      # Einschränkung auf das aktuellste Jahr im 
+geo <- read_rds("data/geo_wdi.rds")    # Einlesen der Geodaten
+
+# Geodaten werden per Join zum Datensatz hinzugefügt
+df <- wdi %>% left_join(geo, by = "iso2c") %>% st_as_sf()
+
+glimpse(df)
 ```
 
 ```
-## Simple feature collection with 6 features and 23 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -61.88711 ymin: 16.99717 xmax: 74.89131 ymax: 42.64795
-## CRS:            +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
-## # A tibble: 6 x 24
-##   iso2c land         kontinent   subregion    jahr bevölkerung bevölkerung_weib~
-##   <chr> <chr>        <chr>       <chr>       <int>       <dbl>             <dbl>
-## 1 AD    Andorra      Europe      Southern E~  2018       77006              NA  
-## 2 AE    United Arab~ Asia        Western As~  2018     9630959              30.6
-## 3 AF    Afghanistan  Asia        Southern A~  2018    37172386              48.6
-## 4 AG    Antigua and~ North Amer~ Caribbean    2018       96286              51.8
-## 5 AL    Albania      Europe      Southern E~  2018     2866376              49.1
-## 6 AM    Armenia      Asia        Western As~  2018     2951776              53.0
-## # ... with 17 more variables: bevölkerung_0_14 <dbl>, bevölkerung_65+ <dbl>,
-## #   bevölkerung_land <dbl>, bevölkerung_stadt <dbl>,
-## #   bevölkerung_unter$5.50 <dbl>, bruttosozialprodukt <dbl>, fläche <dbl>,
-## #   lebenserwartung <dbl>, lebenserwartung_mann <dbl>,
-## #   lebenserwartung_frau <dbl>, kindersterblichkeit <dbl>, geburtenrate <dbl>,
-## #   co2_emissionen <dbl>, literacy_rate <dbl>, militärausgaben <dbl>,
-## #   mordrate <dbl>, geometry <MULTIPOLYGON [°]>
+## Rows: 213
+## Columns: 24
+## $ iso2c                    <chr> "AD", "AE", "AF", "AG", "AL", "AM", "AO", "AR~
+## $ land                     <chr> "Andorra", "United Arab Emirates", "Afghanist~
+## $ kontinent                <chr> "Europe", "Asia", "Asia", "North America", "E~
+## $ subregion                <chr> "Southern Europe", "Western Asia", "Southern ~
+## $ jahr                     <dbl> 2018, 2018, 2018, 2018, 2018, 2018, 2018, 201~
+## $ bevölkerung              <dbl> 77006, 9630959, 37172386, 96286, 2866376, 295~
+## $ bevölkerung_weiblich     <dbl> NA, 30.63669, 48.63585, 51.78850, 49.06309, 5~
+## $ bevölkerung_0_14         <dbl> NA, 14.60351, 43.09018, 22.08109, 17.67287, 2~
+## $ `bevölkerung_65+`        <dbl> NA, 1.085001, 2.584927, 8.799826, 13.744736, ~
+## $ bevölkerung_land         <dbl> 11.938, 13.478, 74.505, 75.401, 39.681, 36.85~
+## $ bevölkerung_stadt        <dbl> 88.062, 86.522, 25.495, 24.599, 60.319, 63.14~
+## $ `bevölkerung_unter$5.50` <dbl> NA, 0.1, NA, NA, NA, 42.5, 88.5, 12.3, NA, 1.~
+## $ bruttosozialprodukt      <dbl> 3.218316e+09, 4.222150e+11, 1.835388e+10, 1.6~
+## $ fläche                   <dbl> 470.0, 98647.9, 652860.0, 440.0, 28750.0, 297~
+## $ lebenserwartung          <dbl> NA, 77.81400, 64.48600, 76.88500, 78.45800, 7~
+## $ lebenserwartung_mann     <dbl> NA, 77.133, 63.047, 75.721, 76.816, 71.215, 5~
+## $ lebenserwartung_frau     <dbl> NA, 79.164, 66.026, 77.983, 80.167, 78.354, 6~
+## $ kindersterblichkeit      <dbl> 2.9, 6.5, 48.0, 6.0, 8.5, 11.0, 51.9, 8.7, NA~
+## $ geburtenrate             <dbl> NA, 1.413, 4.473, 1.994, 1.617, 1.755, 5.519,~
+## $ co2_emissionen           <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ literacy_rate            <dbl> NA, NA, 43.01972, NA, 98.14115, NA, NA, 99.00~
+## $ militärausgaben          <dbl> NA, NA, 198074729, NA, 175886689, 608854650, ~
+## $ mordrate                 <dbl> NA, NA, 6.6555612, NA, 2.2894924, 1.6939156, ~
+## $ geometry                 <MULTIPOLYGON [°]> MULTIPOLYGON (((1.706055 42..., ~
 ```
 
 Es handelt sich nicht um einen gewöhnlichen R Datensatz (data frame), sondern um einen sogenannten **Simple Feature** Datensatz. Das besondere daran ist die Variable `geometry`, welche die Koordinaten (Längengrad und Breitengrad) der Ländergrenzen enthält.

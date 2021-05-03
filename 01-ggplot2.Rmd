@@ -1,19 +1,24 @@
 # ggplot2
 
+Die Einführung in die Bibliothek **ggplot2** vollziehen wir anhand von: 
+
+(1) Daten zu Gebrauchtwagen, die über Ebay-Kleinanzeigen verkauft wurden. Die hier verwendeten Daten stellen einen Ausschnitt aus einem noch größeren Datensatz dar, der über die Plattform Kaggle erhältlich ist. Im Vergleich zu den Originaldaten wurden extreme Ausreißer eliminiert und Variablen umbenannt. 
+
+(2) Streudiagrammen (*scatterplots*). Wir verwenden diese um die Beziehung zwischen 2 oder mehr Variablen zu visualisieren. 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.width = 8, fig.height = 4, warning = FALSE, message = FALSE)
 ```
 
-
 ```{r}
 library(tidyverse)
+theme_set(theme_bw())                      # Standard Thema (Hintergrund, etc.) für die Grafiken
 ```
 
 ```{r paged.print=TRUE}
-theme_set(theme_bw())                      # Standard Thema (Hintergrund, etc.) für die Grafiken 
 df <- read_csv("data/gebrauchtwagen.csv")  # Daten einlesen
 sample <- df %>% slice(1:500)              # Kleiner Datensatz, der die ersten 500 Zeilen umfasst
-head(sample)
+glimpse(sample)
 ```
 
 ## Grundlagen
@@ -29,14 +34,14 @@ Minimale Angaben zur Erstellung einer Grafik:
 ggplot(data = sample, mapping = aes(x = alter, y = preis)) + geom_point()
 ```
 
-Wie ändert sich die Grafik, wenn wir den vollen Datensatz (df) verwenden?
+**Wie ändert sich die Grafik, wenn wir den vollen Datensatz (df) verwenden?**
 
 ```{r}
 ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_point()
 ```
 
 
-Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?
+**Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?**
 
 ```{r}
 ggplot(data = sample, mapping = aes(x = preis, y = alter)) + geom_point()
@@ -45,7 +50,7 @@ ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_poi
 ```
 
 
-Wie ändert sich die Grafik, wenn wir einen anderen Objekttyp wählen?
+**Wie ändert sich die Grafik, wenn wir einen anderen Objekttyp wählen?**
 ```{r}
 ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_jitter(width = 0.1)
 ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_density2d_filled()
@@ -54,12 +59,10 @@ ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_density2d_filled()
 
 ## Ästhetik-Zuordnung
 
-Über weitere Ästhetik-Zuordnungen (Welche Variable wird durch welche Ästhetik repräsentiert?) können wir eine *mehrdimensionale* Visualisierung erstellen.
-
-Welche Ästhetiken für `geom_point` zur Verfügung stehen, kann man via `help(geom_point)` unter der  Überschrift *Aesthetics* nachlesen.
+Über weitere Ästhetik-Zuordnungen (Welche Variable wird durch welche Ästhetik repräsentiert?) können wir eine *mehrdimensionale* Visualisierung erstellen. Welche Ästhetiken für `geom_point` zur Verfügung stehen, kann man via `help(geom_point)` unter der  Überschrift *Aesthetics* nachlesen. Je nach Varialentyp sind unterschiedliche Ästhetiken sinnvoll.
 
 ### Kardinal-skalierte Variable
-Für kardinal-sklaierte Variablen ist bspw. die Form-Ästhetik (shape) ungeeignet
+Für kardinal-skalierte Variablen wie `ps` (für Pferdestärke) sind beispielsweise die Ästhetiken Farbe (`color`), Größe (`size`) und Transparenz (`alpha`) denkbar, wobei nur die Farbe richtig überzeugt.
 
 ```{r}
 sample %>% ggplot(mapping = aes(x = alter, y = preis, color = ps)) + geom_point()
@@ -68,14 +71,14 @@ sample %>% ggplot(mapping = aes(x = alter, y = preis, alpha = ps)) + geom_point(
 ```
 
 ### Nominal-skalierte Variable
-Für nominal-skalierte Variablen sind Größe (size) und Transparenz (alpha) wenig geeignet
+Für nominal-skalierte Variablen wie `fahrzeugtyp` eignen sich bspw. die Ästhetiken Farbe (`color`) und Form (`shape`).
 ```{r}
 sample %>% ggplot(mapping = aes(x = alter, y = preis, color = fahrzeugtyp)) + geom_point()
 sample %>% ggplot(mapping = aes(x = alter, y = preis, shape = fahrzeugtyp)) + geom_point()
 ```
 
 ### Fixierte Ästhetik 
-Beachten Sie den Unterschied zwischen (1) einer Zuordnung (aesthetic mapping) und (2) einer fest definierten Ästhetik! 
+Beachten Sie den Unterschied zwischen (1) einer Ästhetik-Zuordnung (aesthetic mapping) und (2) einer fest definierten Ästhetik! 
 
 Im folgenden Beispiel werden die Ästhetiken Farbe (color), Transparenz (alpha), Größe (size) und Form (shape) auf konkrete Werte festgelegt. Das heißt für jeden dargestellten Datenpunkt wird dieselbe Farbe, Transparenz, etc. verwendet. Hingegen bekommen bei einer Ästhetik-Zuordnung die Datenpunkte unterschiedliche Farben, Transparenzen, etc. in Abhängigkeit vom Wert der jeweiligen Variable des Datensatzes. 
 

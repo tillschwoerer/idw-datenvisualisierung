@@ -1,4 +1,6 @@
-einführung
+r-und-rstudio
+section
+datenmanipulation
 ggplot2
 grundlagen
 ästhetik-zuordnung

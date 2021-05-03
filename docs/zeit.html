@@ -132,7 +132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einführung</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R und RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1</b> </a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.2</b> Datenmanipulation</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
@@ -189,49 +193,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="zeit" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Zeit</h1>
-<p>Visualisierung von Geodaten</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="zeit.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb70-2"><a href="zeit.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb70-3"><a href="zeit.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/airquality.Rdata&quot;</span>)</span></code></pre></div>
+<p>Das Thema <strong>Zeitbezug</strong> erschließen wir uns anhand von Daten zu Luft-Schadstoffmessungen an ausgewählten Standorten in Deutschland seit 2006. Ausgewählt wurden neben zwei Kieler Standorten 6 Standorte mit überwiegend hohen Werten (für unterschiedliche Schadstofftypen). Zu beachten ist, dass im Datensatz auch eine große Anzahl an fehlender Werte (<code>NA</code>) enthalten sind.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="zeit.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb93-2"><a href="zeit.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb93-3"><a href="zeit.html#cb93-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/schadstoffe-zeitreihen.csv&quot;</span>)</span>
+<span id="cb93-4"><a href="zeit.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
+<pre><code>## Rows: 39,001
+## Columns: 14
+## $ standort_id       &lt;chr&gt; &quot;deby115&quot;, &quot;deby115&quot;, &quot;deby115&quot;, &quot;deby115&quot;, &quot;deby115~
+## $ standort          &lt;chr&gt; &quot;München/Landshuter Allee&quot;, &quot;München/Landshuter Alle~
+## $ datum             &lt;date&gt; 2006-01-01, 2006-01-02, 2006-01-03, 2006-01-04, 200~
+## $ kohlenmonoxid     &lt;dbl&gt; 0.9445625, 1.1983400, 0.9279800, 0.6893000, 0.676340~
+## $ stickstoffmonoxid &lt;dbl&gt; 90.25696, 141.18668, 116.77000, 58.74500, 53.13500, ~
+## $ stickstoffdioxid  &lt;dbl&gt; 99.14758, 80.95000, 79.06500, 57.35332, 50.00500, 53~
+## $ stickoxide        &lt;dbl&gt; 237.2274, 297.2742, 258.1775, 147.5283, 131.4792, 10~
+## $ feinstaub10       &lt;dbl&gt; 59.47917, 38.29084, 29.28584, 21.94332, 27.47916, 34~
+## $ feinstaub2.5      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ ozon              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ schwefeldioxid    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ typ               &lt;chr&gt; &quot;traffic&quot;, &quot;traffic&quot;, &quot;traffic&quot;, &quot;traffic&quot;, &quot;traffic~
+## $ gebiet            &lt;chr&gt; &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;~
+## $ hoehe             &lt;dbl&gt; 521, 521, 521, 521, 521, 521, 521, 521, 521, 521, 52~</code></pre>
 <p>Der Zeit-Aspekt bringt einige Besonderheiten mit sich. Unter anderem wollen wir prüfen, ob die Entwicklung von Luftqualitätsmessungen einem bestimmten Saisonalen (oder anderartigem) Muster unterliegt. Dafür extrahieren wir aus der Datumsvariable zunächst zusätzliche Informationen.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="zeit.html#cb71-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> airquality_timeseries</span>
-<span id="cb71-2"><a href="zeit.html#cb71-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">jahr =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(datum),</span>
-<span id="cb71-3"><a href="zeit.html#cb71-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tagimjahr =</span> lubridate<span class="sc">::</span><span class="fu">yday</span>(datum),</span>
-<span id="cb71-4"><a href="zeit.html#cb71-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">monat =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb71-5"><a href="zeit.html#cb71-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wochentag =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<p>Das besondere an den Variablen <code>monat</code> und <code>wochentag</code> ist, dass es sich hierbei um ordinal-skalierte Variablen handelt (<em>ordered factors</em>). Dies hat den Vorteil, dass sie sprechend als Januar, Februar, etc. dargestellt werden, sie aber der natürlichen Sortierung unterliegen.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="zeit.html#cb95-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">jahr =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(datum),</span>
+<span id="cb95-2"><a href="zeit.html#cb95-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tagimjahr =</span> lubridate<span class="sc">::</span><span class="fu">yday</span>(datum),</span>
+<span id="cb95-3"><a href="zeit.html#cb95-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">monat =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb95-4"><a href="zeit.html#cb95-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wochentag =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<p>Das besondere an den Variablen <code>monat</code> und <code>wochentag</code> ist, dass es sich hierbei um ordinal-skalierte Variablen handelt (<em>ordered factors</em>). Dies hat den Vorteil, dass sie sprechend als Januar, Februar, etc. dargestellt werden, sie aber der natürlichen Sortierung unterliegen. Überprüfen lässt sich der Variablentyp wie folgt:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="zeit.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>monat)</span></code></pre></div>
+<pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
 <p>Zunächst fokussieren wir uns auf die Besonderheiten bzgl. der Visualisierung einer einzelnen Zeitreihe. Dazu beschränkten wir den Zeitreihen-Datensatz auf einen Standort.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="zeit.html#cb72-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(standort <span class="sc">==</span> <span class="st">&quot;München/Landshuter Allee&quot;</span>)</span></code></pre></div>
-<p>Zunächst stellt sich die Frage nach einem geeigneten geometrischen Objekt (<em>geometric object</em>). Grundsätzlich eignen sich Liniendiagramme (<code>geom_line</code>) gut für Zeitreihen. Aufgrund der hier vorliegenden starken Schwankungen kann es aber Sinn machen, die einzelnen Messpunkte (<code>geom_point</code>) darzustellen. Um den langfristigen Trend zu verdeutlichen eignet sich eine geglättete Trendlinie (<code>geom_smooth</code>).</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="zeit.html#cb73-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) </span>
-<span id="cb73-2"><a href="zeit.html#cb73-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="04-zeit_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="zeit.html#cb74-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="04-zeit_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="zeit.html#cb75-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="04-zeit_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
-<p>Es lässt sich bereits erahnen, dass im vorliegenden Fall die Schwankungen einem bestimmten Muster mit Zeitbezug folgen. Schauen wir uns ein einzelnes Jahr konkreter an. Bei <code>stickstoffdioxid</code> scheint im Jahr 2019 kein klares saisonales Muster vorzuliegen.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="zeit.html#cb76-1" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> </span>
-<span id="cb76-2"><a href="zeit.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2019</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-3"><a href="zeit.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) <span class="sc">+</span> </span>
-<span id="cb76-4"><a href="zeit.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="zeit.html#cb98-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(standort <span class="sc">==</span> <span class="st">&quot;München/Landshuter Allee&quot;</span>)</span></code></pre></div>
+<p>Es stellt sich die Frage nach einem geeigneten geometrischen Objekt (<em>geometric object</em>). Grundsätzlich eignen sich Liniendiagramme (<code>geom_line</code>) gut für Zeitreihen. Aufgrund der hier vorliegenden starken Schwankungen kann es aber Sinn machen, die einzelnen Messpunkte (<code>geom_point</code>) darzustellen. Um den langfristigen Trend zu verdeutlichen eignet sich eine geglättete Trendlinie (<code>geom_smooth</code>).</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="zeit.html#cb99-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) </span>
+<span id="cb99-2"><a href="zeit.html#cb99-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Wir können an diesem Beispiel aber demonstrieren, wie sich die Datum-Labels und die Gitterlinien anpassen lassen. Die unzähligen Formatierungsoptionen für Datums-Labels können via <code>help(strftime)</code> nachfollzogen werden.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="zeit.html#cb77-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%a, %d. %B %y&#39;</span>, </span>
-<span id="cb77-2"><a href="zeit.html#cb77-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_breaks =</span> <span class="st">&quot;4 months&quot;</span>, </span>
-<span id="cb77-3"><a href="zeit.html#cb77-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_minor_breaks =</span> <span class="st">&quot;1 months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="zeit.html#cb100-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="04-zeit_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="zeit.html#cb101-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<p><img src="04-zeit_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<p>Es lässt sich bereits erahnen, dass im vorliegenden Fall die Schwankungen einem bestimmten Muster mit Zeitbezug folgen. Schauen wir uns ein einzelnes Jahr konkreter an. Bei <code>stickstoffdioxid</code> scheint im Jahr 2019 kein klares saisonales Muster vorzuliegen. Wir können an diesem Beispiel aber demonstrieren, wie sich die Datum-Labels und die Gitterlinien anpassen lassen. Die unzähligen Formatierungsoptionen für Datums-Labels können via <code>help(strftime)</code> nachfollzogen werden.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="zeit.html#cb102-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> </span>
+<span id="cb102-2"><a href="zeit.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2019</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb102-3"><a href="zeit.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) <span class="sc">+</span> </span>
+<span id="cb102-4"><a href="zeit.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span>
+<span id="cb102-5"><a href="zeit.html#cb102-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-6"><a href="zeit.html#cb102-6" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%D&#39;</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="zeit.html#cb103-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%a, %d. %B %y&#39;</span>, </span>
+<span id="cb103-2"><a href="zeit.html#cb103-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_breaks =</span> <span class="st">&quot;4 months&quot;</span>, </span>
+<span id="cb103-3"><a href="zeit.html#cb103-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_minor_breaks =</span> <span class="st">&quot;1 months&quot;</span>)</span></code></pre></div>
+<p><img src="04-zeit_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <p>Um nachzuvollziehen, ob sich ein bestimmtes saisonales Muster nur in einem Jahr zeigt, oder in allen Jahren, können wir die Variable <code>jahr</code> der Ästhetik Farbe zuordnen. Das funktioniert allerdings nur, wenn sie die numerische Variable <code>jahr</code> in eine kategoriale Variable (<em>factor</em>) umwandeln. Speziell geeignet ist hier wieder die Ordinal-Skalierung (<em>ordered</em>).</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="zeit.html#cb78-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href="zeit.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tagimjahr, stickstoffdioxid, <span class="at">color =</span> <span class="fu">ordered</span>(jahr))) <span class="sc">+</span> </span>
-<span id="cb78-3"><a href="zeit.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="zeit.html#cb104-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
+<span id="cb104-2"><a href="zeit.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tagimjahr, stickstoffdioxid, <span class="at">color =</span> <span class="fu">ordered</span>(jahr))) <span class="sc">+</span> </span>
+<span id="cb104-3"><a href="zeit.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Um den Tag im Jahr sprechender zu gestalten, bedienen wir uns eines Tricks:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="zeit.html#cb79-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
-<span id="cb79-2"><a href="zeit.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datum0 =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>) <span class="sc">+</span> tagimjahr) <span class="sc">%&gt;%</span></span>
-<span id="cb79-3"><a href="zeit.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum0, feinstaub10, <span class="at">color =</span> <span class="fu">ordered</span>(jahr)))<span class="sc">+</span> </span>
-<span id="cb79-4"><a href="zeit.html#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb79-5"><a href="zeit.html#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%B&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="zeit.html#cb105-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
+<span id="cb105-2"><a href="zeit.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datum0 =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>) <span class="sc">+</span> tagimjahr) <span class="sc">%&gt;%</span></span>
+<span id="cb105-3"><a href="zeit.html#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum0, feinstaub10, <span class="at">color =</span> <span class="fu">ordered</span>(jahr)))<span class="sc">+</span> </span>
+<span id="cb105-4"><a href="zeit.html#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb105-5"><a href="zeit.html#cb105-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%B&quot;</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 
 </div>

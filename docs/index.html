@@ -132,7 +132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einführung</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R und RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1</b> </a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.2</b> Datenmanipulation</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
@@ -192,9 +196,174 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Tillmann Schwörer</em></p>
 <p class="date" style="margin-top: 1.5em;"><em>2021-05-03</em></p>
 </div>
-<div id="einführung" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Einführung</h1>
+<div id="r-und-rstudio" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> R und RStudio</h1>
+<p>An dieser Stelle stichpunktartig ein paar zentrale Informationen zum Arbeiten mit R und RStudio.</p>
+<div id="section" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> </h2>
+<ul>
+<li><strong>R</strong> ist eine Software für statistische Berechnungen und Grafiken.</li>
+<li><strong>RStudio</strong> ist eine integrierte Entwicklungsumgebung (IDE) für R. Wir werden in diesem Kurs ausschließlich über RStudio mit R arbeiten (wobei dies bspw. auch über die Kommandozeile, Jupyter Notebooks, oder andere IDEs möglich ist)</li>
+<li>Die Funktionalität der Basisinstallation lässt sich über R Pakete in jede denkbare Richtung erweitern (Datenaufbereitung, Visualisierung, Maschinelles Lernen, …). Pakete können von jedermann geschrieben werden und über Plattformen wie <a href="https://cran.r-project.org/web/views/">CRAN</a> oder Github der Allgemeinheit zur Verfügung gestellt werden.</li>
+<li>Pakete müssen grundsätzlich nur 1 mal installiert werden, wobei ein gelegentliches Update Sinn macht. Jedes Mal, wenn die Funktionalität des Paketes in ein R Skript einebunden werden soll, muss das Paket über den <code>library</code> Befehl geladen werden.</li>
+<li>Dieser Kurs nutzt insbesondere das R Paket <strong>tidyverse</strong>. Genauer gesagt handelt es sich dabei um eine Sammlung mehrerer Pakete. Enthalten ist darin insbesondere das Paket <strong>ggplot2</strong>, welches wir für die Visualisierungen verwendet werden. An dieser Stelle auch der Hinweis, dass sich die Syntax des tidyverse teilweise deutlich von base R Syntax unterscheidet.</li>
+<li>Programmcode kann einerseits in <strong>R Skripten</strong> (Dateiendung: .R) und <strong>R Markdown</strong> Dateien (.Rmd) geschrieben werden. Erstere eignen sich insbesondere, wenn der Programmcode im Vordergrund steht. Letztere eignen sich insbesondere, wenn auch Erläuterungen und die Präsentation von Ergebnissen wichtig sind.</li>
+</ul>
+</div>
+<div id="datenmanipulation" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Datenmanipulation</h2>
+<p>Die wichtigsten Operationen zur Datenmanipulation werden nun ganz kurz angerissen:</p>
+<p>Zu Beginn der R Dateien sind die benötigten Pakete einzubinden.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;tidyverse&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.0     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p>Die Funktion <code>read_rds</code> ist teil des Paketes <strong>tidyverse</strong>. Das heißt, sie können die Funktion nur verwenden, wenn sie vorher das Paket geladen haben. In den meisten Fällen werden wir Daten von Komma-separierte Datein (.csv) einlesen. Gelegentich werden wir auch Dateien mit dem R spezifischen Typ .rds einlesen.Der Pfeil Operator <code>&lt;-</code> verwenden wir, um ein bestimmtes Object (hier: ein Datensatz) einem Namen (hier: df) zuzordnen. Nun taucht der Datensatz unter diesem Namen im <strong>Environment</strong> Tab von RStudio auf.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wdi.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   .default = col_double(),
+##   iso2c = col_character(),
+##   land = col_character(),
+##   kontinent = col_character(),
+##   subregion = col_character()
+## )
+## i Use `spec()` for the full column specifications.</code></pre>
+<p>Einen schnellen Überblick über einen Datensatz können wir uns mithilfe der folgenden Funktionen verschaffen:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)     <span class="co"># Erste 6 Zeilen</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 23
+##   iso2c land    kontinent subregion        jahr bevölkerung bevölkerung_weiblich
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;                &lt;dbl&gt;
+## 1 AD    Andorra Europe    Southern Europe  1990       54509                   NA
+## 2 AD    Andorra Europe    Southern Europe  1991       56671                   NA
+## 3 AD    Andorra Europe    Southern Europe  1992       58888                   NA
+## 4 AD    Andorra Europe    Southern Europe  1993       60971                   NA
+## 5 AD    Andorra Europe    Southern Europe  1994       62677                   NA
+## 6 AD    Andorra Europe    Southern Europe  1995       63850                   NA
+## # ... with 16 more variables: bevölkerung_0_14 &lt;dbl&gt;, bevölkerung_65+ &lt;dbl&gt;,
+## #   bevölkerung_land &lt;dbl&gt;, bevölkerung_stadt &lt;dbl&gt;,
+## #   bevölkerung_unter$5.50 &lt;dbl&gt;, bruttosozialprodukt &lt;dbl&gt;, fläche &lt;dbl&gt;,
+## #   lebenserwartung &lt;dbl&gt;, lebenserwartung_mann &lt;dbl&gt;,
+## #   lebenserwartung_frau &lt;dbl&gt;, kindersterblichkeit &lt;dbl&gt;, geburtenrate &lt;dbl&gt;,
+## #   co2_emissionen &lt;dbl&gt;, literacy_rate &lt;dbl&gt;, militärausgaben &lt;dbl&gt;,
+## #   mordrate &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)  <span class="co"># Kurzvorschau jeder Variable mit einigen Metadaten</span></span></code></pre></div>
+<pre><code>## Rows: 6,177
+## Columns: 23
+## $ iso2c                    &lt;chr&gt; &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD~
+## $ land                     &lt;chr&gt; &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;~
+## $ kontinent                &lt;chr&gt; &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Euro~
+## $ subregion                &lt;chr&gt; &quot;Southern Europe&quot;, &quot;Southern Europe&quot;, &quot;Southe~
+## $ jahr                     &lt;dbl&gt; 1990, 1991, 1992, 1993, 1994, 1995, 1996, 199~
+## $ bevölkerung              &lt;dbl&gt; 54509, 56671, 58888, 60971, 62677, 63850, 643~
+## $ bevölkerung_weiblich     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ bevölkerung_0_14         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ `bevölkerung_65+`        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ bevölkerung_land         &lt;dbl&gt; 5.288, 5.470, 5.676, 5.889, 6.110, 6.339, 6.5~
+## $ bevölkerung_stadt        &lt;dbl&gt; 94.712, 94.530, 94.324, 94.111, 93.890, 93.66~
+## $ `bevölkerung_unter$5.50` &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ bruttosozialprodukt      &lt;dbl&gt; 1029048482, 1106928583, 1210013652, 100702575~
+## $ fläche                   &lt;dbl&gt; 470, 470, 470, 470, 470, 470, 470, 470, 470, ~
+## $ lebenserwartung          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ lebenserwartung_mann     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ lebenserwartung_frau     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ kindersterblichkeit      &lt;dbl&gt; 9.1, 8.8, 8.6, 8.4, 8.2, 7.9, 7.7, 7.4, 7.1, ~
+## $ geburtenrate             &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ co2_emissionen           &lt;dbl&gt; 407.037, 407.037, 407.037, 410.704, 407.037, ~
+## $ literacy_rate            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ militärausgaben          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ mordrate                 &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</code></pre>
+<p>Wenn wir genauere Information zu einer R Funktion oder einem Paket benötigen können wir die Hilfe verwenden, z.B. <code>help(head)</code>.</p>
+<p>Wir verwenden die <code>filter</code> Funktion, um eine Teilmenge der Zeilen zu selektieren. Hier wählen wir alle Zeilen, für die Variable <code>jahr</code> den Wert 2018 annimmt und die Variale <code>bevölkerung</code> größer als 200 Millionen ist.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, jahr<span class="sc">==</span><span class="dv">2018</span> <span class="sc">&amp;</span> bevölkerung<span class="sc">&gt;</span><span class="dv">200000000</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 23
+##   iso2c land      kontinent   subregion       jahr bevölkerung bevölkerung_weib~
+##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
+## 1 BR    Brazil    South Amer~ South America   2018   209469333              50.8
+## 2 CN    China     Asia        Eastern Asia    2018  1392730000              48.7
+## 3 ID    Indonesia Asia        South-Eastern~  2018   267663435              49.6
+## 4 IN    India     Asia        Southern Asia   2018  1352617328              48.0
+## 5 PK    Pakistan  Asia        Southern Asia   2018   212215030              48.5
+## 6 US    United S~ North Amer~ Northern Amer~  2018   326687501              50.5
+## # ... with 16 more variables: bevölkerung_0_14 &lt;dbl&gt;, bevölkerung_65+ &lt;dbl&gt;,
+## #   bevölkerung_land &lt;dbl&gt;, bevölkerung_stadt &lt;dbl&gt;,
+## #   bevölkerung_unter$5.50 &lt;dbl&gt;, bruttosozialprodukt &lt;dbl&gt;, fläche &lt;dbl&gt;,
+## #   lebenserwartung &lt;dbl&gt;, lebenserwartung_mann &lt;dbl&gt;,
+## #   lebenserwartung_frau &lt;dbl&gt;, kindersterblichkeit &lt;dbl&gt;, geburtenrate &lt;dbl&gt;,
+## #   co2_emissionen &lt;dbl&gt;, literacy_rate &lt;dbl&gt;, militärausgaben &lt;dbl&gt;,
+## #   mordrate &lt;dbl&gt;</code></pre>
+<p>Alternativ können wir dies unter Verwendung des sog. Pipe Operators (<code>%&gt;%</code>) wie folgt schreiben.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="index.html#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2018</span> <span class="sc">&amp;</span> bevölkerung<span class="sc">&gt;</span><span class="dv">200000000</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 23
+##   iso2c land      kontinent   subregion       jahr bevölkerung bevölkerung_weib~
+##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
+## 1 BR    Brazil    South Amer~ South America   2018   209469333              50.8
+## 2 CN    China     Asia        Eastern Asia    2018  1392730000              48.7
+## 3 ID    Indonesia Asia        South-Eastern~  2018   267663435              49.6
+## 4 IN    India     Asia        Southern Asia   2018  1352617328              48.0
+## 5 PK    Pakistan  Asia        Southern Asia   2018   212215030              48.5
+## 6 US    United S~ North Amer~ Northern Amer~  2018   326687501              50.5
+## # ... with 16 more variables: bevölkerung_0_14 &lt;dbl&gt;, bevölkerung_65+ &lt;dbl&gt;,
+## #   bevölkerung_land &lt;dbl&gt;, bevölkerung_stadt &lt;dbl&gt;,
+## #   bevölkerung_unter$5.50 &lt;dbl&gt;, bruttosozialprodukt &lt;dbl&gt;, fläche &lt;dbl&gt;,
+## #   lebenserwartung &lt;dbl&gt;, lebenserwartung_mann &lt;dbl&gt;,
+## #   lebenserwartung_frau &lt;dbl&gt;, kindersterblichkeit &lt;dbl&gt;, geburtenrate &lt;dbl&gt;,
+## #   co2_emissionen &lt;dbl&gt;, literacy_rate &lt;dbl&gt;, militärausgaben &lt;dbl&gt;,
+## #   mordrate &lt;dbl&gt;</code></pre>
+<p>Der Vorteil davon ist hier noch nicht ersichtlich, sondern erst, wenn wir mehrere Verarbeiungsschritte miteinander verketten, bspw. durch Selektion einzelner Spalten (<code>select</code>) und Sortierung (<code>arrange</code>). Der Vorteil besteht darin, dass wir nicht nach jeder Operation ein Zwischenergebnis speichern müssen.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="index.html#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="index.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2018</span> <span class="sc">&amp;</span> bevölkerung<span class="sc">&gt;</span><span class="dv">200000000</span>) <span class="sc">%&gt;%</span>   <span class="co"># Selektion einzelner Zeilen</span></span>
+<span id="cb16-3"><a href="index.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(land, kontinent, bevölkerung) <span class="sc">%&gt;%</span>         <span class="co"># Selektion einzelner Spalten</span></span>
+<span id="cb16-4"><a href="index.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>bevölkerung)                            <span class="co"># Sortieren anhand der Spalte Bevölkerung</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   land          kontinent     bevölkerung
+##   &lt;chr&gt;         &lt;chr&gt;               &lt;dbl&gt;
+## 1 China         Asia           1392730000
+## 2 India         Asia           1352617328
+## 3 United States North America   326687501
+## 4 Indonesia     Asia            267663435
+## 5 Pakistan      Asia            212215030
+## 6 Brazil        South America   209469333</code></pre>
+<p>Mithilfe der Funktion <code>mutate</code> können wir neue Variablen erstellen, oder alte überschreiben.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="index.html#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="index.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(land, bevölkerung, bruttosozialprodukt) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="index.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pro_kopf_einkommen =</span> bruttosozialprodukt <span class="sc">/</span> bevölkerung) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="index.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 4
+##   land    bevölkerung bruttosozialprodukt pro_kopf_einkommen
+##   &lt;chr&gt;         &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;
+## 1 Andorra       54509         1029048482.             18879.</code></pre>
+<p>Mithilfe der Funktion <code>summarise</code> können wir unterschiedliche aggregierte Statistiken berechnen. Unter <code>help(summarise)</code> können sie wichtige Funktionen sehen, die zur Verfügung stehen. Zu beachten ist die Behandlung von fehlenden Werten (<code>NA</code>, not available). Um trotz vorhandener fehlender Werte ein Ergebnis angezeigt zu bekommen, muss die Option <code>na.rm</code> (remove NAs) auf TRUE gesetzt werden.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="index.html#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(welt_gesamtbevölkerung <span class="ot">=</span> <span class="fu">sum</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb20-2"><a href="index.html#cb20-2" aria-hidden="true" tabindex="-1"></a>                 durchschnittliche_bevölkerung <span class="ot">=</span> <span class="fu">mean</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb20-3"><a href="index.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                 max_bevölkerung <span class="ot">=</span> <span class="fu">max</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   welt_gesamtbevölkerung durchschnittliche_bevölkerung max_bevölkerung
+##                    &lt;dbl&gt;                         &lt;dbl&gt;           &lt;dbl&gt;
+## 1          185924258270.                     30187410.      1392730000</code></pre>
+<p>Häufig kombinieren wir <code>summarise</code> mit der Funktion <code>group_by</code>. Dann wird die Berechnung nicht für den gesamten Datensatz ausgeführt, sondern separat für jede durch <code>group_by</code> definierte Gruppe.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="index.html#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="index.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kontinent) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="index.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">sum</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 2
+##   kontinent               `sum(bevölkerung, na.rm = TRUE)`
+##   &lt;chr&gt;                                              &lt;dbl&gt;
+## 1 Africa                                      26463948892 
+## 2 Asia                                       112029446576.
+## 3 Europe                                      21168009976 
+## 4 North America                               14678984242 
+## 5 Oceania                                       981192777 
+## 6 Seven seas (open ocean)                        46714086 
+## 7 South America                               10555961721</code></pre>
 
+</div>
 </div>
             </section>
 

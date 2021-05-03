@@ -1,33 +1,42 @@
 # ggplot2
 
+Die Einführung in die Bibliothek **ggplot2** vollziehen wir anhand von: 
+
+(1) Daten zu Gebrauchtwagen, die über Ebay-Kleinanzeigen verkauft wurden. Die hier verwendeten Daten stellen einen Ausschnitt aus einem noch größeren Datensatz dar, der über die Plattform Kaggle erhältlich ist. Im Vergleich zu den Originaldaten wurden extreme Ausreißer eliminiert und Variablen umbenannt. 
+
+(2) Streudiagrammen (*scatterplots*). Wir verwenden diese um die Beziehung zwischen 2 oder mehr Variablen zu visualisieren. 
 
 
 
 
 ```r
 library(tidyverse)
+theme_set(theme_bw())                      # Standard Thema (Hintergrund, etc.) für die Grafiken
 ```
 
 
 ```r
-theme_set(theme_bw())                      # Standard Thema (Hintergrund, etc.) für die Grafiken 
 df <- read_csv("data/gebrauchtwagen.csv")  # Daten einlesen
 sample <- df %>% slice(1:500)              # Kleiner Datensatz, der die ersten 500 Zeilen umfasst
-head(sample)
+glimpse(sample)
 ```
 
 ```
-## # A tibble: 6 x 13
-##   name        preis alter kilometer hersteller modell fahrzeugtyp getriebe    ps
-##   <chr>       <dbl> <dbl>     <dbl> <chr>      <chr>  <chr>       <chr>    <dbl>
-## 1 smart_forT~  5299     7     30000 smart      fortwo kleinwagen  automat~    71
-## 2 Renault_Cl~  1100    16    125000 renault    clio   kleinwagen  manuell     75
-## 3 Audi_A4_Av~  8199    14    150000 audi       a4     kombi       automat~   131
-## 4 Mercedes_B~  8999     8    150000 mercedes_~ c_kla~ limousine   automat~   136
-## 5 BMW_316_i_~  3600    13    150000 bmw        3er    limousine   manuell    116
-## 6 verk._eine~  2490    11    150000 peugeot    1_rei~ kleinwagen  manuell     68
-## # ... with 4 more variables: kraftstoff <chr>, schaden <chr>, plz <dbl>,
-## #   bundesland <chr>
+## Rows: 500
+## Columns: 13
+## $ name        <chr> "smart_forTwo_Softtouch__passion_Inspektion_fuer_687_Euro_~
+## $ preis       <dbl> 5299, 1100, 8199, 8999, 3600, 2490, 15500, 2700, 6200, 279~
+## $ alter       <dbl> 7, 16, 14, 8, 13, 11, 7, 12, 8, 8, 22, 8, 9, 15, 16, 18, 1~
+## $ kilometer   <dbl> 30000, 125000, 150000, 150000, 150000, 150000, 150000, 900~
+## $ hersteller  <chr> "smart", "renault", "audi", "mercedes_benz", "bmw", "peuge~
+## $ modell      <chr> "fortwo", "clio", "a4", "c_klasse", "3er", "1_reihe", "5er~
+## $ fahrzeugtyp <chr> "kleinwagen", "kleinwagen", "kombi", "limousine", "limousi~
+## $ getriebe    <chr> "automatik", "manuell", "automatik", "automatik", "manuell~
+## $ ps          <dbl> 71, 75, 131, 136, 116, 68, 177, 69, 125, 67, 115, 121, 129~
+## $ kraftstoff  <chr> "benzin", "benzin", "benzin", "diesel", "benzin", "diesel"~
+## $ schaden     <chr> "nein", "nein", "nein", "nein", "nein", "nein", "nein", "j~
+## $ plz         <dbl> 35315, 36137, 85057, 10627, 65934, 14793, 28816, 30880, 71~
+## $ bundesland  <chr> "Hessen", "Hessen", "Bayern", "Berlin", "Hessen", "Branden~
 ```
 
 ## Grundlagen
@@ -46,7 +55,7 @@ ggplot(data = sample, mapping = aes(x = alter, y = preis)) + geom_point()
 
 <img src="01-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="768" />
 
-Wie ändert sich die Grafik, wenn wir den vollen Datensatz (df) verwenden?
+**Wie ändert sich die Grafik, wenn wir den vollen Datensatz (df) verwenden?**
 
 
 ```r
@@ -56,7 +65,7 @@ ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_point()
 <img src="01-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="768" />
 
 
-Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?
+**Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?**
 
 
 ```r
@@ -78,7 +87,7 @@ ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_poi
 <img src="01-ggplot2_files/figure-html/unnamed-chunk-5-3.png" width="768" />
 
 
-Wie ändert sich die Grafik, wenn wir einen anderen Objekttyp wählen?
+**Wie ändert sich die Grafik, wenn wir einen anderen Objekttyp wählen?**
 
 ```r
 ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_jitter(width = 0.1)
@@ -95,12 +104,10 @@ ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_density2d_filled()
 
 ## Ästhetik-Zuordnung
 
-Über weitere Ästhetik-Zuordnungen (Welche Variable wird durch welche Ästhetik repräsentiert?) können wir eine *mehrdimensionale* Visualisierung erstellen.
-
-Welche Ästhetiken für `geom_point` zur Verfügung stehen, kann man via `help(geom_point)` unter der  Überschrift *Aesthetics* nachlesen.
+Über weitere Ästhetik-Zuordnungen (Welche Variable wird durch welche Ästhetik repräsentiert?) können wir eine *mehrdimensionale* Visualisierung erstellen. Welche Ästhetiken für `geom_point` zur Verfügung stehen, kann man via `help(geom_point)` unter der  Überschrift *Aesthetics* nachlesen. Je nach Varialentyp sind unterschiedliche Ästhetiken sinnvoll.
 
 ### Kardinal-skalierte Variable
-Für kardinal-sklaierte Variablen ist bspw. die Form-Ästhetik (shape) ungeeignet
+Für kardinal-skalierte Variablen wie `ps` (für Pferdestärke) sind beispielsweise die Ästhetiken Farbe (`color`), Größe (`size`) und Transparenz (`alpha`) denkbar, wobei nur die Farbe richtig überzeugt.
 
 
 ```r
@@ -122,7 +129,7 @@ sample %>% ggplot(mapping = aes(x = alter, y = preis, alpha = ps)) + geom_point(
 <img src="01-ggplot2_files/figure-html/unnamed-chunk-7-3.png" width="768" />
 
 ### Nominal-skalierte Variable
-Für nominal-skalierte Variablen sind Größe (size) und Transparenz (alpha) wenig geeignet
+Für nominal-skalierte Variablen wie `fahrzeugtyp` eignen sich bspw. die Ästhetiken Farbe (`color`) und Form (`shape`).
 
 ```r
 sample %>% ggplot(mapping = aes(x = alter, y = preis, color = fahrzeugtyp)) + geom_point()
@@ -137,7 +144,7 @@ sample %>% ggplot(mapping = aes(x = alter, y = preis, shape = fahrzeugtyp)) + ge
 <img src="01-ggplot2_files/figure-html/unnamed-chunk-8-2.png" width="768" />
 
 ### Fixierte Ästhetik 
-Beachten Sie den Unterschied zwischen (1) einer Zuordnung (aesthetic mapping) und (2) einer fest definierten Ästhetik! 
+Beachten Sie den Unterschied zwischen (1) einer Ästhetik-Zuordnung (aesthetic mapping) und (2) einer fest definierten Ästhetik! 
 
 Im folgenden Beispiel werden die Ästhetiken Farbe (color), Transparenz (alpha), Größe (size) und Form (shape) auf konkrete Werte festgelegt. Das heißt für jeden dargestellten Datenpunkt wird dieselbe Farbe, Transparenz, etc. verwendet. Hingegen bekommen bei einer Ästhetik-Zuordnung die Datenpunkte unterschiedliche Farben, Transparenzen, etc. in Abhängigkeit vom Wert der jeweiligen Variable des Datensatzes. 
 
