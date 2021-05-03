@@ -22,4 +22,5 @@ koordinatensystem
 aggregierte-daten
 sortierung
 überlappungen
-kategorielle-variablen
+zwei-kategoriale-variablen
+zeit

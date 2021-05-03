@@ -62,11 +62,11 @@ Eine weitere Möglichkeit besteht darin, mehrere kleinere Balken zu einem große
 df %>% ggplot(aes(y = fct_lump(bundesland, n= 5))) + geom_bar()
 ```
 
-## 2 Kategorielle Variablen
+## Zwei kategoriale Variablen
 
 Wenn wir die aggregierten Statistiken nicht für eine sondern zwei kategorielle Variablen berechnen (bspw. für `bundesland` und `fahrzeugtyp`), gibt es mehrere denkbare Darstellungsformen. 
 
-Eine Heatmap via `geom_tile` eignet sich insbesondere, wenn die kategoriellen Variablen viele Ausprägungen haben. 
+Eine Heatmap via `geom_tile` eignet sich insbesondere, wenn die kategorialen Variablen viele Ausprägungen haben, so wie es hier der Fall ist. 
 
 ```{r}
 df %>% count(bundesland, fahrzeugtyp) %>% ggplot() + 

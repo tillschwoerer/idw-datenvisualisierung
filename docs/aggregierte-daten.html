@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="geodaten.html"/>
-
+<link rel="next" href="zeit.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -167,8 +167,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>4.1</b> Sortierung</a></li>
 <li class="chapter" data-level="4.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>4.2</b> Überlappungen</a></li>
-<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#kategorielle-variablen"><i class="fa fa-check"></i><b>4.3</b> 2 Kategorielle Variablen</a></li>
+<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>4.3</b> Zwei kategoriale Variablen</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="zeit.html"><a href="zeit.html"><i class="fa fa-check"></i><b>5</b> Zeit</a></li>
 </ul>
 
       </nav>
@@ -242,27 +243,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb65-4"><a href="aggregierte-daten.html#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
 <span id="cb65-5"><a href="aggregierte-daten.html#cb65-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">preis =</span> <span class="fu">mean</span>(preis))</span>
 <span id="cb65-6"><a href="aggregierte-daten.html#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-7"><a href="aggregierte-daten.html#cb65-7" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bundesland, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span>
-<span id="cb65-8"><a href="aggregierte-daten.html#cb65-8" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bundesland, <span class="at">x =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<span id="cb65-7"><a href="aggregierte-daten.html#cb65-7" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bundesland, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="03-mengen_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="aggregierte-daten.html#cb66-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bundesland, <span class="at">x =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="03-mengen_files/figure-html/unnamed-chunk-6-2.png" width="768" /></p>
 <p>Eine weitere Möglichkeit besteht darin, mehrere kleinere Balken zu einem großen Balken für “Sonstige” zusammenzufassen.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="aggregierte-daten.html#cb66-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_lump</span>(bundesland, <span class="at">n=</span> <span class="dv">5</span>))) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="aggregierte-daten.html#cb67-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_lump</span>(bundesland, <span class="at">n=</span> <span class="dv">5</span>))) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="03-mengen_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
 </div>
-<div id="kategorielle-variablen" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> 2 Kategorielle Variablen</h2>
+<div id="zwei-kategoriale-variablen" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Zwei kategoriale Variablen</h2>
 <p>Wenn wir die aggregierten Statistiken nicht für eine sondern zwei kategorielle Variablen berechnen (bspw. für <code>bundesland</code> und <code>fahrzeugtyp</code>), gibt es mehrere denkbare Darstellungsformen.</p>
-<p>Eine Heatmap via <code>geom_tile</code> eignet sich insbesondere, wenn die kategoriellen Variablen viele Ausprägungen haben.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="aggregierte-daten.html#cb67-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb67-2"><a href="aggregierte-daten.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">fill =</span> n), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb67-3"><a href="aggregierte-daten.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">label =</span> n), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb67-4"><a href="aggregierte-daten.html#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_binned</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p>Eine Heatmap via <code>geom_tile</code> eignet sich insbesondere, wenn die kategorialen Variablen viele Ausprägungen haben, so wie es hier der Fall ist.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="aggregierte-daten.html#cb68-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb68-2"><a href="aggregierte-daten.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">fill =</span> n), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-3"><a href="aggregierte-daten.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">label =</span> n), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb68-4"><a href="aggregierte-daten.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_binned</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="03-mengen_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
 <p>Facetten-Plots können grundsätzlich auch für solche Fälle helfen. Im hier vorliegenden Fall, mit vielen Ausprägungen wird ein Facettenplot aber schnell unübersichtlich.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="aggregierte-daten.html#cb68-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb68-2"><a href="aggregierte-daten.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-3"><a href="aggregierte-daten.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb68-4"><a href="aggregierte-daten.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> fahrzeugtyp, <span class="at">x =</span> n)) <span class="sc">+</span></span>
-<span id="cb68-5"><a href="aggregierte-daten.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>bundesland, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="aggregierte-daten.html#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb69-2"><a href="aggregierte-daten.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> </span>
+<span id="cb69-3"><a href="aggregierte-daten.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb69-4"><a href="aggregierte-daten.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> fahrzeugtyp, <span class="at">x =</span> n)) <span class="sc">+</span></span>
+<span id="cb69-5"><a href="aggregierte-daten.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>bundesland, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p><img src="03-mengen_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
 
 </div>
@@ -272,8 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="geodaten.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="geodaten.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="zeit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

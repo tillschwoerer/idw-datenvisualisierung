@@ -89,8 +89,15 @@ data <- df %>%
             preis = mean(preis))
 
 data %>% ggplot(aes(x = bundesland, y = preis)) + geom_col()
+```
+
+<img src="03-mengen_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+
+```r
 data %>% ggplot(aes(y = bundesland, x = preis)) + geom_col()
 ```
+
+<img src="03-mengen_files/figure-html/unnamed-chunk-6-2.png" width="768" />
 
 Eine weitere Möglichkeit besteht darin, mehrere kleinere Balken zu einem großen Balken für "Sonstige" zusammenzufassen. 
 
@@ -100,11 +107,11 @@ df %>% ggplot(aes(y = fct_lump(bundesland, n= 5))) + geom_bar()
 
 <img src="03-mengen_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
-## 2 Kategorielle Variablen
+## Zwei kategoriale Variablen
 
 Wenn wir die aggregierten Statistiken nicht für eine sondern zwei kategorielle Variablen berechnen (bspw. für `bundesland` und `fahrzeugtyp`), gibt es mehrere denkbare Darstellungsformen. 
 
-Eine Heatmap via `geom_tile` eignet sich insbesondere, wenn die kategoriellen Variablen viele Ausprägungen haben. 
+Eine Heatmap via `geom_tile` eignet sich insbesondere, wenn die kategorialen Variablen viele Ausprägungen haben, so wie es hier der Fall ist. 
 
 
 ```r
