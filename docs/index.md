@@ -1,6 +1,8 @@
 ---
 title: "Einführung in die Datenvisualisierung mit R"
-author: "Tillmann Schwörer"
+subtitle: "IDW Workshop"
+author: "Prof. Dr. Tillmann Schwörer"
+institute: "Studiengang Data Science, Fachhochschule Kiel"
 date: "2021-05-03"
 site: bookdown::bookdown_site
 documentclass: book
