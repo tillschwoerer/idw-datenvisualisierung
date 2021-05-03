@@ -1,5 +1,5 @@
 r-und-rstudio
-section
+erste-schritte
 datenmanipulation
 ggplot2
 grundlagen

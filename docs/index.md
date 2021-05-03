@@ -1,18 +1,17 @@
 ---
 title: "Einführung in die Datenvisualisierung mit R"
 subtitle: "IDW Workshop"
-author: "Prof. Dr. Tillmann Schwörer"
-institute: "Studiengang Data Science, Fachhochschule Kiel"
-date: "2021-05-03"
+author: "Prof. Dr. Tillmann Schwörer, FH Kiel, Studiengang Data Science"
+date: "2021-05-04"
 site: bookdown::bookdown_site
 documentclass: book
+cover-image: "img/FH-Kiel-Logo.png"
+github-repo: tillschwoerer/idw-datenvisualisierung
 output:
   bookdown::gitbook: 
     config:
       toc:
         collapse: section 
-      df_print: paged
-github-repo: tillschwoerer/idw-datenvisualisierung
 ---
 
 
@@ -20,7 +19,7 @@ github-repo: tillschwoerer/idw-datenvisualisierung
 
 An dieser Stelle stichpunktartig ein paar zentrale Informationen zum Arbeiten mit R und RStudio.
 
-##
+## Erste Schritte
 
 - **R** ist eine Software für statistische Berechnungen und Grafiken. 
 - **RStudio** ist eine integrierte Entwicklungsumgebung (IDE) für R. Wir werden in diesem Kurs ausschließlich über RStudio mit R arbeiten (wobei dies bspw. auch über die Kommandozeile, Jupyter Notebooks, oder andere IDEs möglich ist)

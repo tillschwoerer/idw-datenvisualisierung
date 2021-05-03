@@ -41,7 +41,7 @@ ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_point()
 ```
 
 
-**Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?**
+**Wie ändert sich die Grafik, wenn wir eine andere Ästhetik-Zuordnung vornehmen?**
 
 ```{r}
 ggplot(data = sample, mapping = aes(x = preis, y = alter)) + geom_point()

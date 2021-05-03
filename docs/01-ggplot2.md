@@ -65,7 +65,7 @@ ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_point()
 <img src="01-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="768" />
 
 
-**Wie ändert sich die Grafik, wenn wir eine andere Variablenzuordnung vornehmen?**
+**Wie ändert sich die Grafik, wenn wir eine andere Ästhetik-Zuordnung vornehmen?**
 
 
 ```r
