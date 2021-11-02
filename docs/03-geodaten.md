@@ -23,7 +23,14 @@ theme_set(
 wdi <- read_csv("data/wdi.csv")        # Einlesen der World Development Indicators
 wdi <- wdi %>% filter(jahr==2018)      # Einschränkung auf das aktuellste Jahr im 
 geo <- read_rds("data/geo_wdi.rds")    # Einlesen der Geodaten
+sf_use_s2(FALSE)
+```
 
+```
+## Spherical geometry (s2) switched off
+```
+
+```r
 # Geodaten werden per Join zum Datensatz hinzugefügt
 df <- wdi %>% right_join(geo, by = "iso2c") %>% st_as_sf()
 
@@ -33,36 +40,36 @@ glimpse(df)
 ```
 ## Rows: 213
 ## Columns: 25
-## $ iso2c                    <chr> "AD", "AE", "AF", "AG", "AL", "AM", "AO", "AR~
-## $ land                     <chr> "Andorra", "United Arab Emirates", "Afghanist~
-## $ kontinent                <chr> "Europe", "Asia", "Asia", "North America", "E~
-## $ subregion                <chr> "Southern Europe", "Western Asia", "Southern ~
-## $ jahr                     <dbl> 2018, 2018, 2018, 2018, 2018, 2018, 2018, 201~
-## $ bevölkerung              <dbl> 77006, 9630959, 37172386, 96286, 2866376, 295~
-## $ bevölkerung_weiblich     <dbl> NA, 30.63669, 48.63585, 51.78850, 49.06309, 5~
-## $ bevölkerung_0_14         <dbl> NA, 14.60351, 43.09018, 22.08109, 17.67287, 2~
-## $ `bevölkerung_65+`        <dbl> NA, 1.085001, 2.584927, 8.799826, 13.744736, ~
-## $ bevölkerung_land         <dbl> 11.938, 13.478, 74.505, 75.401, 39.681, 36.85~
-## $ bevölkerung_stadt        <dbl> 88.062, 86.522, 25.495, 24.599, 60.319, 63.14~
-## $ `bevölkerung_unter$5.50` <dbl> NA, 0.1, NA, NA, NA, 42.5, 88.5, 12.3, NA, 1.~
-## $ bruttosozialprodukt      <dbl> 3.218316e+09, 4.222150e+11, 1.835388e+10, 1.6~
-## $ fläche                   <dbl> 470.0, 98647.9, 652860.0, 440.0, 28750.0, 297~
-## $ lebenserwartung          <dbl> NA, 77.81400, 64.48600, 76.88500, 78.45800, 7~
-## $ lebenserwartung_mann     <dbl> NA, 77.133, 63.047, 75.721, 76.816, 71.215, 5~
-## $ lebenserwartung_frau     <dbl> NA, 79.164, 66.026, 77.983, 80.167, 78.354, 6~
-## $ kindersterblichkeit      <dbl> 2.9, 6.5, 48.0, 6.0, 8.5, 11.0, 51.9, 8.7, NA~
-## $ geburtenrate             <dbl> NA, 1.413, 4.473, 1.994, 1.617, 1.755, 5.519,~
-## $ co2_emissionen           <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ literacy_rate            <dbl> NA, NA, 43.01972, NA, 98.14115, NA, NA, 99.00~
-## $ militärausgaben          <dbl> NA, NA, 198074729, NA, 175886689, 608854650, ~
-## $ mordrate                 <dbl> NA, NA, 6.6555612, NA, 2.2894924, 1.6939156, ~
-## $ iso3c                    <chr> "AND", "ARE", "AFG", "ATG", "ALB", "ARM", "AG~
-## $ geometry                 <MULTIPOLYGON [°]> MULTIPOLYGON (((1.706055 42..., ~
+## $ iso2c                     <chr> "AD", "AE", "AF", "AG", "AL", "AM", "AO", "A~
+## $ land                      <chr> "Andorra", "United Arab Emirates", "Afghanis~
+## $ kontinent                 <chr> "Europe", "Asia", "Asia", "North America", "~
+## $ subregion                 <chr> "Southern Europe", "Western Asia", "Southern~
+## $ jahr                      <dbl> 2018, 2018, 2018, 2018, 2018, 2018, 2018, 20~
+## $ bevoelkerung              <dbl> 77006, 9630959, 37172386, 96286, 2866376, 29~
+## $ bevoelkerung_weiblich     <dbl> NA, 30.63669, 48.63585, 51.78850, 49.06309, ~
+## $ bevoelkerung_0_14         <dbl> NA, 14.60351, 43.09018, 22.08109, 17.67287, ~
+## $ `bevoelkerung_65+`        <dbl> NA, 1.085001, 2.584927, 8.799826, 13.744736,~
+## $ bevoelkerung_land         <dbl> 11.938, 13.478, 74.505, 75.401, 39.681, 36.8~
+## $ bevoelkerung_stadt        <dbl> 88.062, 86.522, 25.495, 24.599, 60.319, 63.1~
+## $ `bevoelkerung_unter$5.50` <dbl> NA, 0.1, NA, NA, NA, 42.5, 88.5, 12.3, NA, 1~
+## $ bruttosozialprodukt       <dbl> 3.218316e+09, 4.222150e+11, 1.835388e+10, 1.~
+## $ flaeche                   <dbl> 470.0, 98647.9, 652860.0, 440.0, 28750.0, 29~
+## $ lebenserwartung           <dbl> NA, 77.81400, 64.48600, 76.88500, 78.45800, ~
+## $ lebenserwartung_mann      <dbl> NA, 77.133, 63.047, 75.721, 76.816, 71.215, ~
+## $ lebenserwartung_frau      <dbl> NA, 79.164, 66.026, 77.983, 80.167, 78.354, ~
+## $ kindersterblichkeit       <dbl> 2.9, 6.5, 48.0, 6.0, 8.5, 11.0, 51.9, 8.7, N~
+## $ geburtenrate              <dbl> NA, 1.413, 4.473, 1.994, 1.617, 1.755, 5.519~
+## $ co2_emissionen            <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ literacy_rate             <dbl> NA, NA, 43.01972, NA, 98.14115, NA, NA, 99.0~
+## $ militaerausgaben          <dbl> NA, NA, 198074729, NA, 175886689, 608854650,~
+## $ mordrate                  <dbl> NA, NA, 6.6555612, NA, 2.2894924, 1.6939156,~
+## $ iso3c                     <chr> "AND", "ARE", "AFG", "ATG", "ALB", "ARM", "A~
+## $ geometry                  <MULTIPOLYGON [°]> MULTIPOLYGON (((1.706055 42...,~
 ```
 
 Es handelt sich nicht um einen gewöhnlichen R Datensatz (data frame), sondern um einen sogenannten **Simple Feature** Datensatz. Das besondere daran ist die Variable `geometry`, welche die Koordinaten (Längengrad und Breitengrad) der Ländergrenzen enthält.
 
-Analog zum bisherigen Vorgehen, benötigen wir für die Visualisierung einer Weltkarte nur 3 Dinge: (1) den (Simple Feature) Datensatz, (2) eine Ästhetikzuordnung (die Variable `geometry` wird der Ästhetik **geometry** zugeordet, und (3) den passenden Objecttyp `geom_sf`. Tatsächlich können wir hier die Ästhetikzuordnung sogar weglassen, die Spezifikation des Datensatzes und `geom_sf` ist hier sogar ausreichend.
+Analog zum bisherigen Vorgehen, benötigen wir für die Visualisierung einer Weltkarte nur 3 Dinge: (1) den (Simple Feature) Datensatz, (2) eine Ästhetikzuordnung (die Variable `geometry` wird der Ästhetik **geometry** zugeordet, und (3) den passenden Objecttyp `geom_sf`. Tatsächlich können wir hier die Ästhetikzuordnung sogar weglassen, die Spezifikat-m ion des Datensatzes und `geom_sf` ist hier sogar ausreichend.
 
 
 ```r
@@ -149,20 +156,20 @@ kontinente
 
 ```
 ## Simple feature collection with 8 features and 2 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -180 ymin: -55.8917 xmax: 180 ymax: 83.59961
-## CRS:            +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -180 ymin: -55.8917 xmax: 180 ymax: 83.59961
+## CRS:           +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
 ## # A tibble: 8 x 3
 ##   kontinent       lebenserwartung                                       geometry
 ##   <chr>                     <dbl>                             <MULTIPOLYGON [°]>
-## 1 Africa                     63.4 (((-2.938306 5.124495, -2.94834 5.118848, -3.~
-## 2 Asia                       74.3 (((122.9489 -10.90928, 122.8559 -10.90967, 12~
-## 3 Europe                     79.3 (((55.79736 -21.33936, 55.65615 -21.36904, 55~
-## 4 North America              76.0 (((-78.89834 8.274268, -78.91812 8.231934, -7~
-## 5 Oceania                    73.4 (((158.8788 -54.70977, 158.8452 -54.74922, 15~
-## 6 Seven seas (op~            75.3 (((57.65127 -20.48486, 57.5248 -20.51318, 57.~
-## 7 South America              74.9 (((-67.5752 -55.88965, -67.61143 -55.8917, -6~
+## 1 Africa                     63.4 (((37.78955 -46.8375, 37.87285 -46.88545, 37.~
+## 2 Asia                       74.3 (((121.883 -10.59033, 121.8331 -10.60215, 121~
+## 3 Europe                     79.3 (((45.13477 -12.70918, 45.15879 -12.71299, 45~
+## 4 North America              76.0 (((-81.67144 7.523438, -81.71045 7.485547, -8~
+## 5 Oceania                    73.4 (((169.1782 -52.49727, 169.2335 -52.54824, 16~
+## 6 Seven seas (op~            75.3 (((57.3833 -20.50371, 57.32832 -20.45, 57.317~
+## 7 South America              74.9 (((-67.83408 -55.82754, -67.76206 -55.81611, ~
 ## 8 <NA>                      NaN   (((23.38066 -17.64062, 23.59492 -17.59941, 23~
 ```
 
