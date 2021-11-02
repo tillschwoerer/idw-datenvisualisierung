@@ -1,4 +1,4 @@
-iso2c,land,kontinent,subregion,jahr,bevölkerung,bevölkerung_weiblich,bevölkerung_0_14,bevölkerung_65+,bevölkerung_land,bevölkerung_stadt,bevölkerung_unter$5.50,bruttosozialprodukt,fläche,lebenserwartung,lebenserwartung_mann,lebenserwartung_frau,kindersterblichkeit,geburtenrate,co2_emissionen,literacy_rate,militärausgaben,mordrate
+iso2c,land,kontinent,subregion,jahr,bevoelkerung,bevoelkerung_weiblich,bevoelkerung_0_14,bevoelkerung_65+,bevoelkerung_land,bevoelkerung_stadt,bevoelkerung_unter$5.50,bruttosozialprodukt,flaeche,lebenserwartung,lebenserwartung_mann,lebenserwartung_frau,kindersterblichkeit,geburtenrate,co2_emissionen,literacy_rate,militaerausgaben,mordrate
 AD,Andorra,Europe,Southern Europe,1990,54509,NA,NA,NA,5.288,94.712,NA,1029048481.88051,470,NA,NA,NA,9.1,NA,407.037,NA,NA,NA
 AD,Andorra,Europe,Southern Europe,1991,56671,NA,NA,NA,5.47,94.53,NA,1106928582.86629,470,NA,NA,NA,8.8,NA,407.037,NA,NA,NA
 AD,Andorra,Europe,Southern Europe,1992,58888,NA,NA,NA,5.676,94.324,NA,1210013651.87713,470,NA,NA,NA,8.6,NA,407.037,NA,NA,NA
