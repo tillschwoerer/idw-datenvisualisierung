@@ -1,11 +1,10 @@
-# ggplot2
+# Streudiagramme
 
-Die Einführung in die Bibliothek **ggplot2** vollziehen wir anhand von: 
 
-(1) Daten zu Gebrauchtwagen, die über Ebay-Kleinanzeigen verkauft wurden. Die hier verwendeten Daten stellen einen Ausschnitt aus einem noch größeren Datensatz dar, der über die Plattform Kaggle erhältlich ist. Im Vergleich zu den Originaldaten wurden extreme Ausreißer eliminiert und Variablen umbenannt. 
 
-(2) Streudiagrammen (*scatterplots*). Wir verwenden diese um die Beziehung zwischen 2 oder mehr Variablen zu visualisieren. 
+Alle Visualisierungen in diesem Kurs setzen wir mithilfe des Paketes **ggplot2** durch. Es handelt sich dabei um einen Bestandteil des bereits bekannten Paketes **tidyverse**. Das Paket basiert auf einer "Grammar of Graphics" (daher das "gg" in "ggplot2"), d.h. einem sprachlichen Regelwerk für die einzelnen Bestandteile einer Grafik. Dieses Regewerk kann uns dabei helfen, komplexe Sachverhalte in einfache Grafiken zu überführen. 
 
+Wir erschließen uns das Paket ggplot2 anhand von Streudiagrammen (*scatterplots*). Steudiagrmamme sind hilfreich um die Beziehung zwischen 2 (oder mehr) Variablen zu visualisieren. 
 
 
 
@@ -53,7 +52,7 @@ Minimale Angaben zur Erstellung einer Grafik:
 ggplot(data = sample, mapping = aes(x = alter, y = preis)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-3-1.png" width="768" />
 
 **Wie ändert sich die Grafik, wenn wir den vollen Datensatz (df) verwenden?**
 
@@ -62,7 +61,7 @@ ggplot(data = sample, mapping = aes(x = alter, y = preis)) + geom_point()
 ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-4-1.png" width="768" />
 
 
 **Wie ändert sich die Grafik, wenn wir eine andere Ästhetik-Zuordnung vornehmen?**
@@ -72,19 +71,19 @@ ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_point()
 ggplot(data = sample, mapping = aes(x = preis, y = alter)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-5-1.png" width="768" />
 
 ```r
 ggplot(data = sample, mapping = aes(x = preis, y = hersteller)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-5-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-5-2.png" width="768" />
 
 ```r
 ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-5-3.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-5-3.png" width="768" />
 
 
 **Wie ändert sich die Grafik, wenn wir einen anderen Objekttyp wählen?**
@@ -93,13 +92,13 @@ ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_poi
 ggplot(data = sample, mapping = aes(x = fahrzeugtyp, y = hersteller)) + geom_jitter(width = 0.1)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-6-1.png" width="768" />
 
 ```r
 ggplot(data = df, mapping = aes(x = alter, y = preis)) + geom_density2d_filled()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-6-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-6-2.png" width="768" />
 
 
 ## Ästhetik-Zuordnung
@@ -114,19 +113,19 @@ Für kardinal-skalierte Variablen wie `ps` (für Pferdestärke) sind beispielswe
 sample %>% ggplot(mapping = aes(x = alter, y = preis, color = ps)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
 ```r
 sample %>% ggplot(mapping = aes(x = alter, y = preis, size = ps)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-7-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-7-2.png" width="768" />
 
 ```r
 sample %>% ggplot(mapping = aes(x = alter, y = preis, alpha = ps)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-7-3.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-7-3.png" width="768" />
 
 ### Nominal-skalierte Variable
 Für nominal-skalierte Variablen wie `fahrzeugtyp` eignen sich bspw. die Ästhetiken Farbe (`color`) und Form (`shape`).
@@ -135,13 +134,13 @@ Für nominal-skalierte Variablen wie `fahrzeugtyp` eignen sich bspw. die Ästhet
 sample %>% ggplot(mapping = aes(x = alter, y = preis, color = fahrzeugtyp)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 
 ```r
 sample %>% ggplot(mapping = aes(x = alter, y = preis, shape = fahrzeugtyp)) + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-8-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-8-2.png" width="768" />
 
 ### Fixierte Ästhetik 
 Beachten Sie den Unterschied zwischen (1) einer Ästhetik-Zuordnung (aesthetic mapping) und (2) einer fest definierten Ästhetik! 
@@ -158,7 +157,7 @@ sample %>%
               shape = 18)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-9-1.png" width="768" />
  
 
 ## Geometrisches Objekt
@@ -173,25 +172,25 @@ p <- sample %>% ggplot(aes(x = alter, y = preis))
 p + geom_point()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-10-1.png" width="768" />
 
 ```r
 p + geom_jitter()       # zufälliges "Zittern" um Überlappungen zu reduzieren
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-10-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-10-2.png" width="768" />
 
 ```r
 p + geom_smooth()       # Geglättete Linie
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-10-3.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-10-3.png" width="768" />
 
 ```r
 p + geom_density_2d()   # Umrisse einer 2-dimensionalen Dichteschätzung
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-10-4.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-10-4.png" width="768" />
 
 Beachten Sie, dass die `geom_[typ]` Funktionen teilweise implizite Veränderungen an den Daten vornehmen: bspw. statistische Berechnungen (`geom_smooth`, `geom_density_2d`) oder Positionsanpassungen (`geom_jitter`). Diese standardmäßig verwendeten Verändungen können Sie aber auch manuell verhindern bzw. anpassen, bspw:
 
@@ -200,7 +199,7 @@ Beachten Sie, dass die `geom_[typ]` Funktionen teilweise implizite Veränderunge
 p + geom_smooth(method = "lm")    # Lineare Regressionsgerade
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-11-1.png" width="768" />
 
 Sie können mithilfe der `geom` Funktionen auch mehrere **Datenschichten** übereinander legen. Dabei definiert jeder Objekttyp genau eine Schicht. Je Schicht können auch eigene Daten oder eine eigene Ästhetik-Zuordnung verwendet werden.
 
@@ -210,7 +209,7 @@ Sie können mithilfe der `geom` Funktionen auch mehrere **Datenschichten** über
 p + geom_point() + geom_smooth()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-12-1.png" width="768" />
 
 **Beipsiel 2: Hervorhebung einer Teilmenge der Daten**
 
@@ -221,7 +220,7 @@ p +
   geom_point(data = subset, aes(color = hersteller))
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-13-1.png" width="768" />
 
 **Beispiel 3: Labels für interessante Datenpunkte**
 
@@ -236,7 +235,7 @@ p +
                             min.segment.length = 0.1)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-14-1.png" width="768" />
 
 **Beispiel 4: Streudiagramm mit mehreren Smooth Lines**
 
@@ -247,7 +246,7 @@ sample %>%
   geom_smooth(se=FALSE)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-15-1.png" width="768" />
 
 ## Skalierung
 Jede Ästhetik hat zunächst eine Standard-Skalierung. Diese können Sie jedoch manuell anpassen
@@ -264,7 +263,7 @@ p + geom_point() +
   scale_x_log10()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-16-1.png" width="768" />
 
 
 ### Farb-Skalierung
@@ -279,7 +278,7 @@ sample %>%
   scale_color_brewer(type = "qual", palette = "Set1")
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-17-1.png" width="768" />
  
 **Ordinal-skalierte Variable**
 
@@ -290,7 +289,7 @@ sample %>%
   scale_color_brewer(type = "seq", palette = "Reds")
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-18-1.png" width="768" />
 
 **Kardinal-skalierte Variable**
 
@@ -301,7 +300,7 @@ sample %>%
   scale_color_gradient(low = "white", high = "blue")
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-19-1.png" width="768" />
 
 Es gibt diverse vordefinierte Farbpaletten, siehe z.B.
 
@@ -309,7 +308,7 @@ Es gibt diverse vordefinierte Farbpaletten, siehe z.B.
 RColorBrewer::display.brewer.all()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-20-1.png" width="768" />
 
 ... alternativ können Farbskalierungen auch selbst definiert werden
 
@@ -321,7 +320,7 @@ sample %>%
   scale_color_manual(values = meine_palette)  
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-21-1.png" width="768" />
 
 
 ## Facetten 
@@ -334,19 +333,19 @@ p <- sample %>% ggplot(aes(alter, preis)) + geom_point()
 p + facet_wrap(~fahrzeugtyp)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-22-1.png" width="768" />
 
 ```r
 p + facet_wrap(~ ps>150)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-22-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-22-2.png" width="768" />
 
 ```r
 p + facet_grid(fahrzeugtyp ~ ps>100)
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-22-3.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-22-3.png" width="768" />
 
 Hier können sie auch festlegen, dass jede Facette eine eigene Axenskalierung erhält
 
@@ -354,7 +353,7 @@ Hier können sie auch festlegen, dass jede Facette eine eigene Axenskalierung er
 p + facet_wrap(~fahrzeugtyp, scales = "free")
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-23-1.png" width="768" />
 
 ## Thema und Labels 
 
@@ -365,7 +364,7 @@ p + facet_wrap(~fahrzeugtyp, scales = "free")
 p + labs(x = "Alter in Jahren", y = "Preis in €", title = "Gebrauchtwagen")
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-24-1.png" width="768" />
 
 ### Thema
 Sie können eines der unzähligen vordefinierten Themen verwenden
@@ -375,13 +374,13 @@ Sie können eines der unzähligen vordefinierten Themen verwenden
 p + theme_classic()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-25-1.png" width="768" />
 
 ```r
 p + ggthemes::theme_economist()
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-25-2.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-25-2.png" width="768" />
 
 ... oder im Detail ihr eigenes Thema gestalten.
 
@@ -393,5 +392,5 @@ p + theme(plot.background = element_rect(fill = "lightgrey"),
           axis.title = element_text(size = 14))
 ```
 
-<img src="01-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="768" />
+<img src="01-streudiagramme_files/figure-html/unnamed-chunk-26-1.png" width="768" />
 

@@ -23,9 +23,9 @@ glimpse(df)
 ## $ stickstoffdioxid  <dbl> 99.14758, 80.95000, 79.06500, 57.35332, 50.00500, 53~
 ## $ stickoxide        <dbl> 237.2274, 297.2742, 258.1775, 147.5283, 131.4792, 10~
 ## $ feinstaub10       <dbl> 59.47917, 38.29084, 29.28584, 21.94332, 27.47916, 34~
-## $ feinstaub2.5      <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
-## $ ozon              <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
-## $ schwefeldioxid    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ feinstaub2.5      <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ ozon              <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ schwefeldioxid    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ typ               <chr> "traffic", "traffic", "traffic", "traffic", "traffic~
 ## $ gebiet            <chr> "urban", "urban", "urban", "urban", "urban", "urban"~
 ## $ hoehe             <dbl> 521, 521, 521, 521, 521, 521, 521, 521, 521, 521, 52~
