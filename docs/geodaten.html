@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Geodaten | Einführung in die Datenvisualisierung mit R</title>
-  <meta name="description" content="3 Geodaten | Einführung in die Datenvisualisierung mit R" />
+  <title>4 Geodaten | Einführung in die Datenvisualisierung mit R</title>
+  <meta name="description" content="4 Geodaten | Einführung in die Datenvisualisierung mit R" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Geodaten | Einführung in die Datenvisualisierung mit R" />
+  <meta property="og:title" content="4 Geodaten | Einführung in die Datenvisualisierung mit R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/img/FH-Kiel-Logo.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tillschwoerer/idw-datenvisualisierung" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Geodaten | Einführung in die Datenvisualisierung mit R" />
+  <meta name="twitter:title" content="4 Geodaten | Einführung in die Datenvisualisierung mit R" />
   
   
   <meta name="twitter:image" content="/img/FH-Kiel-Logo.png" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Prof. Dr. Tillmann Schwörer, FH Kiel, Studiengang Data Science" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ggplot2.html"/>
-<link rel="next" href="aggregierte-daten.html"/>
+<link rel="prev" href="aggregierte-daten.html"/>
+<link rel="next" href="zeit.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -132,46 +133,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R und RStudio</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#erste-schritte"><i class="fa fa-check"></i><b>1.1</b> Erste Schritte</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.2</b> Datenmanipulation</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#dieses-buch"><i class="fa fa-check"></i><b>1.1</b> Dieses Buch</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-und-rstudio"><i class="fa fa-check"></i><b>1.2</b> R und RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.3</b> Datenmanipulation</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
-<li class="chapter" data-level="2.2" data-path="ggplot2.html"><a href="ggplot2.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="ggplot2.html"><a href="ggplot2.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.2" data-path="ggplot2.html"><a href="ggplot2.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.3" data-path="ggplot2.html"><a href="ggplot2.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
-<li class="chapter" data-level="2.4" data-path="ggplot2.html"><a href="ggplot2.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="ggplot2.html"><a href="ggplot2.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
-<li class="chapter" data-level="2.4.2" data-path="ggplot2.html"><a href="ggplot2.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
-<li class="chapter" data-level="2.6" data-path="ggplot2.html"><a href="ggplot2.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="ggplot2.html"><a href="ggplot2.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
-<li class="chapter" data-level="2.6.2" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#filter"><i class="fa fa-check"></i><b>1.3.1</b> Filter</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#select-und-arrange"><i class="fa fa-check"></i><b>1.3.2</b> Select und Arrange</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#mutate"><i class="fa fa-check"></i><b>1.3.3</b> Mutate</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#summarise"><i class="fa fa-check"></i><b>1.3.4</b> Summarise</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#group-by"><i class="fa fa-check"></i><b>1.3.5</b> Group by</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>3</b> Geodaten</a>
+<li class="chapter" data-level="2" data-path="streudiagramme.html"><a href="streudiagramme.html"><i class="fa fa-check"></i><b>2</b> Streudiagramme</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>3.1</b> Simple Features</a></li>
-<li class="chapter" data-level="3.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>3.2</b> Ästhetiken</a></li>
-<li class="chapter" data-level="3.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>3.3</b> Schichten</a></li>
-<li class="chapter" data-level="3.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>3.4</b> Aggregation</a></li>
-<li class="chapter" data-level="3.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>3.5</b> Koordinatensystem</a></li>
+<li class="chapter" data-level="2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
+<li class="chapter" data-level="2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>4</b> Aggregierte Daten</a>
+<li class="chapter" data-level="2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
+<li class="chapter" data-level="2.4" data-path="streudiagramme.html"><a href="streudiagramme.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>4.1</b> Sortierung</a></li>
-<li class="chapter" data-level="4.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>4.2</b> Überlappungen</a></li>
-<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>4.3</b> Zwei kategoriale Variablen</a></li>
+<li class="chapter" data-level="2.4.1" data-path="streudiagramme.html"><a href="streudiagramme.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="streudiagramme.html"><a href="streudiagramme.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="streudiagramme.html"><a href="streudiagramme.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
+<li class="chapter" data-level="2.6" data-path="streudiagramme.html"><a href="streudiagramme.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="streudiagramme.html"><a href="streudiagramme.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="streudiagramme.html"><a href="streudiagramme.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>3</b> Aggregierte Daten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>3.1</b> Sortierung</a></li>
+<li class="chapter" data-level="3.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>3.2</b> Überlappungen</a></li>
+<li class="chapter" data-level="3.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>3.3</b> Zwei kategoriale Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>4</b> Geodaten</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>4.1</b> Simple Features</a></li>
+<li class="chapter" data-level="4.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>4.2</b> Ästhetiken</a></li>
+<li class="chapter" data-level="4.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>4.3</b> Schichten</a></li>
+<li class="chapter" data-level="4.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>4.4</b> Aggregation</a></li>
+<li class="chapter" data-level="4.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>4.5</b> Koordinatensystem</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="zeit.html"><a href="zeit.html"><i class="fa fa-check"></i><b>5</b> Zeit</a></li>
 </ul>
@@ -191,29 +200,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="geodaten" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Geodaten</h1>
+<div id="geodaten" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Geodaten</h1>
 <p>Das Thema Visualisierung von <strong>Geodaten</strong> erschließen wir uns anhand von Daten der Weltbank aus der Reihe der <strong>World Development Indicators</strong>. Enthalten sind in den Daten alle Länder der Erde und ausgewählte Indikatoren seit 1990. Da die Zeitkomponente für das Verständnis nicht relevant ist, beschränken wir uns in der Folge auf das Jahr 2018 (für 2019 und 2020 fehlen noch viele Werte, daher wurden diese nicht berücksichtigt.)</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="geodaten.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   </span>
-<span id="cb63-2"><a href="geodaten.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)          </span>
-<span id="cb63-3"><a href="geodaten.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
-<span id="cb63-4"><a href="geodaten.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb63-5"><a href="geodaten.html#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>(), <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb63-6"><a href="geodaten.html#cb63-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb63-7"><a href="geodaten.html#cb63-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb63-8"><a href="geodaten.html#cb63-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div id="simple-features" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Simple Features</h2>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="geodaten.html#cb64-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wdi.csv&quot;</span>)        <span class="co"># Einlesen der World Development Indicators</span></span>
-<span id="cb64-2"><a href="geodaten.html#cb64-2" aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2018</span>)      <span class="co"># Einschränkung auf das aktuellste Jahr im </span></span>
-<span id="cb64-3"><a href="geodaten.html#cb64-3" aria-hidden="true" tabindex="-1"></a>geo <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;data/geo_wdi.rds&quot;</span>)    <span class="co"># Einlesen der Geodaten</span></span>
-<span id="cb64-4"><a href="geodaten.html#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-5"><a href="geodaten.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodaten werden per Join zum Datensatz hinzugefügt</span></span>
-<span id="cb64-6"><a href="geodaten.html#cb64-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(geo, <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>()</span>
-<span id="cb64-7"><a href="geodaten.html#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-8"><a href="geodaten.html#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="geodaten.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   </span>
+<span id="cb71-2"><a href="geodaten.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)          </span>
+<span id="cb71-3"><a href="geodaten.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb71-4"><a href="geodaten.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb71-5"><a href="geodaten.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>(), <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb71-6"><a href="geodaten.html#cb71-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb71-7"><a href="geodaten.html#cb71-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb71-8"><a href="geodaten.html#cb71-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="simple-features" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Simple Features</h2>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="geodaten.html#cb72-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wdi.csv&quot;</span>)        <span class="co"># Einlesen der World Development Indicators</span></span>
+<span id="cb72-2"><a href="geodaten.html#cb72-2" aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2018</span>)      <span class="co"># Einschränkung auf das aktuellste Jahr im </span></span>
+<span id="cb72-3"><a href="geodaten.html#cb72-3" aria-hidden="true" tabindex="-1"></a>geo <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;data/geo_wdi.rds&quot;</span>)    <span class="co"># Einlesen der Geodaten</span></span>
+<span id="cb72-4"><a href="geodaten.html#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="geodaten.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodaten werden per Join zum Datensatz hinzugefügt</span></span>
+<span id="cb72-6"><a href="geodaten.html#cb72-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span> <span class="fu">right_join</span>(geo, <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>()</span>
+<span id="cb72-7"><a href="geodaten.html#cb72-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-8"><a href="geodaten.html#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
 <pre><code>## Rows: 213
-## Columns: 24
+## Columns: 25
 ## $ iso2c                    &lt;chr&gt; &quot;AD&quot;, &quot;AE&quot;, &quot;AF&quot;, &quot;AG&quot;, &quot;AL&quot;, &quot;AM&quot;, &quot;AO&quot;, &quot;AR~
 ## $ land                     &lt;chr&gt; &quot;Andorra&quot;, &quot;United Arab Emirates&quot;, &quot;Afghanist~
 ## $ kontinent                &lt;chr&gt; &quot;Europe&quot;, &quot;Asia&quot;, &quot;Asia&quot;, &quot;North America&quot;, &quot;E~
@@ -237,19 +246,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ literacy_rate            &lt;dbl&gt; NA, NA, 43.01972, NA, 98.14115, NA, NA, 99.00~
 ## $ militärausgaben          &lt;dbl&gt; NA, NA, 198074729, NA, 175886689, 608854650, ~
 ## $ mordrate                 &lt;dbl&gt; NA, NA, 6.6555612, NA, 2.2894924, 1.6939156, ~
+## $ iso3c                    &lt;chr&gt; &quot;AND&quot;, &quot;ARE&quot;, &quot;AFG&quot;, &quot;ATG&quot;, &quot;ALB&quot;, &quot;ARM&quot;, &quot;AG~
 ## $ geometry                 &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((1.706055 42..., ~</code></pre>
 <p>Es handelt sich nicht um einen gewöhnlichen R Datensatz (data frame), sondern um einen sogenannten <strong>Simple Feature</strong> Datensatz. Das besondere daran ist die Variable <code>geometry</code>, welche die Koordinaten (Längengrad und Breitengrad) der Ländergrenzen enthält.</p>
-<p>Analog zum bisherigen Vorgehen, benötigen wir für die Visualisierung einer Weltkarte nur 3 Dinge: (1) den (Simple Feature) Datensatz, (2) eine Ästhetikzuordnung (die Variable <code>geometry</code> wird der Ästhetik <strong>geometry</strong> zugeordet, und (3) den passenden Objecttyp <code>geom_sf</code>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="geodaten.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">geometry =</span> geometry)) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Tatsächlich können wir hier die Ästhetikzuordnung sogar weglassen, die Spezifikation des Datensatzes und <code>geom_sf</code> ist hier sogar ausreichend.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="geodaten.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Analog zum bisherigen Vorgehen, benötigen wir für die Visualisierung einer Weltkarte nur 3 Dinge: (1) den (Simple Feature) Datensatz, (2) eine Ästhetikzuordnung (die Variable <code>geometry</code> wird der Ästhetik <strong>geometry</strong> zugeordet, und (3) den passenden Objecttyp <code>geom_sf</code>. Tatsächlich können wir hier die Ästhetikzuordnung sogar weglassen, die Spezifikation des Datensatzes und <code>geom_sf</code> ist hier sogar ausreichend.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="geodaten.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><strong>Was bedeutet der Begriff feature?</strong> Ein Feature kann grundsätzlich alles mögliche sein (Land, Fluss, Bushaltestelle), in unserem Fall ist es ein Land. Features können durch unterschiedliche Geometrien repräsentiert werden: eine Bushaltestelle durch einen <strong>Punkt</strong>, ein Fluss durch eine <strong>Linie</strong>, ein Land durch ein <strong>Polygon</strong> oder <strong>Multipolygon</strong>. Beispielsweise kann das “Vereinigte Königreich” nur durch einen Multipolygon repräsentiert werden, da es aus zwei Inseln (jeweils Polygone) besteht.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="geodaten.html#cb68-1" aria-hidden="true" tabindex="-1"></a>uk <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(land <span class="sc">==</span> <span class="st">&quot;United Kingdom&quot;</span>)</span>
-<span id="cb68-2"><a href="geodaten.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uk) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="geodaten.html#cb69-1" aria-hidden="true" tabindex="-1"></a>uk[[<span class="st">&quot;geometry&quot;</span>]][[<span class="dv">1</span>]][[<span class="dv">1</span>]]        <span class="co"># Dies sind die Koordinaten von Irland</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="geodaten.html#cb75-1" aria-hidden="true" tabindex="-1"></a>uk <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(land <span class="sc">==</span> <span class="st">&quot;United Kingdom&quot;</span>)</span>
+<span id="cb75-2"><a href="geodaten.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uk) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="geodaten.html#cb76-1" aria-hidden="true" tabindex="-1"></a>uk[[<span class="st">&quot;geometry&quot;</span>]][[<span class="dv">1</span>]][[<span class="dv">1</span>]]        <span class="co"># Dies sind die Koordinaten von Irland</span></span></code></pre></div>
 <pre><code>## [[1]]
 ##            [,1]     [,2]
 ##  [1,] -1.065576 50.69023
@@ -266,40 +273,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [12,] -1.144238 50.73472
 ## [13,] -1.065576 50.69023</code></pre>
 </div>
-<div id="ästhetiken" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Ästhetiken</h2>
+<div id="ästhetiken" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Ästhetiken</h2>
 <p>Die wichtigste Ästhetik ist bei Karten in der Regel die Füllfarbe (<code>fill</code>). Wie bisher können sie sie entweder die Füllfarbe entweder auf eine bestimmte Ausprägung (bspw. “red”) fixieren, oder eine Variable des Datensatzes der Füllfarbe zuordnen (<em>aesthetic mapping</em>). Zu beachten: Die Farbe der Landesgrenzen können über <code>color</code> Ästhetik beeinflusst werden.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="geodaten.html#cb71-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>()                   </span>
-<span id="cb71-2"><a href="geodaten.html#cb71-2" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>kontinent))                    <span class="co"># nominal-skalierte Variable</span></span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="geodaten.html#cb72-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lebenserwartung))              <span class="co"># kardinal-skalierte Variable</span></span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="geodaten.html#cb73-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lebenserwartung), <span class="at">color =</span> <span class="cn">NA</span>)  <span class="co"># fest definierte Länderfarbe (hier unsichtbar)</span></span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="geodaten.html#cb78-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>()                   </span>
+<span id="cb78-2"><a href="geodaten.html#cb78-2" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>kontinent))                    <span class="co"># nominal-skalierte Variable</span></span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="geodaten.html#cb79-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lebenserwartung))              <span class="co"># kardinal-skalierte Variable</span></span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 </div>
-<div id="schichten" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Schichten</h2>
+<div id="schichten" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Schichten</h2>
 <p>Wie bisher können Sie auch hier über zusätzliche <code>geom_[typ]</code> Funktionen weitere Schichten definieren. Dies ist auch hier insbesondere für Hervorhebungen hilfreich.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="geodaten.html#cb74-1" aria-hidden="true" tabindex="-1"></a>auswahl <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(land <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;South Africa&quot;</span>)) </span>
-<span id="cb74-2"><a href="geodaten.html#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-3"><a href="geodaten.html#cb74-3" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> </span>
-<span id="cb74-4"><a href="geodaten.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>kontinent)) <span class="sc">+</span></span>
-<span id="cb74-5"><a href="geodaten.html#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> auswahl, <span class="fu">aes</span>(<span class="at">label=</span>land)) </span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="geodaten.html#cb80-1" aria-hidden="true" tabindex="-1"></a>auswahl <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(land <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;South Africa&quot;</span>)) </span>
+<span id="cb80-2"><a href="geodaten.html#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="geodaten.html#cb80-3" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> </span>
+<span id="cb80-4"><a href="geodaten.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>kontinent)) <span class="sc">+</span></span>
+<span id="cb80-5"><a href="geodaten.html#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> auswahl, <span class="fu">aes</span>(<span class="at">label=</span>land)) </span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="aggregation" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Aggregation</h2>
+<div id="aggregation" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Aggregation</h2>
 <p>In manchen Situationen möchten wir die Daten durch eine Aggregation verdichten, bspw. um die durchschnittliche Lebenserwartung je Kontinent zu berechnen.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="geodaten.html#cb75-1" aria-hidden="true" tabindex="-1"></a>kontinente <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb75-2"><a href="geodaten.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kontinent) <span class="sc">%&gt;%</span></span>
-<span id="cb75-3"><a href="geodaten.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lebenserwartung =</span> <span class="fu">mean</span>(lebenserwartung, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) </span>
-<span id="cb75-4"><a href="geodaten.html#cb75-4" aria-hidden="true" tabindex="-1"></a>kontinente</span></code></pre></div>
-<pre><code>## Simple feature collection with 7 features and 2 fields
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="geodaten.html#cb81-1" aria-hidden="true" tabindex="-1"></a>kontinente <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="geodaten.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kontinent) <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="geodaten.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lebenserwartung =</span> <span class="fu">mean</span>(lebenserwartung, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) </span>
+<span id="cb81-4"><a href="geodaten.html#cb81-4" aria-hidden="true" tabindex="-1"></a>kontinente</span></code></pre></div>
+<pre><code>## Simple feature collection with 8 features and 2 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: -180 ymin: -55.8917 xmax: 180 ymax: 83.59961
 ## CRS:            +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
-## # A tibble: 7 x 3
+## # A tibble: 8 x 3
 ##   kontinent       lebenserwartung                                       geometry
 ##   &lt;chr&gt;                     &lt;dbl&gt;                             &lt;MULTIPOLYGON [°]&gt;
 ## 1 Africa                     63.4 (((-2.938306 5.124495, -2.94834 5.118848, -3.~
@@ -308,26 +313,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 North America              76.0 (((-78.89834 8.274268, -78.91812 8.231934, -7~
 ## 5 Oceania                    73.4 (((158.8788 -54.70977, 158.8452 -54.74922, 15~
 ## 6 Seven seas (op~            75.3 (((57.65127 -20.48486, 57.5248 -20.51318, 57.~
-## 7 South America              74.9 (((-67.5752 -55.88965, -67.61143 -55.8917, -6~</code></pre>
+## 7 South America              74.9 (((-67.5752 -55.88965, -67.61143 -55.8917, -6~
+## 8 &lt;NA&gt;                      NaN   (((23.38066 -17.64062, 23.59492 -17.59941, 23~</code></pre>
 <p>Die gute Nachricht: bei der Aggregation wird auch die <code>geometry</code> Variable so aktualisiert, dass diese nun die Umrisse der jeweiligen Kontinente repräsentiert.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="geodaten.html#cb77-1" aria-hidden="true" tabindex="-1"></a>kontinente <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> lebenserwartung), <span class="at">color =</span> <span class="cn">NA</span>)</span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="geodaten.html#cb83-1" aria-hidden="true" tabindex="-1"></a>kontinente <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> lebenserwartung), <span class="at">color =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div id="koordinatensystem" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Koordinatensystem</h2>
+<div id="koordinatensystem" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Koordinatensystem</h2>
 <p>Bisher haben wir das Thema <strong>Koordinatensystem</strong> nicht explizit angesprochen. Im Kontext von Karten ist es aber besonders relevant, da unsere 3-dimensionale Erde nicht akurat in 2 Dimensionen dargestellt werden kann. Es stehen uns nun unterschiedlich Projektionen zu Verfügung, die jeweils vorgeben, wo die Längen- und Breitengrade in den zwei Dimensionn verortet werden.</p>
 <p>Betrachten wir nun folgende Basiskarte:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="geodaten.html#cb78-1" aria-hidden="true" tabindex="-1"></a>(basiskarte <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href="geodaten.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb78-3"><a href="geodaten.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> kontinent), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb78-4"><a href="geodaten.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>))</span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="geodaten.html#cb84-1" aria-hidden="true" tabindex="-1"></a>(basiskarte <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb84-2"><a href="geodaten.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb84-3"><a href="geodaten.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> kontinent), <span class="at">color=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb84-4"><a href="geodaten.html#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>, <span class="at">na.value =</span> <span class="st">&quot;grey&quot;</span>))</span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Die <strong>Mercator Projection</strong> stellt Formen und Winkel korrekt dar, aber in Richtung der Pole wird die Größe der Länder künstlich aufgebläht.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="geodaten.html#cb79-1" aria-hidden="true" tabindex="-1"></a>basiskarte <span class="sc">+</span> <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">&quot;+proj=merc&quot;</span>)) </span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="geodaten.html#cb85-1" aria-hidden="true" tabindex="-1"></a>basiskarte <span class="sc">+</span> <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">&quot;+proj=merc&quot;</span>)) </span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Hingegen werden bei der <strong>Lambert Azimuthal Equal Area</strong> (LAEA) Projektion die Ländergrößen korrekt dargestellt, wobei aber eine Verzerrung der Formen und Winkel in Kauf genommen wird. Auch der Perspektivwechsel auf einen anderen Mittelpunkt (hier Lhasa, Tibet) kann einen Mehrwert bzgl. der Interpretation schaffen.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="geodaten.html#cb80-1" aria-hidden="true" tabindex="-1"></a>basiskarte <span class="sc">+</span> <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">&quot;+proj=laea + lat_0=29.6490404 + lon_0=91.0052352&quot;</span>))</span></code></pre></div>
-<p><img src="02-geodaten_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="geodaten.html#cb86-1" aria-hidden="true" tabindex="-1"></a>basiskarte <span class="sc">+</span> <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">&quot;+proj=laea + lat_0=29.6490404 + lon_0=91.0052352&quot;</span>))</span></code></pre></div>
+<p><img src="03-geodaten_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -336,8 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="aggregierte-daten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="aggregierte-daten.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="zeit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

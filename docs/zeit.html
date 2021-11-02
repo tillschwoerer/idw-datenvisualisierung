@@ -24,14 +24,14 @@
 <meta name="author" content="Prof. Dr. Tillmann Schwörer, FH Kiel, Studiengang Data Science" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="aggregierte-daten.html"/>
+<link rel="prev" href="geodaten.html"/>
 
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -132,46 +133,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R und RStudio</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#erste-schritte"><i class="fa fa-check"></i><b>1.1</b> Erste Schritte</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.2</b> Datenmanipulation</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#dieses-buch"><i class="fa fa-check"></i><b>1.1</b> Dieses Buch</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-und-rstudio"><i class="fa fa-check"></i><b>1.2</b> R und RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.3</b> Datenmanipulation</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
-<li class="chapter" data-level="2.2" data-path="ggplot2.html"><a href="ggplot2.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="ggplot2.html"><a href="ggplot2.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.2" data-path="ggplot2.html"><a href="ggplot2.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.3" data-path="ggplot2.html"><a href="ggplot2.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
-<li class="chapter" data-level="2.4" data-path="ggplot2.html"><a href="ggplot2.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="ggplot2.html"><a href="ggplot2.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
-<li class="chapter" data-level="2.4.2" data-path="ggplot2.html"><a href="ggplot2.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
-<li class="chapter" data-level="2.6" data-path="ggplot2.html"><a href="ggplot2.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="ggplot2.html"><a href="ggplot2.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
-<li class="chapter" data-level="2.6.2" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#filter"><i class="fa fa-check"></i><b>1.3.1</b> Filter</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#select-und-arrange"><i class="fa fa-check"></i><b>1.3.2</b> Select und Arrange</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#mutate"><i class="fa fa-check"></i><b>1.3.3</b> Mutate</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#summarise"><i class="fa fa-check"></i><b>1.3.4</b> Summarise</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#group-by"><i class="fa fa-check"></i><b>1.3.5</b> Group by</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>3</b> Geodaten</a>
+<li class="chapter" data-level="2" data-path="streudiagramme.html"><a href="streudiagramme.html"><i class="fa fa-check"></i><b>2</b> Streudiagramme</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>3.1</b> Simple Features</a></li>
-<li class="chapter" data-level="3.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>3.2</b> Ästhetiken</a></li>
-<li class="chapter" data-level="3.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>3.3</b> Schichten</a></li>
-<li class="chapter" data-level="3.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>3.4</b> Aggregation</a></li>
-<li class="chapter" data-level="3.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>3.5</b> Koordinatensystem</a></li>
+<li class="chapter" data-level="2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
+<li class="chapter" data-level="2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>4</b> Aggregierte Daten</a>
+<li class="chapter" data-level="2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
+<li class="chapter" data-level="2.4" data-path="streudiagramme.html"><a href="streudiagramme.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>4.1</b> Sortierung</a></li>
-<li class="chapter" data-level="4.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>4.2</b> Überlappungen</a></li>
-<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>4.3</b> Zwei kategoriale Variablen</a></li>
+<li class="chapter" data-level="2.4.1" data-path="streudiagramme.html"><a href="streudiagramme.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="streudiagramme.html"><a href="streudiagramme.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="streudiagramme.html"><a href="streudiagramme.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
+<li class="chapter" data-level="2.6" data-path="streudiagramme.html"><a href="streudiagramme.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="streudiagramme.html"><a href="streudiagramme.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="streudiagramme.html"><a href="streudiagramme.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>3</b> Aggregierte Daten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>3.1</b> Sortierung</a></li>
+<li class="chapter" data-level="3.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>3.2</b> Überlappungen</a></li>
+<li class="chapter" data-level="3.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>3.3</b> Zwei kategoriale Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>4</b> Geodaten</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>4.1</b> Simple Features</a></li>
+<li class="chapter" data-level="4.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>4.2</b> Ästhetiken</a></li>
+<li class="chapter" data-level="4.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>4.3</b> Schichten</a></li>
+<li class="chapter" data-level="4.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>4.4</b> Aggregation</a></li>
+<li class="chapter" data-level="4.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>4.5</b> Koordinatensystem</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="zeit.html"><a href="zeit.html"><i class="fa fa-check"></i><b>5</b> Zeit</a></li>
 </ul>
@@ -194,10 +203,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="zeit" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Zeit</h1>
 <p>Das Thema <strong>Zeitbezug</strong> erschließen wir uns anhand von Daten zu Luft-Schadstoffmessungen an ausgewählten Standorten in Deutschland seit 2006. Ausgewählt wurden neben zwei Kieler Standorten 6 Standorte mit überwiegend hohen Werten (für unterschiedliche Schadstofftypen). Zu beachten ist, dass im Datensatz auch eine große Anzahl an fehlender Werte (<code>NA</code>) enthalten sind.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="zeit.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb93-2"><a href="zeit.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb93-3"><a href="zeit.html#cb93-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/schadstoffe-zeitreihen.csv&quot;</span>)</span>
-<span id="cb93-4"><a href="zeit.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="zeit.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb87-2"><a href="zeit.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb87-3"><a href="zeit.html#cb87-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/schadstoffe-zeitreihen.csv&quot;</span>)</span>
+<span id="cb87-4"><a href="zeit.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
 <pre><code>## Rows: 39,001
 ## Columns: 14
 ## $ standort_id       &lt;chr&gt; &quot;deby115&quot;, &quot;deby115&quot;, &quot;deby115&quot;, &quot;deby115&quot;, &quot;deby115~
@@ -208,53 +217,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ stickstoffdioxid  &lt;dbl&gt; 99.14758, 80.95000, 79.06500, 57.35332, 50.00500, 53~
 ## $ stickoxide        &lt;dbl&gt; 237.2274, 297.2742, 258.1775, 147.5283, 131.4792, 10~
 ## $ feinstaub10       &lt;dbl&gt; 59.47917, 38.29084, 29.28584, 21.94332, 27.47916, 34~
-## $ feinstaub2.5      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
-## $ ozon              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
-## $ schwefeldioxid    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ feinstaub2.5      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ ozon              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ schwefeldioxid    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ typ               &lt;chr&gt; &quot;traffic&quot;, &quot;traffic&quot;, &quot;traffic&quot;, &quot;traffic&quot;, &quot;traffic~
 ## $ gebiet            &lt;chr&gt; &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;, &quot;urban&quot;~
 ## $ hoehe             &lt;dbl&gt; 521, 521, 521, 521, 521, 521, 521, 521, 521, 521, 52~</code></pre>
 <p>Der Zeit-Aspekt bringt einige Besonderheiten mit sich. Unter anderem wollen wir prüfen, ob die Entwicklung von Luftqualitätsmessungen einem bestimmten Saisonalen (oder anderartigem) Muster unterliegt. Dafür extrahieren wir aus der Datumsvariable zunächst zusätzliche Informationen.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="zeit.html#cb95-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">jahr =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(datum),</span>
-<span id="cb95-2"><a href="zeit.html#cb95-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tagimjahr =</span> lubridate<span class="sc">::</span><span class="fu">yday</span>(datum),</span>
-<span id="cb95-3"><a href="zeit.html#cb95-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">monat =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb95-4"><a href="zeit.html#cb95-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wochentag =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="zeit.html#cb89-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">jahr =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(datum),</span>
+<span id="cb89-2"><a href="zeit.html#cb89-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tagimjahr =</span> lubridate<span class="sc">::</span><span class="fu">yday</span>(datum),</span>
+<span id="cb89-3"><a href="zeit.html#cb89-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">monat =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb89-4"><a href="zeit.html#cb89-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wochentag =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(datum, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <p>Das besondere an den Variablen <code>monat</code> und <code>wochentag</code> ist, dass es sich hierbei um ordinal-skalierte Variablen handelt (<em>ordered factors</em>). Dies hat den Vorteil, dass sie sprechend als Januar, Februar, etc. dargestellt werden, sie aber der natürlichen Sortierung unterliegen. Überprüfen lässt sich der Variablentyp wie folgt:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="zeit.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>monat)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="zeit.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>monat)</span></code></pre></div>
 <pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
 <p>Zunächst fokussieren wir uns auf die Besonderheiten bzgl. der Visualisierung einer einzelnen Zeitreihe. Dazu beschränkten wir den Zeitreihen-Datensatz auf einen Standort.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="zeit.html#cb98-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(standort <span class="sc">==</span> <span class="st">&quot;München/Landshuter Allee&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="zeit.html#cb92-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(standort <span class="sc">==</span> <span class="st">&quot;München/Landshuter Allee&quot;</span>)</span></code></pre></div>
 <p>Es stellt sich die Frage nach einem geeigneten geometrischen Objekt (<em>geometric object</em>). Grundsätzlich eignen sich Liniendiagramme (<code>geom_line</code>) gut für Zeitreihen. Aufgrund der hier vorliegenden starken Schwankungen kann es aber Sinn machen, die einzelnen Messpunkte (<code>geom_point</code>) darzustellen. Um den langfristigen Trend zu verdeutlichen eignet sich eine geglättete Trendlinie (<code>geom_smooth</code>).</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="zeit.html#cb99-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) </span>
-<span id="cb99-2"><a href="zeit.html#cb99-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="zeit.html#cb93-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) </span>
+<span id="cb93-2"><a href="zeit.html#cb93-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="zeit.html#cb100-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="zeit.html#cb94-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="zeit.html#cb101-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="zeit.html#cb95-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
 <p>Es lässt sich bereits erahnen, dass im vorliegenden Fall die Schwankungen einem bestimmten Muster mit Zeitbezug folgen. Schauen wir uns ein einzelnes Jahr konkreter an. Bei <code>stickstoffdioxid</code> scheint im Jahr 2019 kein klares saisonales Muster vorzuliegen. Wir können an diesem Beispiel aber demonstrieren, wie sich die Datum-Labels und die Gitterlinien anpassen lassen. Die unzähligen Formatierungsoptionen für Datums-Labels können via <code>help(strftime)</code> nachfollzogen werden.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="zeit.html#cb102-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> </span>
-<span id="cb102-2"><a href="zeit.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2019</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb102-3"><a href="zeit.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) <span class="sc">+</span> </span>
-<span id="cb102-4"><a href="zeit.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span>
-<span id="cb102-5"><a href="zeit.html#cb102-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-6"><a href="zeit.html#cb102-6" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%D&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="zeit.html#cb96-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> muenchen <span class="sc">%&gt;%</span> </span>
+<span id="cb96-2"><a href="zeit.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2019</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a href="zeit.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum, stickstoffdioxid)) <span class="sc">+</span> </span>
+<span id="cb96-4"><a href="zeit.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span>
+<span id="cb96-5"><a href="zeit.html#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="zeit.html#cb96-6" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%D&#39;</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="zeit.html#cb103-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%a, %d. %B %y&#39;</span>, </span>
-<span id="cb103-2"><a href="zeit.html#cb103-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_breaks =</span> <span class="st">&quot;4 months&quot;</span>, </span>
-<span id="cb103-3"><a href="zeit.html#cb103-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_minor_breaks =</span> <span class="st">&quot;1 months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="zeit.html#cb97-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&#39;%a, %d. %B %y&#39;</span>, </span>
+<span id="cb97-2"><a href="zeit.html#cb97-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_breaks =</span> <span class="st">&quot;4 months&quot;</span>, </span>
+<span id="cb97-3"><a href="zeit.html#cb97-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_minor_breaks =</span> <span class="st">&quot;1 months&quot;</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <p>Um nachzuvollziehen, ob sich ein bestimmtes saisonales Muster nur in einem Jahr zeigt, oder in allen Jahren, können wir die Variable <code>jahr</code> der Ästhetik Farbe zuordnen. Das funktioniert allerdings nur, wenn sie die numerische Variable <code>jahr</code> in eine kategoriale Variable (<em>factor</em>) umwandeln. Speziell geeignet ist hier wieder die Ordinal-Skalierung (<em>ordered</em>).</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="zeit.html#cb104-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
-<span id="cb104-2"><a href="zeit.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tagimjahr, stickstoffdioxid, <span class="at">color =</span> <span class="fu">ordered</span>(jahr))) <span class="sc">+</span> </span>
-<span id="cb104-3"><a href="zeit.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="zeit.html#cb98-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
+<span id="cb98-2"><a href="zeit.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tagimjahr, stickstoffdioxid, <span class="at">color =</span> <span class="fu">ordered</span>(jahr))) <span class="sc">+</span> </span>
+<span id="cb98-3"><a href="zeit.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Um den Tag im Jahr sprechender zu gestalten, bedienen wir uns eines Tricks:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="zeit.html#cb105-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
-<span id="cb105-2"><a href="zeit.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datum0 =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>) <span class="sc">+</span> tagimjahr) <span class="sc">%&gt;%</span></span>
-<span id="cb105-3"><a href="zeit.html#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum0, feinstaub10, <span class="at">color =</span> <span class="fu">ordered</span>(jahr)))<span class="sc">+</span> </span>
-<span id="cb105-4"><a href="zeit.html#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb105-5"><a href="zeit.html#cb105-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%B&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="zeit.html#cb99-1" aria-hidden="true" tabindex="-1"></a>muenchen <span class="sc">%&gt;%</span> </span>
+<span id="cb99-2"><a href="zeit.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datum0 =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>) <span class="sc">+</span> tagimjahr) <span class="sc">%&gt;%</span></span>
+<span id="cb99-3"><a href="zeit.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(datum0, feinstaub10, <span class="at">color =</span> <span class="fu">ordered</span>(jahr)))<span class="sc">+</span> </span>
+<span id="cb99-4"><a href="zeit.html#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb99-5"><a href="zeit.html#cb99-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%B&quot;</span>)</span></code></pre></div>
 <p><img src="04-zeit_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 
 </div>
@@ -263,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="aggregierte-daten.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geodaten.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

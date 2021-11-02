@@ -14,12 +14,27 @@ output:
         collapse: section 
 ---
 
+```{r setup}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
 
-# R und RStudio
 
-An dieser Stelle stichpunktartig ein paar zentrale Informationen zum Arbeiten mit R und RStudio.
+# Einleitung
 
-## Erste Schritte
+An dieser Stelle stichpunktartig ein paar zentrale Informationen zur Motivation dieses Buches, sowie einige Starthilfen zum Arbeiten mit R.
+
+## Dieses Buch
+Ein Bild sagt mehr als 1000 Worte", sagt das Sprichwort. Ganz in diesem Sinne sind Visualisierungen eine wirkungsvolle Technik, um komplexe Zusammenhänge in Daten zu analysieren und für andere greifbar zu machen.
+
+Was benötigen wir für derart wirkungsvolle Visualisierungen? (1) Interessante und komplexe Daten, (2) Leitlinien/Reflektion, was eine **gute Grafik** ausmacht, (3) Kenntnisse, wie wir Visualisierungen (mithilfe der Programmiersprache R) umsetzen können.
+
+Der Fokus dieses Buches liegt auf letzterem Punkt. Es demonstriert, wie mithilfe des R Paketes ggplot2 unterschiedlichste Arten von Daten und Fragestellungen visuell dargestellt werden können.
+
+Diese Demonstration erfolgt anhand von drei verschiedenen Datensätzen: (1) Daten zu Gebrauchtwagen, die über Ebay-Kleinanzeigen verkauft wurden. Die hier verwendeten Daten stellen einen Ausschnitt aus einem noch größeren Datensatz dar, der über die Plattform Kaggle erhältlich ist. (2) Ausgewählte Informationen der [World Development Indicators](https://databank.worldbank.org/source/world-development-indicators) von der Weltbank. (3) Daten zu Luft-Schadstoffmessungen an ausgewählten Standorten in Deutschland seit 2006. 
+
+
+## R und RStudio
+Dieses Buch ist keine Einführung in die Programmiersprache R. Daher an dieser Stelle nur ein sehr kondensierte Zusammenfassung wesentlicher Aspekte.
 
 - **R** ist eine Software für statistische Berechnungen und Grafiken. 
 - **RStudio** ist eine integrierte Entwicklungsumgebung (IDE) für R. Wir werden in diesem Kurs ausschließlich über RStudio mit R arbeiten (wobei dies bspw. auch über die Kommandozeile, Jupyter Notebooks, oder andere IDEs möglich ist)
@@ -37,62 +52,73 @@ Zu Beginn der R Dateien sind die benötigten Pakete einzubinden.
 library(tidyverse)
 ```
 
-Die Funktion `read_rds` ist teil des Paketes **tidyverse**. Das heißt, sie können die Funktion nur verwenden, wenn sie vorher das Paket geladen haben. In den meisten Fällen werden wir Daten von Komma-separierte Datein (.csv) einlesen. Gelegentich werden wir auch Dateien mit dem R spezifischen Typ .rds einlesen.Der Pfeil Operator `<-` verwenden wir, um ein bestimmtes Object (hier: ein Datensatz) einem Namen (hier: df) zuzordnen. Nun taucht der Datensatz unter diesem Namen im **Environment** Tab von RStudio auf.
+Anschließend lesen wir die Daten ein.
 
 ```{r}
-df <- read_csv("data/wdi.csv")
+df <- read_csv("data/gebrauchtwagen.csv")
 ```
+
+Die Funktion `read_csv` ist teil des Paketes **tidyverse**. Das heißt, sie können die Funktion nur verwenden, wenn sie vorher das Paket geladen haben. In den meisten Fällen werden wir Daten von Komma-separierte Datein (.csv) einlesen. Gelegentich werden wir auch Dateien mit dem R spezifischen Typ .rds einlesen.Der Pfeil Operator `<-` verwenden wir, um ein bestimmtes Object (hier: ein Datensatz) einem Namen (hier: df) zuzuweisen. Nun erscheint der Datensatz unter diesem Namen im **Environment** Tab von RStudio
 
 Einen schnellen Überblick über einen Datensatz können wir uns mithilfe der folgenden Funktionen verschaffen:
 
 ```{r}
-head(df)     # Erste 6 Zeilen
 glimpse(df)  # Kurzvorschau jeder Variable mit einigen Metadaten
+head(df)     # Erste 6 Zeilen
 ```
 
 Wenn wir genauere Information zu einer R Funktion oder einem Paket benötigen können wir die Hilfe verwenden, z.B. `help(head)`.
 
-Wir verwenden die `filter` Funktion, um eine Teilmenge der Zeilen zu selektieren. Hier wählen wir alle Zeilen, für die Variable `jahr` den Wert 2018 annimmt und die Variale `bevölkerung` größer als 200 Millionen ist.
+Wir verwenden die `filter` Funktion, um alle diejenigen Autos (Zeilen des Datensatzes) zu selektieren, die eine oder mehrere Bedingungen erfüllen. Hier wählen wir alle Autos des Herstellers Porsche mit mehr als 280 PS.
+
+### Filter
 
 ```{r}
-filter(df, jahr==2018 & bevölkerung>200000000)
+filter(df, hersteller=='porsche' & ps>280)
 ```
 
 Alternativ können wir dies unter Verwendung des sog. Pipe Operators (`%>%`) wie folgt schreiben. 
 
 ```{r}
-df %>% filter(jahr==2018 & bevölkerung>200000000)
+df %>% filter(hersteller=='porsche' & ps>280)
 ```
 
-Der Vorteil davon ist hier noch nicht ersichtlich, sondern erst, wenn wir mehrere Verarbeiungsschritte miteinander verketten, bspw. durch Selektion einzelner Spalten (`select`) und Sortierung (`arrange`). Der Vorteil besteht darin, dass wir nicht nach jeder Operation ein Zwischenergebnis speichern müssen. 
+### Select und Arrange
+Der Vorteil des Pipe Operators wird ersichtlich, wenn wir mehrere Verarbeiungsschritte miteinander verketten, bspw. durch Selektion einzelner Spalten (`select`) und Sortierung (`arrange`). Der Vorteil besteht darin, dass wir nicht nach jeder Operation ein Zwischenergebnis speichern müssen. 
 
 ```{r}
 df %>% 
-  filter(jahr==2018 & bevölkerung>200000000) %>%   # Selektion einzelner Zeilen
-  select(land, kontinent, bevölkerung) %>%         # Selektion einzelner Spalten
-  arrange(-bevölkerung)                            # Sortieren anhand der Spalte Bevölkerung
+  filter(hersteller=='porsche' & ps>280) %>%   # Selektion einzelner Zeilen
+  select(hersteller, ps, alter, preis) %>%     # Selektion einzelner Spalten
+  arrange(-preis)                              # Sortieren anhand der Spalte Bevölkerung
 ```
+
+### Mutate
 
 Mithilfe der Funktion `mutate` können wir neue Variablen erstellen, oder alte überschreiben.
 
 ```{r}
 df %>%
-  select(land, bevölkerung, bruttosozialprodukt) %>%
-  mutate(pro_kopf_einkommen = bruttosozialprodukt / bevölkerung) %>%
-  head(1)
+  select(hersteller, modell, preis) %>%
+  mutate(preis_in_1000 = preis / 1000) %>%
+  head(3)
 ```
 Mithilfe der Funktion `summarise` können wir unterschiedliche aggregierte Statistiken berechnen. Unter `help(summarise)` können sie wichtige Funktionen sehen, die zur Verfügung stehen. Zu beachten ist die Behandlung von fehlenden Werten (`NA`, not available). Um trotz vorhandener fehlender Werte ein Ergebnis angezeigt zu bekommen, muss die Option `na.rm` (remove NAs) auf TRUE gesetzt werden.
 
+### Summarise
+
 ```{r}
-df %>% summarise(welt_gesamtbevölkerung = sum(bevölkerung, na.rm=TRUE),
-                 durchschnittliche_bevölkerung = mean(bevölkerung, na.rm=TRUE),
-                 max_bevölkerung = max(bevölkerung, na.rm=TRUE))
+df %>% summarise(anzahl_fahrzeuge = n(),
+                 durchschnittliche_kilometer = mean(kilometer, na.rm=TRUE),
+                 gesamt_kilometer = sum(kilometer, na.rm=TRUE))
 ```
 
 Häufig kombinieren wir `summarise` mit der Funktion `group_by`. Dann wird die Berechnung nicht für den gesamten Datensatz ausgeführt, sondern separat für jede durch `group_by` definierte Gruppe.
 
+### Group by
+
 ```{r}
 df %>%
-  group_by(kontinent) %>%
-  summarise(sum(bevölkerung, na.rm=TRUE))
+  group_by(schaden) %>%
+  summarise(durchschnitts_preis = mean(preis, na.rm=TRUE))
 ```

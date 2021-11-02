@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Aggregierte Daten | Einführung in die Datenvisualisierung mit R</title>
-  <meta name="description" content="4 Aggregierte Daten | Einführung in die Datenvisualisierung mit R" />
+  <title>3 Aggregierte Daten | Einführung in die Datenvisualisierung mit R</title>
+  <meta name="description" content="3 Aggregierte Daten | Einführung in die Datenvisualisierung mit R" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Aggregierte Daten | Einführung in die Datenvisualisierung mit R" />
+  <meta property="og:title" content="3 Aggregierte Daten | Einführung in die Datenvisualisierung mit R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/img/FH-Kiel-Logo.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tillschwoerer/idw-datenvisualisierung" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Aggregierte Daten | Einführung in die Datenvisualisierung mit R" />
+  <meta name="twitter:title" content="3 Aggregierte Daten | Einführung in die Datenvisualisierung mit R" />
   
   
   <meta name="twitter:image" content="/img/FH-Kiel-Logo.png" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Prof. Dr. Tillmann Schwörer, FH Kiel, Studiengang Data Science" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="geodaten.html"/>
-<link rel="next" href="zeit.html"/>
+<link rel="prev" href="streudiagramme.html"/>
+<link rel="next" href="geodaten.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -132,46 +133,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R und RStudio</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#erste-schritte"><i class="fa fa-check"></i><b>1.1</b> Erste Schritte</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.2</b> Datenmanipulation</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#dieses-buch"><i class="fa fa-check"></i><b>1.1</b> Dieses Buch</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-und-rstudio"><i class="fa fa-check"></i><b>1.2</b> R und RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.3</b> Datenmanipulation</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
-<li class="chapter" data-level="2.2" data-path="ggplot2.html"><a href="ggplot2.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="ggplot2.html"><a href="ggplot2.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.2" data-path="ggplot2.html"><a href="ggplot2.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.3" data-path="ggplot2.html"><a href="ggplot2.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
-<li class="chapter" data-level="2.4" data-path="ggplot2.html"><a href="ggplot2.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="ggplot2.html"><a href="ggplot2.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
-<li class="chapter" data-level="2.4.2" data-path="ggplot2.html"><a href="ggplot2.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
-<li class="chapter" data-level="2.6" data-path="ggplot2.html"><a href="ggplot2.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="ggplot2.html"><a href="ggplot2.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
-<li class="chapter" data-level="2.6.2" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#filter"><i class="fa fa-check"></i><b>1.3.1</b> Filter</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#select-und-arrange"><i class="fa fa-check"></i><b>1.3.2</b> Select und Arrange</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#mutate"><i class="fa fa-check"></i><b>1.3.3</b> Mutate</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#summarise"><i class="fa fa-check"></i><b>1.3.4</b> Summarise</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#group-by"><i class="fa fa-check"></i><b>1.3.5</b> Group by</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>3</b> Geodaten</a>
+<li class="chapter" data-level="2" data-path="streudiagramme.html"><a href="streudiagramme.html"><i class="fa fa-check"></i><b>2</b> Streudiagramme</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>3.1</b> Simple Features</a></li>
-<li class="chapter" data-level="3.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>3.2</b> Ästhetiken</a></li>
-<li class="chapter" data-level="3.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>3.3</b> Schichten</a></li>
-<li class="chapter" data-level="3.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>3.4</b> Aggregation</a></li>
-<li class="chapter" data-level="3.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>3.5</b> Koordinatensystem</a></li>
+<li class="chapter" data-level="2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
+<li class="chapter" data-level="2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>4</b> Aggregierte Daten</a>
+<li class="chapter" data-level="2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
+<li class="chapter" data-level="2.4" data-path="streudiagramme.html"><a href="streudiagramme.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>4.1</b> Sortierung</a></li>
-<li class="chapter" data-level="4.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>4.2</b> Überlappungen</a></li>
-<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>4.3</b> Zwei kategoriale Variablen</a></li>
+<li class="chapter" data-level="2.4.1" data-path="streudiagramme.html"><a href="streudiagramme.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="streudiagramme.html"><a href="streudiagramme.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="streudiagramme.html"><a href="streudiagramme.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
+<li class="chapter" data-level="2.6" data-path="streudiagramme.html"><a href="streudiagramme.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="streudiagramme.html"><a href="streudiagramme.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="streudiagramme.html"><a href="streudiagramme.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>3</b> Aggregierte Daten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>3.1</b> Sortierung</a></li>
+<li class="chapter" data-level="3.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>3.2</b> Überlappungen</a></li>
+<li class="chapter" data-level="3.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>3.3</b> Zwei kategoriale Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>4</b> Geodaten</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>4.1</b> Simple Features</a></li>
+<li class="chapter" data-level="4.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>4.2</b> Ästhetiken</a></li>
+<li class="chapter" data-level="4.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>4.3</b> Schichten</a></li>
+<li class="chapter" data-level="4.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>4.4</b> Aggregation</a></li>
+<li class="chapter" data-level="4.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>4.5</b> Koordinatensystem</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="zeit.html"><a href="zeit.html"><i class="fa fa-check"></i><b>5</b> Zeit</a></li>
 </ul>
@@ -191,13 +200,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="aggregierte-daten" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Aggregierte Daten</h1>
+<div id="aggregierte-daten" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Aggregierte Daten</h1>
 <p>Das Thema Visualisierung von <strong>aggregierten Daten</strong> erschließen wir uns erneut anhand von Daten zu Gebrauchtwagenangeboten über Ebay Kleinanzeigen.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="aggregierte-daten.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)      </span>
-<span id="cb81-2"><a href="aggregierte-daten.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())   </span>
-<span id="cb81-3"><a href="aggregierte-daten.html#cb81-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gebrauchtwagen.csv&quot;</span>)</span>
-<span id="cb81-4"><a href="aggregierte-daten.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="aggregierte-daten.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)      </span>
+<span id="cb59-2"><a href="aggregierte-daten.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())   </span>
+<span id="cb59-3"><a href="aggregierte-daten.html#cb59-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gebrauchtwagen.csv&quot;</span>)</span>
+<span id="cb59-4"><a href="aggregierte-daten.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div>
 <pre><code>## Rows: 20,000
 ## Columns: 13
 ## $ name        &lt;chr&gt; &quot;smart_forTwo_Softtouch__passion_Inspektion_fuer_687_Euro_~
@@ -218,11 +227,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Anzahl Autos je Fahrzeugtyp (SUV, Cabrio, Kleinwagen, etc)</li>
 <li>Durchschnittlicher Preis je Hersteller</li>
 </ul>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="aggregierte-daten.html#cb83-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb83-2"><a href="aggregierte-daten.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fahrzeugtyp) <span class="sc">%&gt;%</span></span>
-<span id="cb83-3"><a href="aggregierte-daten.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">preis =</span> <span class="fu">mean</span>(preis))</span>
-<span id="cb83-4"><a href="aggregierte-daten.html#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-5"><a href="aggregierte-daten.html#cb83-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="aggregierte-daten.html#cb61-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="aggregierte-daten.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fahrzeugtyp) <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="aggregierte-daten.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">preis =</span> <span class="fu">mean</span>(preis))</span>
+<span id="cb61-4"><a href="aggregierte-daten.html#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="aggregierte-daten.html#cb61-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   fahrzeugtyp     n  preis
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;dbl&gt;
@@ -232,50 +241,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 limousine    6974  5971.
 ## 5 suv          1031 11800.</code></pre>
 <p>Der wichtigste Grafiktyp für diese Art von Daten ist das Balkendiagramm (Bar chart), welches wir über das geometrische Object <code>geom_col</code> erezugen können.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="aggregierte-daten.html#cb85-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> n)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="aggregierte-daten.html#cb63-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> n)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
 <p>Eine praktische Alternative zu <code>geom_col</code> ist <code>geom_bar</code>, jedoch noch für den Fall, dass die Anzahl der Beobachtungen dargestellt werden soll. Die Funktion <code>geom_bar</code> kann direkt auf die Rohdaten angewendet werden. Hierbei wird das Zählen der Fälle implizit durch die Funktion ausgeführt und muss nicht explizit per Code berechnet werden.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="aggregierte-daten.html#cb86-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
-<div id="sortierung" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Sortierung</h2>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="aggregierte-daten.html#cb64-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
+<div id="sortierung" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Sortierung</h2>
 <p>Ein typisches Problem ist, dass eine Text-Variable (<em>character</em>) wie <code>fahrzeugtyp</code> zunächst einmal nur alfabetisch sortiert werden kann. Für eine bessere Interpretierbarkeit ist es jedoch meistens sinnvoll, die Balken sortiert nach ihrer Höhe anzuordnen. Dafür müssen wie die Text-Variable in eine sogenannte Faktor-Variable (<em>factor</em>) umwandenln. Faktoren lassen sich nach unterschiedlichsten Kriterien sortieren, bspw. über die Funktion <code>fct_reorder</code>.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="aggregierte-daten.html#cb87-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(fahrzeugtyp, <span class="sc">-</span>preis), <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="aggregierte-daten.html#cb65-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(fahrzeugtyp, <span class="sc">-</span>preis), <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
 </div>
-<div id="überlappungen" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Überlappungen</h2>
+<div id="überlappungen" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Überlappungen</h2>
 <p>Eine weitere typische Schwierigkeit besteht in sich überlappenden Labels. Dieses Problem tritt insbesondere auf der x-Achse auf. Deshalb lohnt es sich, die Achsenzuordnung zu ändern und so ein horizontales Balkendiagramm zu erzeugen.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="aggregierte-daten.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map to y axis</span></span>
-<span id="cb88-2"><a href="aggregierte-daten.html#cb88-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb88-3"><a href="aggregierte-daten.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bundesland) <span class="sc">%&gt;%</span></span>
-<span id="cb88-4"><a href="aggregierte-daten.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb88-5"><a href="aggregierte-daten.html#cb88-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">preis =</span> <span class="fu">mean</span>(preis))</span>
-<span id="cb88-6"><a href="aggregierte-daten.html#cb88-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-7"><a href="aggregierte-daten.html#cb88-7" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bundesland, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="aggregierte-daten.html#cb89-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bundesland, <span class="at">x =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-6-2.png" width="768" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="aggregierte-daten.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map to y axis</span></span>
+<span id="cb66-2"><a href="aggregierte-daten.html#cb66-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb66-3"><a href="aggregierte-daten.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bundesland) <span class="sc">%&gt;%</span></span>
+<span id="cb66-4"><a href="aggregierte-daten.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb66-5"><a href="aggregierte-daten.html#cb66-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">preis =</span> <span class="fu">mean</span>(preis))</span>
+<span id="cb66-6"><a href="aggregierte-daten.html#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="aggregierte-daten.html#cb66-7" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bundesland, <span class="at">y =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="aggregierte-daten.html#cb67-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> bundesland, <span class="at">x =</span> preis)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-6-2.png" width="768" /></p>
 <p>Eine weitere Möglichkeit besteht darin, mehrere kleinere Balken zu einem großen Balken für “Sonstige” zusammenzufassen.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="aggregierte-daten.html#cb90-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_lump</span>(bundesland, <span class="at">n=</span> <span class="dv">5</span>))) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="aggregierte-daten.html#cb68-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_lump</span>(bundesland, <span class="at">n=</span> <span class="dv">5</span>))) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
 </div>
-<div id="zwei-kategoriale-variablen" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Zwei kategoriale Variablen</h2>
+<div id="zwei-kategoriale-variablen" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Zwei kategoriale Variablen</h2>
 <p>Wenn wir die aggregierten Statistiken nicht für eine sondern zwei kategorielle Variablen berechnen (bspw. für <code>bundesland</code> und <code>fahrzeugtyp</code>), gibt es mehrere denkbare Darstellungsformen.</p>
 <p>Eine Heatmap via <code>geom_tile</code> eignet sich insbesondere, wenn die kategorialen Variablen viele Ausprägungen haben, so wie es hier der Fall ist.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="aggregierte-daten.html#cb91-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb91-2"><a href="aggregierte-daten.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">fill =</span> n), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb91-3"><a href="aggregierte-daten.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">label =</span> n), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb91-4"><a href="aggregierte-daten.html#cb91-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_binned</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="aggregierte-daten.html#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb69-2"><a href="aggregierte-daten.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">fill =</span> n), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-3"><a href="aggregierte-daten.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> fahrzeugtyp, <span class="at">y =</span> bundesland, <span class="at">label =</span> n), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb69-4"><a href="aggregierte-daten.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_binned</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
 <p>Facetten-Plots können grundsätzlich auch für solche Fälle helfen. Im hier vorliegenden Fall, mit vielen Ausprägungen wird ein Facettenplot aber schnell unübersichtlich.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="aggregierte-daten.html#cb92-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb92-2"><a href="aggregierte-daten.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> </span>
-<span id="cb92-3"><a href="aggregierte-daten.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb92-4"><a href="aggregierte-daten.html#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> fahrzeugtyp, <span class="at">x =</span> n)) <span class="sc">+</span></span>
-<span id="cb92-5"><a href="aggregierte-daten.html#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>bundesland, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="03-mengen_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="aggregierte-daten.html#cb70-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="aggregierte-daten.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bundesland, fahrzeugtyp) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-3"><a href="aggregierte-daten.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb70-4"><a href="aggregierte-daten.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> fahrzeugtyp, <span class="at">x =</span> n)) <span class="sc">+</span></span>
+<span id="cb70-5"><a href="aggregierte-daten.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>bundesland, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="02-aggregierte-daten_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
 
 </div>
 </div>
@@ -284,8 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="geodaten.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="zeit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="streudiagramme.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geodaten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

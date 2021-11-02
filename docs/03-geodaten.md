@@ -25,14 +25,14 @@ wdi <- wdi %>% filter(jahr==2018)      # Einschränkung auf das aktuellste Jahr 
 geo <- read_rds("data/geo_wdi.rds")    # Einlesen der Geodaten
 
 # Geodaten werden per Join zum Datensatz hinzugefügt
-df <- wdi %>% left_join(geo, by = "iso2c") %>% st_as_sf()
+df <- wdi %>% right_join(geo, by = "iso2c") %>% st_as_sf()
 
 glimpse(df)
 ```
 
 ```
 ## Rows: 213
-## Columns: 24
+## Columns: 25
 ## $ iso2c                    <chr> "AD", "AE", "AF", "AG", "AL", "AM", "AO", "AR~
 ## $ land                     <chr> "Andorra", "United Arab Emirates", "Afghanist~
 ## $ kontinent                <chr> "Europe", "Asia", "Asia", "North America", "E~
@@ -56,28 +56,20 @@ glimpse(df)
 ## $ literacy_rate            <dbl> NA, NA, 43.01972, NA, 98.14115, NA, NA, 99.00~
 ## $ militärausgaben          <dbl> NA, NA, 198074729, NA, 175886689, 608854650, ~
 ## $ mordrate                 <dbl> NA, NA, 6.6555612, NA, 2.2894924, 1.6939156, ~
+## $ iso3c                    <chr> "AND", "ARE", "AFG", "ATG", "ALB", "ARM", "AG~
 ## $ geometry                 <MULTIPOLYGON [°]> MULTIPOLYGON (((1.706055 42..., ~
 ```
 
 Es handelt sich nicht um einen gewöhnlichen R Datensatz (data frame), sondern um einen sogenannten **Simple Feature** Datensatz. Das besondere daran ist die Variable `geometry`, welche die Koordinaten (Längengrad und Breitengrad) der Ländergrenzen enthält.
 
-Analog zum bisherigen Vorgehen, benötigen wir für die Visualisierung einer Weltkarte nur 3 Dinge: (1) den (Simple Feature) Datensatz, (2) eine Ästhetikzuordnung (die Variable `geometry` wird der Ästhetik **geometry** zugeordet, und (3) den passenden Objecttyp `geom_sf`. 
-
-
-```r
-ggplot(data = df, mapping = aes(geometry = geometry)) + geom_sf()
-```
-
-<img src="02-geodaten_files/figure-html/unnamed-chunk-3-1.png" width="672" />
-
-Tatsächlich können wir hier die Ästhetikzuordnung sogar weglassen, die Spezifikation des Datensatzes und `geom_sf` ist hier sogar ausreichend.
+Analog zum bisherigen Vorgehen, benötigen wir für die Visualisierung einer Weltkarte nur 3 Dinge: (1) den (Simple Feature) Datensatz, (2) eine Ästhetikzuordnung (die Variable `geometry` wird der Ästhetik **geometry** zugeordet, und (3) den passenden Objecttyp `geom_sf`. Tatsächlich können wir hier die Ästhetikzuordnung sogar weglassen, die Spezifikation des Datensatzes und `geom_sf` ist hier sogar ausreichend.
 
 
 ```r
 ggplot(df) + geom_sf()
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 **Was bedeutet der Begriff feature?** Ein Feature kann grundsätzlich alles mögliche sein (Land, Fluss, Bushaltestelle), in unserem Fall ist es ein Land. Features können durch unterschiedliche Geometrien repräsentiert werden: eine Bushaltestelle durch einen **Punkt**, ein Fluss durch eine **Linie**, ein Land durch ein **Polygon** oder **Multipolygon**. Beispielsweise kann das "Vereinigte Königreich" nur durch einen Multipolygon repräsentiert werden, da es aus zwei Inseln (jeweils Polygone) besteht.
 
@@ -87,7 +79,7 @@ uk <- df %>% filter(land == "United Kingdom")
 ggplot(uk) + geom_sf()
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 ```r
 uk[["geometry"]][[1]][[1]]        # Dies sind die Koordinaten von Irland
@@ -121,19 +113,13 @@ map <- df %>% ggplot()
 map + geom_sf(aes(fill=kontinent))                    # nominal-skalierte Variable
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 ```r
 map + geom_sf(aes(fill=lebenserwartung))              # kardinal-skalierte Variable
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-6-2.png" width="672" />
-
-```r
-map + geom_sf(aes(fill=lebenserwartung), color = NA)  # fest definierte Länderfarbe (hier unsichtbar)
-```
-
-<img src="02-geodaten_files/figure-html/unnamed-chunk-6-3.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-5-2.png" width="672" />
 
 ## Schichten
 Wie bisher können Sie auch hier über zusätzliche `geom_[typ]` Funktionen weitere Schichten definieren. Dies ist auch hier insbesondere für Hervorhebungen hilfreich.
@@ -147,7 +133,7 @@ map +
   geom_sf_label(data = auswahl, aes(label=land)) 
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 ## Aggregation
 In manchen Situationen möchten wir die Daten durch eine Aggregation verdichten, bspw. um die durchschnittliche Lebenserwartung je Kontinent zu berechnen. 
@@ -162,12 +148,12 @@ kontinente
 ```
 
 ```
-## Simple feature collection with 7 features and 2 fields
+## Simple feature collection with 8 features and 2 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: -180 ymin: -55.8917 xmax: 180 ymax: 83.59961
 ## CRS:            +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
-## # A tibble: 7 x 3
+## # A tibble: 8 x 3
 ##   kontinent       lebenserwartung                                       geometry
 ##   <chr>                     <dbl>                             <MULTIPOLYGON [°]>
 ## 1 Africa                     63.4 (((-2.938306 5.124495, -2.94834 5.118848, -3.~
@@ -177,6 +163,7 @@ kontinente
 ## 5 Oceania                    73.4 (((158.8788 -54.70977, 158.8452 -54.74922, 15~
 ## 6 Seven seas (op~            75.3 (((57.65127 -20.48486, 57.5248 -20.51318, 57.~
 ## 7 South America              74.9 (((-67.5752 -55.88965, -67.61143 -55.8917, -6~
+## 8 <NA>                      NaN   (((23.38066 -17.64062, 23.59492 -17.59941, 23~
 ```
 
 Die gute Nachricht: bei der Aggregation wird auch die `geometry` Variable so aktualisiert, dass diese nun die Umrisse der jeweiligen Kontinente repräsentiert. 
@@ -186,7 +173,7 @@ Die gute Nachricht: bei der Aggregation wird auch die `geometry` Variable so akt
 kontinente %>% ggplot() + geom_sf(aes(fill = lebenserwartung), color = NA)
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 ## Koordinatensystem                         
 
@@ -199,11 +186,11 @@ Betrachten wir nun folgende Basiskarte:
 ```r
 (basiskarte <- df %>% 
   ggplot() + 
-  geom_sf(aes(fill = kontinent), color = NA) +
-  scale_fill_brewer(palette = "Set1"))
+  geom_sf(aes(fill = kontinent), color=NA) +
+  scale_fill_brewer(palette = "Set1", na.value = "grey"))
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 Die **Mercator Projection** stellt Formen und Winkel korrekt dar, aber in Richtung der Pole wird die Größe der Länder künstlich aufgebläht. 
 
@@ -212,7 +199,7 @@ Die **Mercator Projection** stellt Formen und Winkel korrekt dar, aber in Richtu
 basiskarte + coord_sf(crs = st_crs("+proj=merc")) 
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 Hingegen werden bei der **Lambert Azimuthal Equal Area** (LAEA) Projektion die Ländergrößen korrekt dargestellt, wobei aber eine Verzerrung der Formen und Winkel in Kauf genommen wird. Auch der Perspektivwechsel auf einen anderen Mittelpunkt (hier Lhasa, Tibet) kann einen Mehrwert bzgl. der Interpretation schaffen. 
 
@@ -221,5 +208,5 @@ Hingegen werden bei der **Lambert Azimuthal Equal Area** (LAEA) Projektion die L
 basiskarte + coord_sf(crs = st_crs("+proj=laea + lat_0=29.6490404 + lon_0=91.0052352"))
 ```
 
-<img src="02-geodaten_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="03-geodaten_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 

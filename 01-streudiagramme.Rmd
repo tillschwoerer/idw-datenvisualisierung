@@ -1,14 +1,13 @@
-# ggplot2
-
-Die Einführung in die Bibliothek **ggplot2** vollziehen wir anhand von: 
-
-(1) Daten zu Gebrauchtwagen, die über Ebay-Kleinanzeigen verkauft wurden. Die hier verwendeten Daten stellen einen Ausschnitt aus einem noch größeren Datensatz dar, der über die Plattform Kaggle erhältlich ist. Im Vergleich zu den Originaldaten wurden extreme Ausreißer eliminiert und Variablen umbenannt. 
-
-(2) Streudiagrammen (*scatterplots*). Wir verwenden diese um die Beziehung zwischen 2 oder mehr Variablen zu visualisieren. 
+# Streudiagramme
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.width = 8, fig.height = 4, warning = FALSE, message = FALSE)
 ```
+
+Alle Visualisierungen in diesem Kurs setzen wir mithilfe des Paketes **ggplot2** durch. Es handelt sich dabei um einen Bestandteil des bereits bekannten Paketes **tidyverse**. Das Paket basiert auf einer "Grammar of Graphics" (daher das "gg" in "ggplot2"), d.h. einem sprachlichen Regelwerk für die einzelnen Bestandteile einer Grafik. Dieses Regewerk kann uns dabei helfen, komplexe Sachverhalte in einfache Grafiken zu überführen. 
+
+Wir erschließen uns das Paket ggplot2 anhand von Streudiagrammen (*scatterplots*). Steudiagrmamme sind hilfreich um die Beziehung zwischen 2 (oder mehr) Variablen zu visualisieren. 
+
 
 ```{r}
 library(tidyverse)

@@ -24,7 +24,7 @@
 <meta name="author" content="Prof. Dr. Tillmann Schwörer, FH Kiel, Studiengang Data Science" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="ggplot2.html"/>
+<link rel="next" href="streudiagramme.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -132,46 +133,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R und RStudio</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#erste-schritte"><i class="fa fa-check"></i><b>1.1</b> Erste Schritte</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.2</b> Datenmanipulation</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#dieses-buch"><i class="fa fa-check"></i><b>1.1</b> Dieses Buch</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-und-rstudio"><i class="fa fa-check"></i><b>1.2</b> R und RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#datenmanipulation"><i class="fa fa-check"></i><b>1.3</b> Datenmanipulation</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
-<li class="chapter" data-level="2.2" data-path="ggplot2.html"><a href="ggplot2.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="ggplot2.html"><a href="ggplot2.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.2" data-path="ggplot2.html"><a href="ggplot2.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
-<li class="chapter" data-level="2.2.3" data-path="ggplot2.html"><a href="ggplot2.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
-<li class="chapter" data-level="2.4" data-path="ggplot2.html"><a href="ggplot2.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="ggplot2.html"><a href="ggplot2.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
-<li class="chapter" data-level="2.4.2" data-path="ggplot2.html"><a href="ggplot2.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
-<li class="chapter" data-level="2.6" data-path="ggplot2.html"><a href="ggplot2.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="ggplot2.html"><a href="ggplot2.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
-<li class="chapter" data-level="2.6.2" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#filter"><i class="fa fa-check"></i><b>1.3.1</b> Filter</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#select-und-arrange"><i class="fa fa-check"></i><b>1.3.2</b> Select und Arrange</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#mutate"><i class="fa fa-check"></i><b>1.3.3</b> Mutate</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#summarise"><i class="fa fa-check"></i><b>1.3.4</b> Summarise</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#group-by"><i class="fa fa-check"></i><b>1.3.5</b> Group by</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>3</b> Geodaten</a>
+<li class="chapter" data-level="2" data-path="streudiagramme.html"><a href="streudiagramme.html"><i class="fa fa-check"></i><b>2</b> Streudiagramme</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>3.1</b> Simple Features</a></li>
-<li class="chapter" data-level="3.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>3.2</b> Ästhetiken</a></li>
-<li class="chapter" data-level="3.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>3.3</b> Schichten</a></li>
-<li class="chapter" data-level="3.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>3.4</b> Aggregation</a></li>
-<li class="chapter" data-level="3.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>3.5</b> Koordinatensystem</a></li>
+<li class="chapter" data-level="2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#grundlagen"><i class="fa fa-check"></i><b>2.1</b> Grundlagen</a></li>
+<li class="chapter" data-level="2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#ästhetik-zuordnung"><i class="fa fa-check"></i><b>2.2</b> Ästhetik-Zuordnung</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="streudiagramme.html"><a href="streudiagramme.html#kardinal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.1</b> Kardinal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.2" data-path="streudiagramme.html"><a href="streudiagramme.html#nominal-skalierte-variable"><i class="fa fa-check"></i><b>2.2.2</b> Nominal-skalierte Variable</a></li>
+<li class="chapter" data-level="2.2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#fixierte-ästhetik"><i class="fa fa-check"></i><b>2.2.3</b> Fixierte Ästhetik</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>4</b> Aggregierte Daten</a>
+<li class="chapter" data-level="2.3" data-path="streudiagramme.html"><a href="streudiagramme.html#geometrisches-objekt"><i class="fa fa-check"></i><b>2.3</b> Geometrisches Objekt</a></li>
+<li class="chapter" data-level="2.4" data-path="streudiagramme.html"><a href="streudiagramme.html#skalierung"><i class="fa fa-check"></i><b>2.4</b> Skalierung</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>4.1</b> Sortierung</a></li>
-<li class="chapter" data-level="4.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>4.2</b> Überlappungen</a></li>
-<li class="chapter" data-level="4.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>4.3</b> Zwei kategoriale Variablen</a></li>
+<li class="chapter" data-level="2.4.1" data-path="streudiagramme.html"><a href="streudiagramme.html#axen-skalierung"><i class="fa fa-check"></i><b>2.4.1</b> Axen-Skalierung:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="streudiagramme.html"><a href="streudiagramme.html#farb-skalierung"><i class="fa fa-check"></i><b>2.4.2</b> Farb-Skalierung</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="streudiagramme.html"><a href="streudiagramme.html#facetten"><i class="fa fa-check"></i><b>2.5</b> Facetten</a></li>
+<li class="chapter" data-level="2.6" data-path="streudiagramme.html"><a href="streudiagramme.html#thema-und-labels"><i class="fa fa-check"></i><b>2.6</b> Thema und Labels</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="streudiagramme.html"><a href="streudiagramme.html#labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="streudiagramme.html"><a href="streudiagramme.html#thema"><i class="fa fa-check"></i><b>2.6.2</b> Thema</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html"><i class="fa fa-check"></i><b>3</b> Aggregierte Daten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#sortierung"><i class="fa fa-check"></i><b>3.1</b> Sortierung</a></li>
+<li class="chapter" data-level="3.2" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#überlappungen"><i class="fa fa-check"></i><b>3.2</b> Überlappungen</a></li>
+<li class="chapter" data-level="3.3" data-path="aggregierte-daten.html"><a href="aggregierte-daten.html#zwei-kategoriale-variablen"><i class="fa fa-check"></i><b>3.3</b> Zwei kategoriale Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="geodaten.html"><a href="geodaten.html"><i class="fa fa-check"></i><b>4</b> Geodaten</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="geodaten.html"><a href="geodaten.html#simple-features"><i class="fa fa-check"></i><b>4.1</b> Simple Features</a></li>
+<li class="chapter" data-level="4.2" data-path="geodaten.html"><a href="geodaten.html#ästhetiken"><i class="fa fa-check"></i><b>4.2</b> Ästhetiken</a></li>
+<li class="chapter" data-level="4.3" data-path="geodaten.html"><a href="geodaten.html#schichten"><i class="fa fa-check"></i><b>4.3</b> Schichten</a></li>
+<li class="chapter" data-level="4.4" data-path="geodaten.html"><a href="geodaten.html#aggregation"><i class="fa fa-check"></i><b>4.4</b> Aggregation</a></li>
+<li class="chapter" data-level="4.5" data-path="geodaten.html"><a href="geodaten.html#koordinatensystem"><i class="fa fa-check"></i><b>4.5</b> Koordinatensystem</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="zeit.html"><a href="zeit.html"><i class="fa fa-check"></i><b>5</b> Zeit</a></li>
 </ul>
@@ -195,13 +204,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Einführung in die Datenvisualisierung mit R</h1>
 <h2 class="subtitle"><em>IDW Workshop</em></h2>
 <p class="author"><em>Prof. Dr. Tillmann Schwörer, FH Kiel, Studiengang Data Science</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-05-04</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-11-02</em></p>
 </div>
-<div id="r-und-rstudio" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> R und RStudio</h1>
-<p>An dieser Stelle stichpunktartig ein paar zentrale Informationen zum Arbeiten mit R und RStudio.</p>
-<div id="erste-schritte" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Erste Schritte</h2>
+<div id="einleitung" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Einleitung</h1>
+<p>An dieser Stelle stichpunktartig ein paar zentrale Informationen zur Motivation dieses Buches, sowie einige Starthilfen zum Arbeiten mit R.</p>
+<div id="dieses-buch" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Dieses Buch</h2>
+<p>Ein Bild sagt mehr als 1000 Worte”, sagt das Sprichwort. Ganz in diesem Sinne sind Visualisierungen eine wirkungsvolle Technik, um komplexe Zusammenhänge in Daten zu analysieren und für andere greifbar zu machen.</p>
+<p>Was benötigen wir für derart wirkungsvolle Visualisierungen? (1) Interessante und komplexe Daten, (2) Leitlinien/Reflektion, was eine <strong>gute Grafik</strong> ausmacht, (3) Kenntnisse, wie wir Visualisierungen (mithilfe der Programmiersprache R) umsetzen können.</p>
+<p>Der Fokus dieses Buches liegt auf letzterem Punkt. Es demonstriert, wie mithilfe des R Paketes ggplot2 unterschiedlichste Arten von Daten und Fragestellungen visuell dargestellt werden können.</p>
+<p>Diese Demonstration erfolgt anhand von drei verschiedenen Datensätzen: (1) Daten zu Gebrauchtwagen, die über Ebay-Kleinanzeigen verkauft wurden. Die hier verwendeten Daten stellen einen Ausschnitt aus einem noch größeren Datensatz dar, der über die Plattform Kaggle erhältlich ist. (2) Ausgewählte Informationen der <a href="https://databank.worldbank.org/source/world-development-indicators">World Development Indicators</a> von der Weltbank. (3) Daten zu Luft-Schadstoffmessungen an ausgewählten Standorten in Deutschland seit 2006.</p>
+</div>
+<div id="r-und-rstudio" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> R und RStudio</h2>
+<p>Dieses Buch ist keine Einführung in die Programmiersprache R. Daher an dieser Stelle nur ein sehr kondensierte Zusammenfassung wesentlicher Aspekte.</p>
 <ul>
 <li><strong>R</strong> ist eine Software für statistische Berechnungen und Grafiken.</li>
 <li><strong>RStudio</strong> ist eine integrierte Entwicklungsumgebung (IDE) für R. Wir werden in diesem Kurs ausschließlich über RStudio mit R arbeiten (wobei dies bspw. auch über die Kommandozeile, Jupyter Notebooks, oder andere IDEs möglich ist)</li>
@@ -211,159 +228,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Programmcode kann einerseits in <strong>R Skripten</strong> (Dateiendung: .R) und <strong>R Markdown</strong> Dateien (.Rmd) geschrieben werden. Erstere eignen sich insbesondere, wenn der Programmcode im Vordergrund steht. Letztere eignen sich insbesondere, wenn auch Erläuterungen und die Präsentation von Ergebnissen wichtig sind.</li>
 </ul>
 </div>
-<div id="datenmanipulation" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Datenmanipulation</h2>
+<div id="datenmanipulation" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Datenmanipulation</h2>
 <p>Die wichtigsten Operationen zur Datenmanipulation werden nun ganz kurz angerissen:</p>
 <p>Zu Beginn der R Dateien sind die benötigten Pakete einzubinden.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: Paket &#39;tidyverse&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
-## v tibble  3.1.0     v dplyr   1.0.5
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.1</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<p>Die Funktion <code>read_rds</code> ist teil des Paketes <strong>tidyverse</strong>. Das heißt, sie können die Funktion nur verwenden, wenn sie vorher das Paket geladen haben. In den meisten Fällen werden wir Daten von Komma-separierte Datein (.csv) einlesen. Gelegentich werden wir auch Dateien mit dem R spezifischen Typ .rds einlesen.Der Pfeil Operator <code>&lt;-</code> verwenden wir, um ein bestimmtes Object (hier: ein Datensatz) einem Namen (hier: df) zuzordnen. Nun taucht der Datensatz unter diesem Namen im <strong>Environment</strong> Tab von RStudio auf.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wdi.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   .default = col_double(),
-##   iso2c = col_character(),
-##   land = col_character(),
-##   kontinent = col_character(),
-##   subregion = col_character()
-## )
-## i Use `spec()` for the full column specifications.</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Anschließend lesen wir die Daten ein.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gebrauchtwagen.csv&quot;</span>)</span></code></pre></div>
+<p>Die Funktion <code>read_csv</code> ist teil des Paketes <strong>tidyverse</strong>. Das heißt, sie können die Funktion nur verwenden, wenn sie vorher das Paket geladen haben. In den meisten Fällen werden wir Daten von Komma-separierte Datein (.csv) einlesen. Gelegentich werden wir auch Dateien mit dem R spezifischen Typ .rds einlesen.Der Pfeil Operator <code>&lt;-</code> verwenden wir, um ein bestimmtes Object (hier: ein Datensatz) einem Namen (hier: df) zuzuweisen. Nun erscheint der Datensatz unter diesem Namen im <strong>Environment</strong> Tab von RStudio</p>
 <p>Einen schnellen Überblick über einen Datensatz können wir uns mithilfe der folgenden Funktionen verschaffen:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)     <span class="co"># Erste 6 Zeilen</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 x 23
-##   iso2c land    kontinent subregion        jahr bevölkerung bevölkerung_weiblich
-##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;                &lt;dbl&gt;
-## 1 AD    Andorra Europe    Southern Europe  1990       54509                   NA
-## 2 AD    Andorra Europe    Southern Europe  1991       56671                   NA
-## 3 AD    Andorra Europe    Southern Europe  1992       58888                   NA
-## 4 AD    Andorra Europe    Southern Europe  1993       60971                   NA
-## 5 AD    Andorra Europe    Southern Europe  1994       62677                   NA
-## 6 AD    Andorra Europe    Southern Europe  1995       63850                   NA
-## # ... with 16 more variables: bevölkerung_0_14 &lt;dbl&gt;, bevölkerung_65+ &lt;dbl&gt;,
-## #   bevölkerung_land &lt;dbl&gt;, bevölkerung_stadt &lt;dbl&gt;,
-## #   bevölkerung_unter$5.50 &lt;dbl&gt;, bruttosozialprodukt &lt;dbl&gt;, fläche &lt;dbl&gt;,
-## #   lebenserwartung &lt;dbl&gt;, lebenserwartung_mann &lt;dbl&gt;,
-## #   lebenserwartung_frau &lt;dbl&gt;, kindersterblichkeit &lt;dbl&gt;, geburtenrate &lt;dbl&gt;,
-## #   co2_emissionen &lt;dbl&gt;, literacy_rate &lt;dbl&gt;, militärausgaben &lt;dbl&gt;,
-## #   mordrate &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)  <span class="co"># Kurzvorschau jeder Variable mit einigen Metadaten</span></span></code></pre></div>
-<pre><code>## Rows: 6,177
-## Columns: 23
-## $ iso2c                    &lt;chr&gt; &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD~
-## $ land                     &lt;chr&gt; &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;~
-## $ kontinent                &lt;chr&gt; &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Euro~
-## $ subregion                &lt;chr&gt; &quot;Southern Europe&quot;, &quot;Southern Europe&quot;, &quot;Southe~
-## $ jahr                     &lt;dbl&gt; 1990, 1991, 1992, 1993, 1994, 1995, 1996, 199~
-## $ bevölkerung              &lt;dbl&gt; 54509, 56671, 58888, 60971, 62677, 63850, 643~
-## $ bevölkerung_weiblich     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ bevölkerung_0_14         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ `bevölkerung_65+`        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ bevölkerung_land         &lt;dbl&gt; 5.288, 5.470, 5.676, 5.889, 6.110, 6.339, 6.5~
-## $ bevölkerung_stadt        &lt;dbl&gt; 94.712, 94.530, 94.324, 94.111, 93.890, 93.66~
-## $ `bevölkerung_unter$5.50` &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ bruttosozialprodukt      &lt;dbl&gt; 1029048482, 1106928583, 1210013652, 100702575~
-## $ fläche                   &lt;dbl&gt; 470, 470, 470, 470, 470, 470, 470, 470, 470, ~
-## $ lebenserwartung          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ lebenserwartung_mann     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ lebenserwartung_frau     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ kindersterblichkeit      &lt;dbl&gt; 9.1, 8.8, 8.6, 8.4, 8.2, 7.9, 7.7, 7.4, 7.1, ~
-## $ geburtenrate             &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ co2_emissionen           &lt;dbl&gt; 407.037, 407.037, 407.037, 410.704, 407.037, ~
-## $ literacy_rate            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ militärausgaben          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
-## $ mordrate                 &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)  <span class="co"># Kurzvorschau jeder Variable mit einigen Metadaten</span></span></code></pre></div>
+<pre><code>## Rows: 20,000
+## Columns: 13
+## $ name        &lt;chr&gt; &quot;smart_forTwo_Softtouch__passion_Inspektion_fuer_687_Euro_~
+## $ preis       &lt;dbl&gt; 5299, 1100, 8199, 8999, 3600, 2490, 15500, 2700, 6200, 279~
+## $ alter       &lt;dbl&gt; 7, 16, 14, 8, 13, 11, 7, 12, 8, 8, 22, 8, 9, 15, 16, 18, 1~
+## $ kilometer   &lt;dbl&gt; 30000, 125000, 150000, 150000, 150000, 150000, 150000, 900~
+## $ hersteller  &lt;chr&gt; &quot;smart&quot;, &quot;renault&quot;, &quot;audi&quot;, &quot;mercedes_benz&quot;, &quot;bmw&quot;, &quot;peuge~
+## $ modell      &lt;chr&gt; &quot;fortwo&quot;, &quot;clio&quot;, &quot;a4&quot;, &quot;c_klasse&quot;, &quot;3er&quot;, &quot;1_reihe&quot;, &quot;5er~
+## $ fahrzeugtyp &lt;chr&gt; &quot;kleinwagen&quot;, &quot;kleinwagen&quot;, &quot;kombi&quot;, &quot;limousine&quot;, &quot;limousi~
+## $ getriebe    &lt;chr&gt; &quot;automatik&quot;, &quot;manuell&quot;, &quot;automatik&quot;, &quot;automatik&quot;, &quot;manuell~
+## $ ps          &lt;dbl&gt; 71, 75, 131, 136, 116, 68, 177, 69, 125, 67, 115, 121, 129~
+## $ kraftstoff  &lt;chr&gt; &quot;benzin&quot;, &quot;benzin&quot;, &quot;benzin&quot;, &quot;diesel&quot;, &quot;benzin&quot;, &quot;diesel&quot;~
+## $ schaden     &lt;chr&gt; &quot;nein&quot;, &quot;nein&quot;, &quot;nein&quot;, &quot;nein&quot;, &quot;nein&quot;, &quot;nein&quot;, &quot;nein&quot;, &quot;j~
+## $ plz         &lt;dbl&gt; 35315, 36137, 85057, 10627, 65934, 14793, 28816, 30880, 71~
+## $ bundesland  &lt;chr&gt; &quot;Hessen&quot;, &quot;Hessen&quot;, &quot;Bayern&quot;, &quot;Berlin&quot;, &quot;Hessen&quot;, &quot;Branden~</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)     <span class="co"># Erste 6 Zeilen</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 13
+##   name        preis alter kilometer hersteller modell fahrzeugtyp getriebe    ps
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;
+## 1 smart_forT~  5299     7     30000 smart      fortwo kleinwagen  automat~    71
+## 2 Renault_Cl~  1100    16    125000 renault    clio   kleinwagen  manuell     75
+## 3 Audi_A4_Av~  8199    14    150000 audi       a4     kombi       automat~   131
+## 4 Mercedes_B~  8999     8    150000 mercedes_~ c_kla~ limousine   automat~   136
+## 5 BMW_316_i_~  3600    13    150000 bmw        3er    limousine   manuell    116
+## 6 verk._eine~  2490    11    150000 peugeot    1_rei~ kleinwagen  manuell     68
+## # ... with 4 more variables: kraftstoff &lt;chr&gt;, schaden &lt;chr&gt;, plz &lt;dbl&gt;,
+## #   bundesland &lt;chr&gt;</code></pre>
 <p>Wenn wir genauere Information zu einer R Funktion oder einem Paket benötigen können wir die Hilfe verwenden, z.B. <code>help(head)</code>.</p>
-<p>Wir verwenden die <code>filter</code> Funktion, um eine Teilmenge der Zeilen zu selektieren. Hier wählen wir alle Zeilen, für die Variable <code>jahr</code> den Wert 2018 annimmt und die Variale <code>bevölkerung</code> größer als 200 Millionen ist.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, jahr<span class="sc">==</span><span class="dv">2018</span> <span class="sc">&amp;</span> bevölkerung<span class="sc">&gt;</span><span class="dv">200000000</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 23
-##   iso2c land      kontinent   subregion       jahr bevölkerung bevölkerung_weib~
-##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
-## 1 BR    Brazil    South Amer~ South America   2018   209469333              50.8
-## 2 CN    China     Asia        Eastern Asia    2018  1392730000              48.7
-## 3 ID    Indonesia Asia        South-Eastern~  2018   267663435              49.6
-## 4 IN    India     Asia        Southern Asia   2018  1352617328              48.0
-## 5 PK    Pakistan  Asia        Southern Asia   2018   212215030              48.5
-## 6 US    United S~ North Amer~ Northern Amer~  2018   326687501              50.5
-## # ... with 16 more variables: bevölkerung_0_14 &lt;dbl&gt;, bevölkerung_65+ &lt;dbl&gt;,
-## #   bevölkerung_land &lt;dbl&gt;, bevölkerung_stadt &lt;dbl&gt;,
-## #   bevölkerung_unter$5.50 &lt;dbl&gt;, bruttosozialprodukt &lt;dbl&gt;, fläche &lt;dbl&gt;,
-## #   lebenserwartung &lt;dbl&gt;, lebenserwartung_mann &lt;dbl&gt;,
-## #   lebenserwartung_frau &lt;dbl&gt;, kindersterblichkeit &lt;dbl&gt;, geburtenrate &lt;dbl&gt;,
-## #   co2_emissionen &lt;dbl&gt;, literacy_rate &lt;dbl&gt;, militärausgaben &lt;dbl&gt;,
-## #   mordrate &lt;dbl&gt;</code></pre>
+<p>Wir verwenden die <code>filter</code> Funktion, um alle diejenigen Autos (Zeilen des Datensatzes) zu selektieren, die eine oder mehrere Bedingungen erfüllen. Hier wählen wir alle Autos des Herstellers Porsche mit mehr als 280 PS.</p>
+<div id="filter" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Filter</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, hersteller<span class="sc">==</span><span class="st">&#39;porsche&#39;</span> <span class="sc">&amp;</span> ps<span class="sc">&gt;</span><span class="dv">280</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 13
+##   name        preis alter kilometer hersteller modell fahrzeugtyp getriebe    ps
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;
+## 1 Porsche_Ca~ 15500     8    150000 porsche    cayen~ suv         automat~   290
+## 2 Porsche_99~ 25996    16    125000 porsche    911    cabrio      automat~   300
+## 3 Porsche_Ca~ 18888     9    100000 porsche    cayen~ suv         automat~   290
+## 4 Porsche_Bo~ 26900     8     80000 porsche    boxst~ cabrio      manuell    295
+## 5 Porsche_996 29996    15    125000 porsche    911    cabrio      automat~   300
+## # ... with 4 more variables: kraftstoff &lt;chr&gt;, schaden &lt;chr&gt;, plz &lt;dbl&gt;,
+## #   bundesland &lt;chr&gt;</code></pre>
 <p>Alternativ können wir dies unter Verwendung des sog. Pipe Operators (<code>%&gt;%</code>) wie folgt schreiben.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="index.html#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2018</span> <span class="sc">&amp;</span> bevölkerung<span class="sc">&gt;</span><span class="dv">200000000</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 23
-##   iso2c land      kontinent   subregion       jahr bevölkerung bevölkerung_weib~
-##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
-## 1 BR    Brazil    South Amer~ South America   2018   209469333              50.8
-## 2 CN    China     Asia        Eastern Asia    2018  1392730000              48.7
-## 3 ID    Indonesia Asia        South-Eastern~  2018   267663435              49.6
-## 4 IN    India     Asia        Southern Asia   2018  1352617328              48.0
-## 5 PK    Pakistan  Asia        Southern Asia   2018   212215030              48.5
-## 6 US    United S~ North Amer~ Northern Amer~  2018   326687501              50.5
-## # ... with 16 more variables: bevölkerung_0_14 &lt;dbl&gt;, bevölkerung_65+ &lt;dbl&gt;,
-## #   bevölkerung_land &lt;dbl&gt;, bevölkerung_stadt &lt;dbl&gt;,
-## #   bevölkerung_unter$5.50 &lt;dbl&gt;, bruttosozialprodukt &lt;dbl&gt;, fläche &lt;dbl&gt;,
-## #   lebenserwartung &lt;dbl&gt;, lebenserwartung_mann &lt;dbl&gt;,
-## #   lebenserwartung_frau &lt;dbl&gt;, kindersterblichkeit &lt;dbl&gt;, geburtenrate &lt;dbl&gt;,
-## #   co2_emissionen &lt;dbl&gt;, literacy_rate &lt;dbl&gt;, militärausgaben &lt;dbl&gt;,
-## #   mordrate &lt;dbl&gt;</code></pre>
-<p>Der Vorteil davon ist hier noch nicht ersichtlich, sondern erst, wenn wir mehrere Verarbeiungsschritte miteinander verketten, bspw. durch Selektion einzelner Spalten (<code>select</code>) und Sortierung (<code>arrange</code>). Der Vorteil besteht darin, dass wir nicht nach jeder Operation ein Zwischenergebnis speichern müssen.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="index.html#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="index.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jahr<span class="sc">==</span><span class="dv">2018</span> <span class="sc">&amp;</span> bevölkerung<span class="sc">&gt;</span><span class="dv">200000000</span>) <span class="sc">%&gt;%</span>   <span class="co"># Selektion einzelner Zeilen</span></span>
-<span id="cb16-3"><a href="index.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(land, kontinent, bevölkerung) <span class="sc">%&gt;%</span>         <span class="co"># Selektion einzelner Spalten</span></span>
-<span id="cb16-4"><a href="index.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>bevölkerung)                            <span class="co"># Sortieren anhand der Spalte Bevölkerung</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##   land          kontinent     bevölkerung
-##   &lt;chr&gt;         &lt;chr&gt;               &lt;dbl&gt;
-## 1 China         Asia           1392730000
-## 2 India         Asia           1352617328
-## 3 United States North America   326687501
-## 4 Indonesia     Asia            267663435
-## 5 Pakistan      Asia            212215030
-## 6 Brazil        South America   209469333</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(hersteller<span class="sc">==</span><span class="st">&#39;porsche&#39;</span> <span class="sc">&amp;</span> ps<span class="sc">&gt;</span><span class="dv">280</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 13
+##   name        preis alter kilometer hersteller modell fahrzeugtyp getriebe    ps
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;
+## 1 Porsche_Ca~ 15500     8    150000 porsche    cayen~ suv         automat~   290
+## 2 Porsche_99~ 25996    16    125000 porsche    911    cabrio      automat~   300
+## 3 Porsche_Ca~ 18888     9    100000 porsche    cayen~ suv         automat~   290
+## 4 Porsche_Bo~ 26900     8     80000 porsche    boxst~ cabrio      manuell    295
+## 5 Porsche_996 29996    15    125000 porsche    911    cabrio      automat~   300
+## # ... with 4 more variables: kraftstoff &lt;chr&gt;, schaden &lt;chr&gt;, plz &lt;dbl&gt;,
+## #   bundesland &lt;chr&gt;</code></pre>
+</div>
+<div id="select-und-arrange" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Select und Arrange</h3>
+<p>Der Vorteil des Pipe Operators wird ersichtlich, wenn wir mehrere Verarbeiungsschritte miteinander verketten, bspw. durch Selektion einzelner Spalten (<code>select</code>) und Sortierung (<code>arrange</code>). Der Vorteil besteht darin, dass wir nicht nach jeder Operation ein Zwischenergebnis speichern müssen.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="index.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hersteller<span class="sc">==</span><span class="st">&#39;porsche&#39;</span> <span class="sc">&amp;</span> ps<span class="sc">&gt;</span><span class="dv">280</span>) <span class="sc">%&gt;%</span>   <span class="co"># Selektion einzelner Zeilen</span></span>
+<span id="cb12-3"><a href="index.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hersteller, ps, alter, preis) <span class="sc">%&gt;%</span>     <span class="co"># Selektion einzelner Spalten</span></span>
+<span id="cb12-4"><a href="index.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>preis)                              <span class="co"># Sortieren anhand der Spalte Bevölkerung</span></span></code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##   hersteller    ps alter preis
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 porsche      300    15 29996
+## 2 porsche      295     8 26900
+## 3 porsche      300    16 25996
+## 4 porsche      290     9 18888
+## 5 porsche      290     8 15500</code></pre>
+</div>
+<div id="mutate" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Mutate</h3>
 <p>Mithilfe der Funktion <code>mutate</code> können wir neue Variablen erstellen, oder alte überschreiben.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="index.html#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="index.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(land, bevölkerung, bruttosozialprodukt) <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="index.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pro_kopf_einkommen =</span> bruttosozialprodukt <span class="sc">/</span> bevölkerung) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="index.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 4
-##   land    bevölkerung bruttosozialprodukt pro_kopf_einkommen
-##   &lt;chr&gt;         &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;
-## 1 Andorra       54509         1029048482.             18879.</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="index.html#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="index.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hersteller, modell, preis) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="index.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">preis_in_1000 =</span> preis <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="index.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   hersteller modell preis preis_in_1000
+##   &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt;         &lt;dbl&gt;
+## 1 smart      fortwo  5299          5.30
+## 2 renault    clio    1100          1.1 
+## 3 audi       a4      8199          8.20</code></pre>
 <p>Mithilfe der Funktion <code>summarise</code> können wir unterschiedliche aggregierte Statistiken berechnen. Unter <code>help(summarise)</code> können sie wichtige Funktionen sehen, die zur Verfügung stehen. Zu beachten ist die Behandlung von fehlenden Werten (<code>NA</code>, not available). Um trotz vorhandener fehlender Werte ein Ergebnis angezeigt zu bekommen, muss die Option <code>na.rm</code> (remove NAs) auf TRUE gesetzt werden.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="index.html#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(welt_gesamtbevölkerung <span class="ot">=</span> <span class="fu">sum</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb20-2"><a href="index.html#cb20-2" aria-hidden="true" tabindex="-1"></a>                 durchschnittliche_bevölkerung <span class="ot">=</span> <span class="fu">mean</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb20-3"><a href="index.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                 max_bevölkerung <span class="ot">=</span> <span class="fu">max</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+</div>
+<div id="summarise" class="section level3" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Summarise</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="index.html#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">anzahl_fahrzeuge =</span> <span class="fu">n</span>(),</span>
+<span id="cb16-2"><a href="index.html#cb16-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">durchschnittliche_kilometer =</span> <span class="fu">mean</span>(kilometer, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb16-3"><a href="index.html#cb16-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gesamt_kilometer =</span> <span class="fu">sum</span>(kilometer, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
-##   welt_gesamtbevölkerung durchschnittliche_bevölkerung max_bevölkerung
-##                    &lt;dbl&gt;                         &lt;dbl&gt;           &lt;dbl&gt;
-## 1          185924258270.                     30187410.      1392730000</code></pre>
+##   anzahl_fahrzeuge durchschnittliche_kilometer gesamt_kilometer
+##              &lt;int&gt;                       &lt;dbl&gt;            &lt;dbl&gt;
+## 1            20000                     124122.       2482430000</code></pre>
 <p>Häufig kombinieren wir <code>summarise</code> mit der Funktion <code>group_by</code>. Dann wird die Berechnung nicht für den gesamten Datensatz ausgeführt, sondern separat für jede durch <code>group_by</code> definierte Gruppe.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="index.html#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="index.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kontinent) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="index.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">sum</span>(bevölkerung, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 2
-##   kontinent               `sum(bevölkerung, na.rm = TRUE)`
-##   &lt;chr&gt;                                              &lt;dbl&gt;
-## 1 Africa                                      26463948892 
-## 2 Asia                                       112029446576.
-## 3 Europe                                      21168009976 
-## 4 North America                               14678984242 
-## 5 Oceania                                       981192777 
-## 6 Seven seas (open ocean)                        46714086 
-## 7 South America                               10555961721</code></pre>
+</div>
+<div id="group-by" class="section level3" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Group by</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="index.html#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="index.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(schaden) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="index.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">durchschnitts_preis =</span> <span class="fu">mean</span>(preis, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   schaden durchschnitts_preis
+##   &lt;chr&gt;                 &lt;dbl&gt;
+## 1 ja                    2173.
+## 2 nein                  6164.</code></pre>
 
+</div>
 </div>
 </div>
             </section>
@@ -372,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="ggplot2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="streudiagramme.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
