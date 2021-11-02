@@ -23,6 +23,7 @@ theme_set(
 wdi <- read_csv("data/wdi.csv")        # Einlesen der World Development Indicators
 wdi <- wdi %>% filter(jahr==2018)      # Einschränkung auf das aktuellste Jahr im 
 geo <- read_rds("data/geo_wdi.rds")    # Einlesen der Geodaten
+sf_use_s2(FALSE)
 
 # Geodaten werden per Join zum Datensatz hinzugefügt
 df <- wdi %>% right_join(geo, by = "iso2c") %>% st_as_sf()
